@@ -1,48 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alas de Vida</title>
 
 <style>
 body{
-margin:0;
-font-family:Georgia, serif;
-background:#111;
-color:white;
-text-align:center;
+  margin:0;
+  font-family: Georgia, serif;
+  color:white;
+  text-align:center;
 }
 
 .hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:#000;
+  position:relative;
+  height:100vh;
+  background-image:url("portada.png");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+}
+
+.content{
+  position:relative;
+  z-index:2;
+}
+
+.logo{
+  width:220px;
+  margin-bottom:25px;
 }
 
 h1{
-font-size:4rem;
-letter-spacing:4px;
-margin:0;
+  font-size:64px;
+  letter-spacing:6px;
+  margin:0;
 }
 
 p{
-font-size:1.5rem;
-font-style:italic;
-margin-top:10px;
+  font-size:22px;
+  font-style:italic;
+  margin-top:10px;
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="hero">
-<h1>ALAS DE VIDA</h1>
-<p>Reflexiones de un pajarero</p>
+  <div class="overlay"></div>
+
+  <div class="content">
+    <img src="logo_white.png" class="logo">
+    <h1>ALAS DE VIDA</h1>
+    <p>Reflexiones de un pajarero</p>
+  </div>
 </div>
 
 </body>
