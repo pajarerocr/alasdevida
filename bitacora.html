@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora — Alas de Vida</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:"Manrope", sans-serif;
+}
+
+/* NAV */
+
+.nav{
+position:sticky;
+top:0;
+background:black;
+z-index:10;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-inner{
+max-width:1100px;
+margin:auto;
+padding:18px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.nav-logo img{
+height:120px;
+}
+
+.nav-links{
+display:flex;
+gap:22px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+opacity:0.8;
+font-size:14px;
+}
+
+.nav-links a:hover{
+opacity:1;
+}
+
+.nav-links a.activo{
+opacity:1;
+border-bottom:1px solid rgba(255,255,255,0.6);
+padding-bottom:3px;
+}
+
+/* TITULO */
+
+.titulo{
+max-width:720px;
+margin:120px auto 60px auto;
+text-align:center;
+padding:0 20px;
+}
+
+.titulo h1{
+font-size:42px;
+font-weight:500;
+letter-spacing:0.05em;
+}
+
+.subtitulo{
+opacity:0.6;
+margin-top:10px;
+}
+
+/* LISTA DE ENTRADAS */
+
+.entradas{
+max-width:720px;
+margin:0 auto 120px auto;
+padding:0 28px;
+}
+
+.entrada{
+margin-bottom:60px;
+}
+
+.entrada h2{
+font-weight:500;
+margin-bottom:8px;
+}
+
+.entrada p{
+opacity:0.7;
+margin-bottom:12px;
+}
+
+.entrada a{
+text-decoration:none;
+color:white;
+border-bottom:1px solid rgba(255,255,255,0.5);
+padding-bottom:3px;
+}
+
+/* MOVIL */
+
+@media (max-width:700px){
+
+.nav-inner{
+flex-direction:column;
+gap:16px;
+}
+
+.nav-logo img{
+height:150px;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+gap:14px;
+}
+
+.titulo h1{
+font-size:32px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+<div class="nav-inner">
+
+<a href="index.html" class="nav-logo">
+<img src="logo_white.png">
+</a>
+
+<nav class="nav-links">
+<a href="alasdevida.html">Alas de Vida</a>
+<a href="aves.html">Aves</a>
+<a href="caminos.html">Caminos</a>
+<a href="bitacora.html" class="activo">Bitácora</a>
+<a href="pajarero.html">Pajarero_cr</a>
+</nav>
+
+</div>
+</header>
+
+<section class="titulo">
+
+<h1>Bitácora</h1>
+
+<p class="subtitulo">
+Reflexiones, cuadernos de campo y pensamientos nacidos del pajareo.
+</p>
+
+</section>
+
+<section class="entradas">
+
+<div class="entrada">
+
+<h2>El pacto de las alas</h2>
+
+<p>
+365 días de pajareo diario en Costa Rica.
+</p>
+
+<a href="pacto-alas.html">Leer →</a>
+
+</div>
+
+</section>
+
+</body>
+</html>
