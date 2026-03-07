@@ -14,6 +14,9 @@ html, body {
 
 body {
   overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #000;
+  color: #fff;
 }
 
 .hero {
@@ -85,26 +88,52 @@ body {
     max-width: 68vw;
   }
 }
-.intro{
-  max-width:700px;
-  margin:80px auto;
-  padding:0 25px;
-  font-size:18px;
-  line-height:1.6;
-  text-align:center;
+
+/* BLOQUE DE INTRO */
+.intro {
+  max-width: 720px;
+  margin: 120px auto;
+  padding: 0 30px;
+  font-size: 22px;
+  line-height: 1.7;
+  text-align: center;
+  font-weight: 300;
+  color: #fff;
 }
 
-.intro a{
-  display:inline-block;
-  margin-top:20px;
-  font-weight:600;
-  text-decoration:none;
+.intro p {
+  margin: 0 0 25px 0;
 }
 
+.intro a {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 4px;
+}
+
+/* AJUSTES DE TEXTO EN CELULAR */
+@media (max-width: 700px) {
+  .intro {
+    margin: 80px auto;
+    padding: 0 24px;
+    font-size: 19px;
+    line-height: 1.65;
+  }
+
+  .intro a {
+    font-size: 15px;
+  }
+}
 </style>
 </head>
 
 <body>
+
   <div class="hero">
     <div class="logo-container">
       <img src="logo_white.png" class="logo" alt="Alas de Vida">
@@ -112,12 +141,13 @@ body {
   </div>
 
   <section class="intro">
-  <p>
-  Alas de Vida es un proyecto que surge de mi necesidad de compartir experiencias,
-  historias, reflexiones y observaciones.
-  </p>
+    <p>
+      Alas de Vida es un proyecto que surge de mi necesidad de compartir experiencias,
+      historias, reflexiones y observaciones.
+    </p>
 
-  <a href="sobre.html">Leer más →</a>
-</section>
+    <a href="sobre.html">Leer más →</a>
+  </section>
+
 </body>
 </html>
