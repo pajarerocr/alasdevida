@@ -144,7 +144,8 @@ margin-bottom:80px;
 
 /* LINK VOLVER */
 
-.volver{
+.volver,
+.volver:visited{
 display:inline-block;
 margin-top:80px;
 text-decoration:none;
@@ -154,7 +155,16 @@ font-size:15px;
 letter-spacing:0.04em;
 border-bottom:1px solid rgba(255,255,255,0.4);
 padding-bottom:4px;
-transition:opacity .25s ease;
+transition:opacity .25s ease, border-color .25s ease;
+}
+
+.volver:hover{
+opacity:1;
+border-bottom:1px solid rgba(255,255,255,0.8);
+}
+
+.volver:active{
+color:white;
 }
 
 .volver:hover{
