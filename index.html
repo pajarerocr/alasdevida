@@ -36,10 +36,10 @@ body {
 /* DESKTOP */
 .logo-container {
   position: absolute;
-  right: 6%;
-top: 58%;
-width: 500px;
-max-width: 35vw;
+  right: 7%;
+  top: 56%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
 .logo {
@@ -76,9 +76,8 @@ max-width: 35vw;
     left: 50%;
     right: auto;
     top: auto;
-    bottom: calc(18% + env(safe-area-inset-bottom));
-width: 360px;
-max-width: 66vw;
+    bottom: calc(12% + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
   }
 
   .logo {
