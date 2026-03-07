@@ -10,6 +10,43 @@
 
 <style>
 
+.nav{
+  position:sticky;
+  top:0;
+  background:black;
+  z-index:10;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-logo img{
+  height:32px;
+}
+
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:white;
+  opacity:0.8;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  opacity:1;
+}
+  
 body{
   margin:0;
   background:black;
@@ -73,6 +110,25 @@ p{
 
 <body>
 
+<header class="nav">
+
+  <div class="nav-inner">
+
+    <a href="index.html" class="nav-logo">
+      <img src="logo_white.png" alt="Alas de Vida">
+    </a>
+
+    <nav class="nav-links">
+      <a href="aves.html">Aves</a>
+      <a href="caminos.html">Caminos</a>
+      <a href="bitacora.html">Bitácora</a>
+      <a href="pajarero.html">Pajarero_cr</a>
+    </nav>
+
+  </div>
+
+</header>
+  
 <div class="contenido">
 
 <h1>Alas de Vida</h1>
