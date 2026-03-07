@@ -10,6 +10,26 @@
 
 <style>
 
+  .titulo-articulo{
+  max-width:720px;
+  margin:120px auto 60px auto;
+  padding:0 30px;
+  text-align:center;
+}
+
+.titulo-articulo h1{
+  font-size:44px;
+  font-weight:500;
+  letter-spacing:0.04em;
+  margin-bottom:10px;
+}
+
+.subtitulo{
+  font-size:18px;
+  opacity:0.65;
+  font-style:italic;
+}
+  
 .nav{
   position:sticky;
   top:0;
@@ -101,13 +121,19 @@ p{
 
 /* MOVIL */
 
-@media (max-width:700px){
+  @media (max-width:700px){
 
-.contenido{
-  margin:80px auto;
-  font-size:18px;
-  line-height:1.7;
-}
+  .titulo-articulo{
+    margin:80px auto 40px auto;
+  }
+
+  .titulo-articulo h1{
+    font-size:34px;
+  }
+
+  .subtitulo{
+    font-size:16px;
+  }
 
 }
 
