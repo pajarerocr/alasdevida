@@ -6,11 +6,11 @@
 <title>Alas de Vida</title>
 
 <style>
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: serif;
 }
 
 .hero {
@@ -22,6 +22,8 @@ html, body {
   background-position: center;
 }
 
+/* oscurecido suave */
+
 .hero::after {
   content: "";
   position: absolute;
@@ -29,63 +31,56 @@ html, body {
   background: rgba(0,0,0,0.22);
 }
 
+/* DESKTOP */
+
 .logo-container {
   position: absolute;
-  right: 6%;
+  right: 7%;
   top: 55%;
   transform: translateY(-50%);
   z-index: 2;
 }
 
 .logo {
-  width: 760px;
-  max-width: 52vw;
-  display: block;
+  width: 420px;
+  max-width: 35vw;
 }
 
-/* Ajuste para tablet y celular */
-@media (max-width: 900px) {
-  .logo-container {
-    right: 6%;
-    top: 56%;
-    transform: translateY(-50%);
-  }
+/* CELULAR */
 
-  .logo {
-    width: 420px;
-    max-width: 62vw;
-  }
-}
+@media (max-width: 700px) {
 
-/* Ajuste específico para celular vertical */
-@media (max-width: 600px) {
   .hero {
-    background-position: 38% center;
-  }
-
-  .hero::after {
-    background: rgba(0,0,0,0.18);
+    background-position: 40% center;
   }
 
   .logo-container {
-    right: 8%;
-    top: 58%;
-    transform: translateY(-50%);
+    right: auto;
+    left: 50%;
+    bottom: 12%;
+    top: auto;
+    transform: translateX(-50%);
   }
 
   .logo {
-    width: 360px;
-    max-width: 58vw;
+    width: 320px;
+    max-width: 70vw;
   }
+
 }
+
 </style>
 </head>
 
 <body>
-  <div class="hero">
-    <div class="logo-container">
-      <img src="logo_white.png" class="logo" alt="Alas de Vida">
-    </div>
+
+<div class="hero">
+
+  <div class="logo-container">
+    <img src="logo_white.png" class="logo" alt="Alas de Vida">
   </div>
+
+</div>
+
 </body>
 </html>
