@@ -6,7 +6,7 @@
 <title>Alas de Vida</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+
 <style>
 html, body {
   margin: 0;
@@ -20,16 +20,14 @@ body {
   background: #000;
   color: #fff;
 }
-  
+
 .hero {
   position: relative;
   height: 100vh;
   width: 100%;
-
   background-image:
     linear-gradient(to bottom, rgba(0,0,0,0) 65%, rgba(0,0,0,0.95) 100%),
     url("portada.png");
-
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -93,6 +91,22 @@ body {
     width: 380px;
     max-width: 68vw;
   }
+
+  .intro {
+    margin: 80px auto;
+    padding: 0 24px;
+    font-size: 19px;
+    line-height: 1.65;
+  }
+
+  .intro a {
+    font-size: 15px;
+  }
+
+  .explorar h3 {
+    letter-spacing: 0.18em;
+    font-size: 12px;
+  }
 }
 
 /* BLOQUE DE INTRO */
@@ -123,68 +137,36 @@ body {
   padding-bottom: 4px;
 }
 
-/* AJUSTES DE TEXTO EN CELULAR */
-@media (max-width: 700px) {
-  .intro {
-    margin: 80px auto;
-    padding: 0 24px;
-    font-size: 19px;
-    line-height: 1.65;
-  }
-
-  .intro a {
-    font-size: 15px;
-  }
-
-  .explorar h3{
-    letter-spacing:0.18em;
-    font-size:12px;
-  }
-}
-}
-
 /* BLOQUE EXPLORAR */
-.explorar h3{
-  font-weight:500;
-  letter-spacing:0.22em;
-  font-size:12px;
-  text-transform:uppercase;
-  margin-bottom:40px;
-  opacity:0.65;
+.explorar {
+  text-align: center;
+  margin: 120px auto;
+  padding: 0 25px;
 }
 
-.explorar h3{
-  font-weight:500;
-  letter-spacing:0.22em;
-  font-size:12px;
-  text-transform:uppercase;
-  margin-bottom:40px;
-  opacity:0.65;
-  text-align:center;
-  padding:0 20px;
-}
-}
-
-.botones a{
-  font-family:"Manrope", sans-serif;
-  font-size:16px;
-  letter-spacing:0.05em;
-  text-decoration:none;
-  color:white;
-  padding:10px 18px;
-  border:1px solid rgba(255,255,255,0.25);
-  border-radius:30px;
-  transition:all .25s ease;
+.explorar h3 {
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0.65;
+  text-align: center;
+  padding: 0 20px;
 }
 
-.botones a:hover{
-  background:white;
-  color:black;
-  border-color:white;
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .botones a {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 16px;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -216,13 +198,11 @@ body {
       Alas de Vida es un proyecto que surge de mi necesidad de compartir experiencias,
       historias, reflexiones y observaciones.
     </p>
-
     <a href="alasdevida.html">Leer más →</a>
   </section>
 
   <section class="explorar">
     <h3>Explorar</h3>
-
     <div class="botones">
       <a href="aves.html">Aves</a>
       <a href="caminos.html">Caminos</a>
