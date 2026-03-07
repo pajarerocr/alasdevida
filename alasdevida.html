@@ -3,33 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Alas de Vida</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
-  .titulo-articulo{
-  max-width:720px;
-  margin:120px auto 60px auto;
-  padding:0 30px;
-  text-align:center;
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:"Manrope", sans-serif;
 }
 
-.titulo-articulo h1{
-  font-size:44px;
-  font-weight:500;
-  letter-spacing:0.04em;
-  margin-bottom:10px;
-}
-
-.subtitulo{
-  font-size:18px;
-  opacity:0.65;
-  font-style:italic;
-}
-  
+/* NAV */
 .nav{
   position:sticky;
   top:0;
@@ -38,12 +24,6 @@
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-.foto-articulo{
-  width:100%;
-  margin:70px 0;
-  border-radius:6px;
-}
-  
 .nav-inner{
   max-width:1100px;
   margin:auto;
@@ -54,7 +34,9 @@
 }
 
 .nav-logo img{
-  height:32px;
+  height:56px;
+  width:auto;
+  display:block;
 }
 
 .nav-links{
@@ -72,16 +54,8 @@
 .nav-links a:hover{
   opacity:1;
 }
-  
-body{
-  margin:0;
-  background:black;
-  color:white;
-  font-family:"Manrope", sans-serif;
-}
 
-/* CONTENEDOR DE LECTURA */
-
+/* CONTENIDO */
 .contenido{
   max-width:720px;
   margin:120px auto;
@@ -91,22 +65,42 @@ body{
   font-weight:300;
 }
 
-/* TITULO */
+/* TITULO DEL ARTICULO */
+.titulo-articulo{
+  max-width:720px;
+  margin:0 auto 60px auto;
+  text-align:center;
+}
 
-h1{
-  font-weight:400;
-  letter-spacing:0.08em;
-  margin-bottom:60px;
+.titulo-articulo h1{
+  font-size:44px;
+  font-weight:500;
+  letter-spacing:0.04em;
+  margin:0 0 10px 0;
+}
+
+.subtitulo{
+  font-size:18px;
+  opacity:0.65;
+  font-style:italic;
+  margin:0;
 }
 
 /* PARRAFOS */
-
 p{
   margin-bottom:28px;
 }
 
-/* LINK VOLVER */
+/* FOTO */
+.foto-articulo{
+  width:100%;
+  height:auto;
+  display:block;
+  margin:70px 0;
+  border-radius:6px;
+}
 
+/* LINK VOLVER */
 .volver{
   display:inline-block;
   margin-top:60px;
@@ -120,11 +114,36 @@ p{
 }
 
 /* MOVIL */
+@media (max-width:700px){
 
-  @media (max-width:700px){
+  .nav-inner{
+    padding:16px 18px;
+    gap:18px;
+  }
+
+  .nav-logo img{
+    height:44px;
+  }
+
+  .nav-links{
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .contenido{
+    margin:80px auto;
+    font-size:18px;
+    line-height:1.7;
+    padding:0 22px;
+  }
 
   .titulo-articulo{
-    margin:80px auto 40px auto;
+    margin:0 auto 40px auto;
   }
 
   .titulo-articulo h1{
@@ -135,17 +154,17 @@ p{
     font-size:16px;
   }
 
+  .foto-articulo{
+    margin:50px 0;
+  }
 }
-
 </style>
 </head>
 
 <body>
 
 <header class="nav">
-
   <div class="nav-inner">
-
     <a href="index.html" class="nav-logo">
       <img src="logo_white.png" alt="Alas de Vida">
     </a>
@@ -156,91 +175,83 @@ p{
       <a href="bitacora.html">Bitácora</a>
       <a href="pajarero.html">Pajarero_cr</a>
     </nav>
-
   </div>
-
 </header>
-  
+
 <div class="contenido">
 
-<h1>Alas de Vida</h1>
-<header class="titulo-articulo">
+  <header class="titulo-articulo">
+    <h1>Alas de Vida</h1>
+    <p class="subtitulo">Reflexiones de un pajarero</p>
+  </header>
 
-  <h1>Alas de Vida</h1>
-
-  <p class="subtitulo">
-    Reflexiones de un pajarero
+  <p>
+    Alas de Vida es un proyecto que surge de mi necesidad de compartir mis experiencias, mis historias, mis reflexiones y mis observaciones.
   </p>
 
-</header>
-  
-<p>
-Alas de Vida es un proyecto que surge de mi necesidad de compartir mis experiencias, mis historias, mis reflexiones y mis observaciones.
-</p>
+  <p>
+    Nace de una voluntad de hacer un repositorio de mis memorias. Las aves sirven aquí como elemento unificador, pero en este proyecto estoy tratando de plasmarme a mí mismo.
+  </p>
 
-<p>
-Nace de una voluntad de hacer un repositorio de mis memorias. Las aves sirven aquí como elemento unificador, pero en este proyecto estoy tratando de plasmarme a mí mismo.
-</p>
+  <img src="bandada.jpg" class="foto-articulo" alt="Bandada de aves">
 
-  <img src="bandada.jpg" class="foto-articulo">
-  
-<p>
-Para mí, pajarear significa conectar con el presente, con la naturaleza, con la vida, con el amor propio, con el universo… conceptos que algunos podrían nombrar Dios.
-</p>
+  <p>
+    Para mí, pajarear significa conectar con el presente, con la naturaleza, con la vida, con el amor propio, con el universo… conceptos que algunos podrían nombrar Dios.
+  </p>
 
-<p>
-Aquí aparecen aves que me impresionan, que me conmueven, que busco y encuentro; pero también las que no encuentro, las que resultan divertidas, hermosas o curiosas en su comportamiento.
-</p>
+  <p>
+    Aquí aparecen aves que me impresionan, que me conmueven, que busco y encuentro; pero también las que no encuentro, las que resultan divertidas, hermosas o curiosas en su comportamiento.
+  </p>
 
-<p>
-También aparecen caminos: aquellos que no llevan a Roma, que retan, que inspiran, que lo ponen a uno a sudar y que lo elevan. Paisajes de nuestro país, Costa Rica, pequeño pero infinito. Pueblos y ciudades inspiradores y conmovedores.
-</p>
+  <p>
+    También aparecen caminos: aquellos que no llevan a Roma, que retan, que inspiran, que lo ponen a uno a sudar y que lo elevan. Paisajes de nuestro país, Costa Rica, pequeño pero infinito. Pueblos y ciudades inspiradores y conmovedores.
+  </p>
 
-<p>
-La bitácora recoge el aspecto reflexivo y filosófico del proyecto: filosofía, espiritualidad, literatura, ideas locas o enredadas. Algo parecido a un cuaderno de campo con hipótesis, conjeturas e inventos.
-</p>
+  <p>
+    La bitácora recoge el aspecto reflexivo y filosófico del proyecto: filosofía, espiritualidad, literatura, ideas locas o enredadas. Algo parecido a un cuaderno de campo con hipótesis, conjeturas e inventos.
+  </p>
 
-<p>
-Y pajarero_cr es el personaje detrás de estas reflexiones, junto a sus compañeros de viaje: Belle Vie (mi carrito), mi familia, mis amigos, mi música.
-</p>
+  <p>
+    Y pajarero_cr es el personaje detrás de estas reflexiones, junto a sus compañeros de viaje: Belle Vie (mi carrito), mi familia, mis amigos, mi música.
+  </p>
 
-<p>
-Este sitio quiere sentirse como un cuaderno abierto, una revista y un diario.
-</p>
+  <p>
+    Este sitio quiere sentirse como un cuaderno abierto, una revista y un diario.
+  </p>
 
-<p>
-No es científico, no es cerrado, no es rígido.
-</p>
+  <p>
+    No es científico, no es cerrado, no es rígido.
+  </p>
 
-<p>
-Más bien es un proyecto en construcción: ideas sueltas, observaciones y memorias.
-</p>
+  <p>
+    Más bien es un proyecto en construcción: ideas sueltas, observaciones y memorias.
+  </p>
 
-<p>
-Aquí escribe Pajarero_cr, quien desencantado de las redes sociales decide mudar su casita a un lugar libre de publicidad y con más flexibilidad para mezclar contenidos y formatos.
-</p>
+  <p>
+    Aquí escribe Pajarero_cr, quien desencantado de las redes sociales decide mudar su casita a un lugar libre de publicidad y con más flexibilidad para mezclar contenidos y formatos.
+  </p>
 
-<p>
-Pajarero_cr es Adrián, Adri, Corde… un mae de 41 años con una mente inquieta. Casi escritor, casi cineasta, casi fotógrafo, casi poeta, casi turismólogo… experto en procesos, experto en The Beatles. Y pajarero.
-</p>
+  <p>
+    Pajarero_cr es Adrián, Adri, Corde… un mae del 84, con una mente inquieta. Casi escritor, casi cineasta, casi fotógrafo, casi poeta, casi turismólogo… experto en procesos, experto en The Beatles. Y pajarero.
+  </p>
 
-<p>
-Este blog es una ventanita a mi mente, mi alma y mi memoria.
-</p>
+  <p>
+    Este blog es una ventanita a mi mente, mi alma y mi memoria.
+  </p>
 
-<p>
-En este proyecto utilizo ChatGPT para generar algunas ilustraciones, ordenar ideas, hacer brainstorming y programar la parte técnica del sitio. Pero las fotos, las historias, las vivencias y las reflexiones son mías.
-</p>
+  <p>
+    En este proyecto utilizo ChatGPT para generar algunas ilustraciones, ordenar ideas, hacer brainstorming y programar la parte técnica del sitio. Pero las fotos, las historias, las vivencias y las reflexiones son mías.
+  </p>
 
-<p>
-Si llegaste hasta aquí, espero que encontrés una visión fresca. Tal vez estas ideas te inviten a reflexionar. Tal vez encontrés un atractivo visual, filosófico o literario.
-</p>
+  <p>
+    Si llegaste hasta aquí, espero que encontrés una visión fresca. Tal vez estas ideas te inviten a reflexionar. Tal vez encontrés un atractivo visual, filosófico o literario.
+  </p>
 
-<p>
-Tal vez te den ganas de volver. Tal vez te inviten a pajarear, a dialogar, a comulgar con la vida y el presente… a desempolvar las alas y volar.
-</p>
+  <p>
+    Tal vez te den ganas de volver. Tal vez te inviten a pajarear, a dialogar, a comulgar con la vida y el presente… a desempolvar las alas y volar.
+  </p>
 
-<a class="volver" href="index.html">← Volver</a>
+  <a class="volver" href="index.html">← Volver</a>
 
 </div>
 
