@@ -1,615 +1,135 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aves — Alas de Vida</title>
-
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="icon" href="favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<style>
-body{
-  margin:0;
-  background:black;
-  color:white;
-  font-family:"Manrope", sans-serif;
-}
-
-/* NAV */
-.nav{
-  position:sticky;
-  top:0;
-  background:black;
-  z-index:10;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.nav-inner{
-  max-width:1100px;
-  margin:auto;
-  padding:18px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.nav-logo img{
-  height:120px;
-  width:auto;
-  display:block;
-}
-
-.nav-links{
-  display:flex;
-  gap:22px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:white;
-  opacity:0.8;
-  font-size:14px;
-}
-
-.nav-links a:hover{
-  opacity:1;
-}
-
-.nav-links a.activo{
-  opacity:1;
-  border-bottom:1px solid rgba(255,255,255,0.6);
-  padding-bottom:3px;
-}
-
-/* ENCABEZADO */
-.encabezado{
-  max-width:760px;
-  margin:90px auto 50px auto;
-  text-align:center;
-  padding:0 24px;
-}
-
-.encabezado h1{
-  margin:0 0 14px 0;
-  font-size:42px;
-  font-weight:500;
-  letter-spacing:0.04em;
-}
-
-.encabezado p{
-  margin:0;
-  opacity:0.75;
-  font-size:19px;
-  line-height:1.7;
-}
-
-/* CONTROLES */
-.controles{
-  max-width:1100px;
-  margin:0 auto 40px auto;
-  padding:0 30px;
-}
-
-.controles-top{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.buscar{
-  flex:1 1 280px;
-}
-
-.buscar input{
-  width:100%;
-  box-sizing:border-box;
-  padding:14px 16px;
-  background:#0d0d0d;
-  border:1px solid rgba(255,255,255,0.12);
-  color:white;
-  font-family:"Manrope", sans-serif;
-  font-size:15px;
-}
-
-.buscar input::placeholder{
-  color:rgba(255,255,255,0.45);
-}
-
-.filtros{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.filtros select{
-  padding:12px 14px;
-  background:#0d0d0d;
-  border:1px solid rgba(255,255,255,0.12);
-  color:white;
-  font-family:"Manrope", sans-serif;
-  font-size:14px;
-}
-
-/* INFO RESULTADOS */
-.resumen{
-  max-width:1100px;
-  margin:0 auto 30px auto;
-  padding:0 30px;
-  opacity:0.6;
-  font-size:14px;
-}
-
-/* GALERIA */
-.galeria-aves{
-  max-width:1100px;
-  margin:0 auto 100px auto;
-  padding:0 30px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:32px 24px;
-}
-
-.ave-card{
-  display:block;
-}
-
-.ave-card img{
-  width:100%;
-  aspect-ratio:4 / 5;
-  object-fit:cover;
-  display:block;
-  margin-bottom:14px;
-  background:#111;
-}
-
-.ave-info h3{
-  margin:0 0 6px 0;
-  font-size:20px;
-  font-weight:500;
-  line-height:1.3;
-}
-
-.ave-info p{
-  margin:0 0 6px 0;
-  font-size:15px;
-  line-height:1.45;
-}
-
-.ave-info .esp{
-  opacity:0.86;
-}
-
-.ave-info .sci{
-  opacity:0.72;
-  font-style:italic;
-}
-
-.ave-info .loc{
-  opacity:0.58;
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.ave-info a{
-  text-decoration:none;
-  color:white;
-  border-bottom:1px solid rgba(255,255,255,0.45);
-  padding-bottom:3px;
-  font-size:15px;
-}
-
-.ave-info a:hover{
-  border-bottom:1px solid rgba(255,255,255,0.85);
-}
-
-/* SIN RESULTADOS */
-.sin-resultados{
-  display:none;
-  max-width:720px;
-  margin:20px auto 100px auto;
-  padding:0 28px;
-  text-align:center;
-  opacity:0.7;
-  line-height:1.7;
-}
-
-/* FOOTER */
-.footer{
-  margin-top:120px;
-  border-top:1px solid rgba(255,255,255,0.08);
-  padding:50px 28px 60px 28px;
-  background:black;
-}
-
-.footer-inner{
-  max-width:720px;
-  margin:0 auto;
-  text-align:center;
-}
-
-.footer-logo{
-  width:120px;
-  height:auto;
-  margin-bottom:18px;
-  opacity:0.9;
-}
-
-.footer-texto{
-  margin:0 0 12px 0;
-  opacity:0.65;
-  font-size:15px;
-  line-height:1.6;
-}
-
-.footer-copy{
-  margin:0;
-  opacity:0.45;
-  font-size:13px;
-}
-
-/* MOVIL */
-@media (max-width:700px){
-  .nav-inner{
-    flex-direction:column;
-    gap:16px;
-  }
-
-  .nav-logo img{
-    height:150px;
-  }
-
-  .nav-links{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:14px;
-  }
-
-  .encabezado{
-    margin:70px auto 40px auto;
-  }
-
-  .encabezado h1{
-    font-size:34px;
-  }
-
-  .encabezado p{
-    font-size:17px;
-  }
-
-  .controles,
-  .resumen,
-  .galeria-aves{
-    padding:0 24px;
-  }
-
-  .galeria-aves{
-    grid-template-columns:1fr;
-    gap:36px;
-  }
-
-  .ave-info h3{
-    font-size:22px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="logo_white.png" alt="Alas de Vida">
-    </a>
-
-    <nav class="nav-links">
-      <a href="alasdevida.html">Alas de Vida</a>
-      <a href="aves.html" class="activo">Aves</a>
-      <a href="construccion.html">Caminos</a>
-      <a href="bitacora.html">Bitácora</a>
-      <a href="construccion.html">Pajarero_cr</a>
-    </nav>
-  </div>
-</header>
-
-<section class="encabezado">
-  <h1>Aves</h1>
-  <p>
-    Una galería de encuentros, especies, escenas y memorias aladas.
-  </p>
-</section>
-
-<section class="controles">
-  <div class="controles-top">
-    <div class="buscar">
-      <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
-    </div>
-
-    <div class="filtros">
-      <select id="familiaFilter">
-        <option value="">Familia</option>
-        <option value="Cotingidae">Cotingidae</option>
-        <option value="Phoenicopteridae">Phoenicopteridae</option>
-        <option value="Podicipedidae">Podicipedidae</option>
-        <option value="Psittacidae">Psittacidae</option>
-        <option value="Rynchopidae">Rynchopidae</option>
-        <option value="Scolopacidae">Scolopacidae</option>
-        <option value="Trochilidae">Trochilidae</option>
-        <option value="Trogonidae">Trogonidae</option>
-        <option value="Turdidae">Turdidae</option>
-        <option value="Tyrannidae">Tyrannidae</option>
-      </select>
-
-      <select id="habitatFilter">
-        <option value="">Hábitat</option>
-        <option value="bosque nuboso">Bosque nuboso</option>
-        <option value="bosque húmedo">Bosque húmedo</option>
-        <option value="costa">Costa</option>
-        <option value="humedal">Humedal</option>
-        <option value="parque urbano">Parque urbano</option>
-      </select>
-
-      <select id="provinciaFilter">
-        <option value="">Provincia</option>
-        <option value="Cartago">Cartago</option>
-        <option value="Limón">Limón</option>
-        <option value="Puntarenas">Puntarenas</option>
-        <option value="San José">San José</option>
-      </select>
-    </div>
-  </div>
-</section>
-
-<div class="resumen" id="resultsCount">12 entradas</div>
-
-<section class="galeria-aves" id="gallery">
-
-  <div class="ave-card"
-       data-search="resplendent quetzal quetzal resplandeciente pharomachrus mocinno cañón del savegre dota san josé"
-       data-familia="Trogonidae"
-       data-habitat="bosque nuboso"
-       data-provincia="San José">
-    <img src="images/birds/quetzal.jpg" alt="Resplendent Quetzal">
-    <div class="ave-info">
-      <h3>Resplendent Quetzal</h3>
-      <p class="esp">Quetzal resplandeciente</p>
-      <p class="sci"><em>Pharomachrus mocinno</em></p>
-      <p class="loc">Cañón del Savegre, Dota, San José, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="graceful black-throated trogon trogón elegante trogon caligatus parque nacional carara garabito puntarenas"
-       data-familia="Trogonidae"
-       data-habitat="bosque húmedo"
-       data-provincia="Puntarenas">
-    <img src="images/birds/graceful-black-throated-trogon.jpg" alt="Graceful Black-throated Trogon">
-    <div class="ave-info">
-      <h3>Graceful Black-throated Trogon</h3>
-      <p class="esp">Trogón elegante</p>
-      <p class="sci"><em>Trogon caligatus</em></p>
-      <p class="loc">Parque Nacional Carara, Garabito, Puntarenas, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="three-wattled bellbird campanero tricarunculado procnias tricarunculatus navarro del muñeco paraíso cartago"
-       data-familia="Cotingidae"
-       data-habitat="bosque nuboso"
-       data-provincia="Cartago">
-    <img src="images/birds/three-wattled-bellbird.jpg" alt="Three-wattled Bellbird">
-    <div class="ave-info">
-      <h3>Three-wattled Bellbird</h3>
-      <p class="esp">Campanero tricarunculado</p>
-      <p class="sci"><em>Procnias tricarunculatus</em></p>
-      <p class="loc">Navarro del Muñeco, Paraíso, Cartago, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="great green macaw lapa verde mayor ara ambiguus manzanillo talamanca limón"
-       data-familia="Psittacidae"
-       data-habitat="bosque húmedo"
-       data-provincia="Limón">
-    <img src="images/birds/great-green-macaw.jpg" alt="Great Green Macaw">
-    <div class="ave-info">
-      <h3>Great Green Macaw</h3>
-      <p class="esp">Lapa verde mayor</p>
-      <p class="sci"><em>Ara ambiguus</em></p>
-      <p class="loc">Manzanillo, Talamanca, Limón, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="scarlet macaw lapa roja ara macao parque nacional corcovado osa puntarenas"
-       data-familia="Psittacidae"
-       data-habitat="bosque húmedo"
-       data-provincia="Puntarenas">
-    <img src="images/birds/scarlet-macaws.jpg" alt="Scarlet Macaw">
-    <div class="ave-info">
-      <h3>Scarlet Macaw</h3>
-      <p class="esp">Lapa roja</p>
-      <p class="sci"><em>Ara macao</em></p>
-      <p class="loc">Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="american flamingo flamenco americano phoenicopterus ruber estero negro talamanca limón"
-       data-familia="Phoenicopteridae"
-       data-habitat="humedal"
-       data-provincia="Limón">
-    <img src="images/birds/flamingo.jpg" alt="American Flamingo">
-    <div class="ave-info">
-      <h3>American Flamingo</h3>
-      <p class="esp">Flamenco americano</p>
-      <p class="sci"><em>Phoenicopterus ruber</em></p>
-      <p class="loc">Estero Negro, Talamanca, Limón, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="ruby-throated hummingbird colibrí garganta rubí archilochus colubris monteverde puntarenas"
-       data-familia="Trochilidae"
-       data-habitat="bosque nuboso"
-       data-provincia="Puntarenas">
-    <img src="images/birds/ruby-throated-hummingbird.jpg" alt="Ruby-throated Hummingbird">
-    <div class="ave-info">
-      <h3>Ruby-throated Hummingbird</h3>
-      <p class="esp">Colibrí garganta rubí</p>
-      <p class="sci"><em>Archilochus colubris</em></p>
-      <p class="loc">Monteverde, Monteverde, Puntarenas, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="long-tailed tyrant tirano colilargo colonia colonus anturias pococí limón"
-       data-familia="Tyrannidae"
-       data-habitat="bosque húmedo"
-       data-provincia="Limón">
-    <img src="images/birds/long-tailed-tyrant.jpg" alt="Long-tailed Tyrant">
-    <div class="ave-info">
-      <h3>Long-tailed Tyrant</h3>
-      <p class="esp">Tirano colilargo</p>
-      <p class="sci"><em>Colonia colonus</em></p>
-      <p class="loc">Anturias, Pococí, Limón, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="wood thrush zorzal del bosque hylocichla mustelina bajos del tigre monteverde puntarenas"
-       data-familia="Turdidae"
-       data-habitat="bosque nuboso"
-       data-provincia="Puntarenas">
-    <img src="images/birds/wood-thrush.jpg" alt="Wood Thrush">
-    <div class="ave-info">
-      <h3>Wood Thrush</h3>
-      <p class="esp">Zorzal del bosque</p>
-      <p class="sci"><em>Hylocichla mustelina</em></p>
-      <p class="loc">Bajos del Tigre, Monteverde, Puntarenas, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="black skimmer rayador americano rynchops niger barra del colorado pococí limón"
-       data-familia="Rynchopidae"
-       data-habitat="costa"
-       data-provincia="Limón">
-    <img src="images/birds/black-skimmer.jpg" alt="Black Skimmer">
-    <div class="ave-info">
-      <h3>Black Skimmer</h3>
-      <p class="esp">Rayador americano</p>
-      <p class="sci"><em>Rynchops niger</em></p>
-      <p class="loc">Barra del Colorado, Pococí, Limón, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="whimbrel zarapito trinador numenius phaeopus cocorocas chomes puntarenas"
-       data-familia="Scolopacidae"
-       data-habitat="costa"
-       data-provincia="Puntarenas">
-    <img src="images/birds/whimbrel-flock.jpg" alt="Whimbrel">
-    <div class="ave-info">
-      <h3>Whimbrel</h3>
-      <p class="esp">Zarapito trinador</p>
-      <p class="sci"><em>Numenius phaeopus</em></p>
-      <p class="loc">Cocorocas, Chomes, Puntarenas, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-  <div class="ave-card"
-       data-search="least grebe zambullidor menor tachybaptus dominicus la sabana san josé"
-       data-familia="Podicipedidae"
-       data-habitat="parque urbano"
-       data-provincia="San José">
-    <img src="images/birds/least-grebe.jpg" alt="Least Grebe">
-    <div class="ave-info">
-      <h3>Least Grebe</h3>
-      <p class="esp">Zambullidor menor</p>
-      <p class="sci"><em>Tachybaptus dominicus</em></p>
-      <p class="loc">Parque Metropolitano La Sabana, San José, San José, Costa Rica</p>
-      <a href="construccion.html">Leer más →</a>
-    </div>
-  </div>
-
-</section>
-
-<div class="sin-resultados" id="noResults">
-  No se encontraron resultados con esos filtros.
+<section class="galeria-aves">
+
+<div class="ave-card">
+<img src="images/aves/quetzal.jpg" alt="Resplendent Quetzal">
+<div class="ave-info">
+<h3>Resplendent Quetzal</h3>
+<p class="esp">Quetzal resplandeciente</p>
+<p class="sci"><em>Pharomachrus mocinno</em></p>
+<p class="loc">Cañón del Savegre, Dota, San José, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
 </div>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <img src="logo_pajarero.png" class="footer-logo" alt="pajarero_cr">
-    <p class="footer-texto">Un cuaderno abierto de pajareo, caminos y memoria.</p>
-    <p class="footer-copy">© Adrián Cordero</p>
-  </div>
-</footer>
+<div class="ave-card">
+<img src="images/aves/graceful-black-throated- trogon.jpg" alt="Graceful Black-throated Trogon">
+<div class="ave-info">
+<h3>Graceful Black-throated Trogon</h3>
+<p class="esp">Trogón elegante</p>
+<p class="sci"><em>Trogon caligatus</em></p>
+<p class="loc">Parque Nacional Carara, Garabito, Puntarenas, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-<script>
-const searchInput = document.getElementById('searchInput');
-const familiaFilter = document.getElementById('familiaFilter');
-const habitatFilter = document.getElementById('habitatFilter');
-const provinciaFilter = document.getElementById('provinciaFilter');
-const cards = document.querySelectorAll('.ave-card');
-const resultsCount = document.getElementById('resultsCount');
-const noResults = document.getElementById('noResults');
+<div class="ave-card">
+<img src="images/aves/three-wattled-bellbird.jpg" alt="Three-wattled Bellbird">
+<div class="ave-info">
+<h3>Three-wattled Bellbird</h3>
+<p class="esp">Campanero tricarunculado</p>
+<p class="sci"><em>Procnias tricarunculatus</em></p>
+<p class="loc">Navarro del Muñeco, Paraíso, Cartago, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-function filtrarGaleria() {
-  const searchValue = searchInput.value.trim().toLowerCase();
-  const familiaValue = familiaFilter.value;
-  const habitatValue = habitatFilter.value;
-  const provinciaValue = provinciaFilter.value;
+<div class="ave-card">
+<img src="images/aves/great-green-macaw.jpg" alt="Great Green Macaw">
+<div class="ave-info">
+<h3>Great Green Macaw</h3>
+<p class="esp">Lapa verde mayor</p>
+<p class="sci"><em>Ara ambiguus</em></p>
+<p class="loc">Manzanillo, Talamanca, Limón, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-  let visibles = 0;
+<div class="ave-card">
+<img src="images/aves/scarlet-macaws.jpg" alt="Scarlet Macaw">
+<div class="ave-info">
+<h3>Scarlet Macaw</h3>
+<p class="esp">Lapa roja</p>
+<p class="sci"><em>Ara macao</em></p>
+<p class="loc">Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-  cards.forEach(card => {
-    const searchText = card.dataset.search.toLowerCase();
-    const familia = card.dataset.familia;
-    const habitat = card.dataset.habitat;
-    const provincia = card.dataset.provincia;
+<div class="ave-card">
+<img src="images/aves/flamingo.jpg" alt="American Flamingo">
+<div class="ave-info">
+<h3>American Flamingo</h3>
+<p class="esp">Flamenco americano</p>
+<p class="sci"><em>Phoenicopterus ruber</em></p>
+<p class="loc">Estero Negro, Talamanca, Limón, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-    const matchSearch = searchText.includes(searchValue);
-    const matchFamilia = !familiaValue || familia === familiaValue;
-    const matchHabitat = !habitatValue || habitat === habitatValue;
-    const matchProvincia = !provinciaValue || provincia === provinciaValue;
+<div class="ave-card">
+<img src="images/aves/ruby-throated-hummingbird.jpg" alt="Ruby-throated Hummingbird">
+<div class="ave-info">
+<h3>Ruby-throated Hummingbird</h3>
+<p class="esp">Colibrí garganta rubí</p>
+<p class="sci"><em>Archilochus colubris</em></p>
+<p class="loc">Monteverde, Monteverde, Puntarenas, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-    if (matchSearch && matchFamilia && matchHabitat && matchProvincia) {
-      card.style.display = 'block';
-      visibles++;
-    } else {
-      card.style.display = 'none';
-    }
-  });
+<div class="ave-card">
+<img src="images/aves/long-tailed-tyrant.JPG" alt="Long-tailed Tyrant">
+<div class="ave-info">
+<h3>Long-tailed Tyrant</h3>
+<p class="esp">Tirano colilargo</p>
+<p class="sci"><em>Colonia colonus</em></p>
+<p class="loc">Anturias, Pococí, Limón, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-  resultsCount.textContent = visibles === 1 ? '1 entrada' : `${visibles} entradas`;
-  noResults.style.display = visibles === 0 ? 'block' : 'none';
-}
+<div class="ave-card">
+<img src="images/aves/wood-thrush.jpg" alt="Wood Thrush">
+<div class="ave-info">
+<h3>Wood Thrush</h3>
+<p class="esp">Zorzal del bosque</p>
+<p class="sci"><em>Hylocichla mustelina</em></p>
+<p class="loc">Bajos del Tigre, Monteverde, Puntarenas, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-searchInput.addEventListener('input', filtrarGaleria);
-familiaFilter.addEventListener('change', filtrarGaleria);
-habitatFilter.addEventListener('change', filtrarGaleria);
-provinciaFilter.addEventListener('change', filtrarGaleria);
-</script>
+<div class="ave-card">
+<img src="images/aves/black-skimmer.JPG" alt="Black Skimmer">
+<div class="ave-info">
+<h3>Black Skimmer</h3>
+<p class="esp">Rayador americano</p>
+<p class="sci"><em>Rynchops niger</em></p>
+<p class="loc">Barra del Colorado, Pococí, Limón, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
 
-</body>
-</html>
+<div class="ave-card">
+<img src="images/aves/whimbrel-flock.jpg" alt="Whimbrel">
+<div class="ave-info">
+<h3>Whimbrel</h3>
+<p class="esp">Zarapito trinador</p>
+<p class="sci"><em>Numenius phaeopus</em></p>
+<p class="loc">Cocorocas, Chomes, Puntarenas, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
+
+<div class="ave-card">
+<img src="images/aves/least-grebe.jpg" alt="Least Grebe">
+<div class="ave-info">
+<h3>Least Grebe</h3>
+<p class="esp">Zambullidor menor</p>
+<p class="sci"><em>Tachybaptus dominicus</em></p>
+<p class="loc">Parque Metropolitano La Sabana, San José, Costa Rica</p>
+<a href="construccion.html">Leer más →</a>
+</div>
+</div>
+
+</section>
