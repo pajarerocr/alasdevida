@@ -169,6 +169,10 @@ body{
   background:#111;
 }
 
+.lightbox-trigger{
+  cursor:pointer;
+}
+
 .ave-info h3{
   margin:0 0 6px 0;
   font-size:20px;
@@ -220,6 +224,112 @@ body{
   line-height:1.7;
 }
 
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.94);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:30px;
+  box-sizing:border-box;
+}
+
+.lightbox.active{
+  display:flex;
+}
+
+.lightbox-inner{
+  max-width:1100px;
+  width:100%;
+  max-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.lightbox-image{
+  max-width:100%;
+  max-height:75vh;
+  object-fit:contain;
+  display:block;
+}
+
+.lightbox-caption{
+  margin-top:20px;
+  text-align:center;
+  line-height:1.5;
+}
+
+.lightbox-caption .eng{
+  font-size:22px;
+  font-weight:500;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .esp{
+  opacity:0.85;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .sci{
+  opacity:0.7;
+  font-style:italic;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .loc{
+  opacity:0.6;
+  font-size:14px;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:34px;
+  line-height:1;
+  color:white;
+  background:none;
+  border:none;
+  cursor:pointer;
+  opacity:0.8;
+}
+
+.lightbox-close:hover{
+  opacity:1;
+}
+
+.lightbox-prev,
+.lightbox-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  color:white;
+  font-size:42px;
+  cursor:pointer;
+  opacity:0.75;
+  padding:12px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover{
+  opacity:1;
+}
+
+.lightbox-prev{
+  left:18px;
+}
+
+.lightbox-next{
+  right:18px;
+}
+
 /* FOOTER */
 .footer{
   margin-top:120px;
@@ -239,6 +349,13 @@ body{
   height:auto;
   margin-bottom:18px;
   opacity:0.9;
+}
+
+.footer-titulo{
+  margin:0 0 10px 0;
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:0.04em;
 }
 
 .footer-texto{
@@ -296,6 +413,29 @@ body{
 
   .ave-info h3{
     font-size:22px;
+  }
+
+  .lightbox{
+    padding:20px 14px 28px 14px;
+  }
+
+  .lightbox-image{
+    max-height:68vh;
+  }
+
+  .lightbox-caption .eng{
+    font-size:19px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next{
+    font-size:34px;
+  }
+
+  .lightbox-close{
+    top:12px;
+    right:14px;
+    font-size:30px;
   }
 }
 </style>
@@ -369,144 +509,209 @@ body{
 
 <div class="resumen" id="resultsCount">12 entradas</div>
 
-<section class="galeria-aves">
+<section class="galeria-aves" id="gallery">
 
-<div class="ave-card">
-<img src="images/aves/quetzal.jpg" alt="Resplendent Quetzal">
-<div class="ave-info">
-<h3>Resplendent Quetzal</h3>
-<p class="esp">Quetzal resplandeciente</p>
-<p class="sci"><em>Pharomachrus mocinno</em></p>
-<p class="loc">Cañón del Savegre, Dota, San José, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="resplendent quetzal quetzal resplandeciente pharomachrus mocinno cañón del savegre dota san josé"
+       data-familia="Trogonidae"
+       data-habitat="bosque nuboso"
+       data-provincia="San José">
+    <img src="images/aves/quetzal.jpg" alt="Resplendent Quetzal" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Resplendent Quetzal</h3>
+      <p class="esp">Quetzal resplandeciente</p>
+      <p class="sci"><em>Pharomachrus mocinno</em></p>
+      <p class="loc">Cañón del Savegre, Dota, San José, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/graceful-black-throated- trogon.jpg" alt="Graceful Black-throated Trogon">
-<div class="ave-info">
-<h3>Graceful Black-throated Trogon</h3>
-<p class="esp">Trogón elegante</p>
-<p class="sci"><em>Trogon caligatus</em></p>
-<p class="loc">Parque Nacional Carara, Garabito, Puntarenas, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="graceful black-throated trogon trogón elegante trogon caligatus parque nacional carara garabito puntarenas"
+       data-familia="Trogonidae"
+       data-habitat="bosque húmedo"
+       data-provincia="Puntarenas">
+    <img src="images/aves/graceful-black-throated- trogon.jpg" alt="Graceful Black-throated Trogon" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Graceful Black-throated Trogon</h3>
+      <p class="esp">Trogón elegante</p>
+      <p class="sci"><em>Trogon caligatus</em></p>
+      <p class="loc">Parque Nacional Carara, Garabito, Puntarenas, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/three-wattled-bellbird.jpg" alt="Three-wattled Bellbird">
-<div class="ave-info">
-<h3>Three-wattled Bellbird</h3>
-<p class="esp">Campanero tricarunculado</p>
-<p class="sci"><em>Procnias tricarunculatus</em></p>
-<p class="loc">Navarro del Muñeco, Paraíso, Cartago, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="three-wattled bellbird campanero tricarunculado procnias tricarunculatus navarro del muñeco paraíso cartago"
+       data-familia="Cotingidae"
+       data-habitat="bosque nuboso"
+       data-provincia="Cartago">
+    <img src="images/aves/three-wattled-bellbird.jpg" alt="Three-wattled Bellbird" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Three-wattled Bellbird</h3>
+      <p class="esp">Campanero tricarunculado</p>
+      <p class="sci"><em>Procnias tricarunculatus</em></p>
+      <p class="loc">Navarro del Muñeco, Paraíso, Cartago, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/great-green-macaw.jpg" alt="Great Green Macaw">
-<div class="ave-info">
-<h3>Great Green Macaw</h3>
-<p class="esp">Lapa verde mayor</p>
-<p class="sci"><em>Ara ambiguus</em></p>
-<p class="loc">Manzanillo, Talamanca, Limón, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="great green macaw lapa verde mayor ara ambiguus manzanillo talamanca limón"
+       data-familia="Psittacidae"
+       data-habitat="bosque húmedo"
+       data-provincia="Limón">
+    <img src="images/aves/great-green-macaw.jpg" alt="Great Green Macaw" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Great Green Macaw</h3>
+      <p class="esp">Lapa verde mayor</p>
+      <p class="sci"><em>Ara ambiguus</em></p>
+      <p class="loc">Manzanillo, Talamanca, Limón, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/scarlet-macaws.jpg" alt="Scarlet Macaw">
-<div class="ave-info">
-<h3>Scarlet Macaw</h3>
-<p class="esp">Lapa roja</p>
-<p class="sci"><em>Ara macao</em></p>
-<p class="loc">Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="scarlet macaw lapa roja ara macao parque nacional corcovado osa puntarenas"
+       data-familia="Psittacidae"
+       data-habitat="bosque húmedo"
+       data-provincia="Puntarenas">
+    <img src="images/aves/scarlet-macaws.jpg" alt="Scarlet Macaw" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Scarlet Macaw</h3>
+      <p class="esp">Lapa roja</p>
+      <p class="sci"><em>Ara macao</em></p>
+      <p class="loc">Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/flamingo.jpg" alt="American Flamingo">
-<div class="ave-info">
-<h3>American Flamingo</h3>
-<p class="esp">Flamenco americano</p>
-<p class="sci"><em>Phoenicopterus ruber</em></p>
-<p class="loc">Estero Negro, Talamanca, Limón, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="american flamingo flamenco americano phoenicopterus ruber estero negro talamanca limón"
+       data-familia="Phoenicopteridae"
+       data-habitat="humedal"
+       data-provincia="Limón">
+    <img src="images/aves/flamingo.jpg" alt="American Flamingo" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>American Flamingo</h3>
+      <p class="esp">Flamenco americano</p>
+      <p class="sci"><em>Phoenicopterus ruber</em></p>
+      <p class="loc">Estero Negro, Talamanca, Limón, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/ruby-throated-hummingbird.jpg" alt="Ruby-throated Hummingbird">
-<div class="ave-info">
-<h3>Ruby-throated Hummingbird</h3>
-<p class="esp">Colibrí garganta rubí</p>
-<p class="sci"><em>Archilochus colubris</em></p>
-<p class="loc">Monteverde, Monteverde, Puntarenas, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="ruby-throated hummingbird colibrí garganta rubí archilochus colubris monteverde puntarenas"
+       data-familia="Trochilidae"
+       data-habitat="bosque nuboso"
+       data-provincia="Puntarenas">
+    <img src="images/aves/ruby-throated-hummingbird.jpg" alt="Ruby-throated Hummingbird" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Ruby-throated Hummingbird</h3>
+      <p class="esp">Colibrí garganta rubí</p>
+      <p class="sci"><em>Archilochus colubris</em></p>
+      <p class="loc">Monteverde, Monteverde, Puntarenas, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/long-tailed-tyrant.JPG" alt="Long-tailed Tyrant">
-<div class="ave-info">
-<h3>Long-tailed Tyrant</h3>
-<p class="esp">Tirano colilargo</p>
-<p class="sci"><em>Colonia colonus</em></p>
-<p class="loc">Anturias, Pococí, Limón, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="long-tailed tyrant tirano colilargo colonia colonus anturias pococí limón"
+       data-familia="Tyrannidae"
+       data-habitat="bosque húmedo"
+       data-provincia="Limón">
+    <img src="images/aves/long-tailed-tyrant.JPG" alt="Long-tailed Tyrant" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Long-tailed Tyrant</h3>
+      <p class="esp">Tirano colilargo</p>
+      <p class="sci"><em>Colonia colonus</em></p>
+      <p class="loc">Anturias, Pococí, Limón, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/wood-thrush.jpg" alt="Wood Thrush">
-<div class="ave-info">
-<h3>Wood Thrush</h3>
-<p class="esp">Zorzal del bosque</p>
-<p class="sci"><em>Hylocichla mustelina</em></p>
-<p class="loc">Bajos del Tigre, Monteverde, Puntarenas, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="wood thrush zorzal del bosque hylocichla mustelina bajos del tigre monteverde puntarenas"
+       data-familia="Turdidae"
+       data-habitat="bosque nuboso"
+       data-provincia="Puntarenas">
+    <img src="images/aves/wood-thrush.jpg" alt="Wood Thrush" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Wood Thrush</h3>
+      <p class="esp">Zorzal del bosque</p>
+      <p class="sci"><em>Hylocichla mustelina</em></p>
+      <p class="loc">Bajos del Tigre, Monteverde, Puntarenas, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/black-skimmer.JPG" alt="Black Skimmer">
-<div class="ave-info">
-<h3>Black Skimmer</h3>
-<p class="esp">Rayador americano</p>
-<p class="sci"><em>Rynchops niger</em></p>
-<p class="loc">Barra del Colorado, Pococí, Limón, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="black skimmer rayador americano rynchops niger barra del colorado pococí limón"
+       data-familia="Rynchopidae"
+       data-habitat="costa"
+       data-provincia="Limón">
+    <img src="images/aves/black-skimmer.JPG" alt="Black Skimmer" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Black Skimmer</h3>
+      <p class="esp">Rayador americano</p>
+      <p class="sci"><em>Rynchops niger</em></p>
+      <p class="loc">Barra del Colorado, Pococí, Limón, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/whimbrel-flock.jpg" alt="Whimbrel">
-<div class="ave-info">
-<h3>Whimbrel</h3>
-<p class="esp">Zarapito trinador</p>
-<p class="sci"><em>Numenius phaeopus</em></p>
-<p class="loc">Cocorocas, Chomes, Puntarenas, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="whimbrel zarapito trinador numenius phaeopus cocorocas chomes puntarenas"
+       data-familia="Scolopacidae"
+       data-habitat="costa"
+       data-provincia="Puntarenas">
+    <img src="images/aves/whimbrel-flock.jpg" alt="Whimbrel" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Whimbrel</h3>
+      <p class="esp">Zarapito trinador</p>
+      <p class="sci"><em>Numenius phaeopus</em></p>
+      <p class="loc">Cocorocas, Chomes, Puntarenas, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
-<div class="ave-card">
-<img src="images/aves/least-grebe.jpg" alt="Least Grebe">
-<div class="ave-info">
-<h3>Least Grebe</h3>
-<p class="esp">Zambullidor menor</p>
-<p class="sci"><em>Tachybaptus dominicus</em></p>
-<p class="loc">Parque Metropolitano La Sabana, San José, Costa Rica</p>
-<a href="construccion.html">Leer más →</a>
-</div>
-</div>
+  <div class="ave-card"
+       data-search="least grebe zambullidor menor tachybaptus dominicus la sabana san josé"
+       data-familia="Podicipedidae"
+       data-habitat="parque urbano"
+       data-provincia="San José">
+    <img src="images/aves/least-grebe.jpg" alt="Least Grebe" class="lightbox-trigger">
+    <div class="ave-info">
+      <h3>Least Grebe</h3>
+      <p class="esp">Zambullidor menor</p>
+      <p class="sci"><em>Tachybaptus dominicus</em></p>
+      <p class="loc">Parque Metropolitano La Sabana, San José, Costa Rica</p>
+      <a href="construccion.html">Leer más →</a>
+    </div>
+  </div>
 
 </section>
 
 <div class="sin-resultados" id="noResults">
   No se encontraron resultados con esos filtros.
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+
+  <div class="lightbox-inner">
+    <img src="" alt="" class="lightbox-image" id="lightboxImage">
+
+    <div class="lightbox-caption" id="lightboxCaption">
+      <div class="eng"></div>
+      <div class="esp"></div>
+      <div class="sci"></div>
+      <div class="loc"></div>
+    </div>
+  </div>
 </div>
 
 <footer class="footer">
@@ -527,7 +732,7 @@ const searchInput = document.getElementById('searchInput');
 const familiaFilter = document.getElementById('familiaFilter');
 const habitatFilter = document.getElementById('habitatFilter');
 const provinciaFilter = document.getElementById('provinciaFilter');
-const cards = document.querySelectorAll('.ave-card');
+const cards = Array.from(document.querySelectorAll('.ave-card'));
 const resultsCount = document.getElementById('resultsCount');
 const noResults = document.getElementById('noResults');
 
@@ -540,10 +745,10 @@ function filtrarGaleria() {
   let visibles = 0;
 
   cards.forEach(card => {
-    const searchText = card.dataset.search.toLowerCase();
-    const familia = card.dataset.familia;
-    const habitat = card.dataset.habitat;
-    const provincia = card.dataset.provincia;
+    const searchText = (card.dataset.search || '').toLowerCase();
+    const familia = card.dataset.familia || '';
+    const habitat = card.dataset.habitat || '';
+    const provincia = card.dataset.provincia || '';
 
     const matchSearch = searchText.includes(searchValue);
     const matchFamilia = !familiaValue || familia === familiaValue;
@@ -566,6 +771,123 @@ searchInput.addEventListener('input', filtrarGaleria);
 familiaFilter.addEventListener('change', filtrarGaleria);
 habitatFilter.addEventListener('change', filtrarGaleria);
 provinciaFilter.addEventListener('change', filtrarGaleria);
+
+/* LIGHTBOX */
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+let currentVisibleCards = [];
+let currentIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+function getVisibleCards() {
+  return cards.filter(card => card.style.display !== 'none');
+}
+
+function getCardData(card){
+  const img = card.querySelector('.lightbox-trigger');
+  const eng = card.querySelector('.ave-info h3')?.textContent || '';
+  const esp = card.querySelector('.ave-info .esp')?.textContent || '';
+  const sci = card.querySelector('.ave-info .sci')?.textContent || '';
+  const loc = card.querySelector('.ave-info .loc')?.textContent || '';
+
+  return {
+    src: img.getAttribute('src'),
+    alt: img.getAttribute('alt') || eng,
+    eng,
+    esp,
+    sci,
+    loc
+  };
+}
+
+function renderLightbox(index){
+  currentVisibleCards = getVisibleCards();
+  if (!currentVisibleCards.length) return;
+
+  currentIndex = index;
+  const data = getCardData(currentVisibleCards[currentIndex]);
+
+  lightboxImage.src = data.src;
+  lightboxImage.alt = data.alt;
+
+  lightboxCaption.querySelector('.eng').textContent = data.eng;
+  lightboxCaption.querySelector('.esp').textContent = data.esp;
+  lightboxCaption.querySelector('.sci').textContent = data.sci;
+  lightboxCaption.querySelector('.loc').textContent = data.loc;
+}
+
+function showLightboxByCard(card){
+  currentVisibleCards = getVisibleCards();
+  currentIndex = currentVisibleCards.indexOf(card);
+  renderLightbox(currentIndex);
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(){
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function showNext(){
+  if (!currentVisibleCards.length) return;
+  currentIndex = (currentIndex + 1) % currentVisibleCards.length;
+  renderLightbox(currentIndex);
+}
+
+function showPrev(){
+  if (!currentVisibleCards.length) return;
+  currentIndex = (currentIndex - 1 + currentVisibleCards.length) % currentVisibleCards.length;
+  renderLightbox(currentIndex);
+}
+
+cards.forEach((card) => {
+  const img = card.querySelector('.lightbox-trigger');
+  if(img){
+    img.addEventListener('click', () => showLightboxByCard(card));
+  }
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxNext.addEventListener('click', showNext);
+lightboxPrev.addEventListener('click', showPrev);
+
+lightbox.addEventListener('click', (e) => {
+  if(e.target === lightbox){
+    closeLightbox();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if(!lightbox.classList.contains('active')) return;
+
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowRight') showNext();
+  if(e.key === 'ArrowLeft') showPrev();
+});
+
+lightbox.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, {passive:true});
+
+lightbox.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const delta = touchEndX - touchStartX;
+
+  if(Math.abs(delta) > 50){
+    if(delta < 0){
+      showNext();
+    } else {
+      showPrev();
+    }
+  }
+}, {passive:true});
 </script>
 
 </body>
