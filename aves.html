@@ -496,54 +496,20 @@ body{
 <section class="controles">
   <div class="controles-top">
     <div class="buscar">
-  <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
-</div>
+      <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
+    </div>
 
-<div class="filtros">
-<select id="sortSelect">
-  <option value="random">Orden: Aleatorio</option>
-  <option value="recent">Más recientes</option>
-  <option value="oldest">Más antiguas</option>
-</select>
+    <div class="filtros">
+      <select id="sortSelect">
+        <option value="random">Orden: Aleatorio</option>
+        <option value="recent">Más recientes</option>
+        <option value="oldest">Más antiguas</option>
+      </select>
 
-  <select id="familiaFilter">
-    <option value="">Familia</option>
-    <option value="Accipitridae">Accipitridae</option>
-    <option value="Capitonidae">Capitonidae</option>
-    <option value="Cotingidae">Cotingidae</option>
-    <option value="Gruidae">Gruidae</option>
-    <option value="Phoenicopteridae">Phoenicopteridae</option>
-    <option value="Podicipedidae">Podicipedidae</option>
-    <option value="Psittacidae">Psittacidae</option>
-    <option value="Rynchopidae">Rynchopidae</option>
-    <option value="Scolopacidae">Scolopacidae</option>
-    <option value="Trochilidae">Trochilidae</option>
-    <option value="Trogonidae">Trogonidae</option>
-    <option value="Turdidae">Turdidae</option>
-    <option value="Tyrannidae">Tyrannidae</option>
-    <option value="escena">Escena</option>
-  </select>
-
-  <select id="habitatFilter">
-    <option value="">Hábitat</option>
-    <option value="bosque húmedo">Bosque húmedo</option>
-    <option value="bosque nuboso">Bosque nuboso</option>
-    <option value="costa">Costa</option>
-    <option value="humedal">Humedal</option>
-    <option value="parque urbano">Parque urbano</option>
-  </select>
-
-  <select id="provinciaFilter">
-    <option value="">Provincia</option>
-    <option value="Cartago">Cartago</option>
-    <option value="Limón">Limón</option>
-    <option value="Puntarenas">Puntarenas</option>
-    <option value="San José">San José</option>
-  </select>
-</div>
       <select id="familiaFilter">
         <option value="">Familia</option>
         <option value="Accipitridae">Accipitridae</option>
+        <option value="Capitonidae">Capitonidae</option>
         <option value="Cotingidae">Cotingidae</option>
         <option value="Gruidae">Gruidae</option>
         <option value="Phoenicopteridae">Phoenicopteridae</option>
@@ -821,6 +787,7 @@ const CARGA_POR_CLICK = 12;
 
 const gallery = document.getElementById('gallery');
 const searchInput = document.getElementById('searchInput');
+const sortSelect = document.getElementById('sortSelect');
 const familiaFilter = document.getElementById('familiaFilter');
 const habitatFilter = document.getElementById('habitatFilter');
 const provinciaFilter = document.getElementById('provinciaFilter');
@@ -874,6 +841,29 @@ function renderGallery(items){
   bindLightboxClicks();
 }
 
+function hayFiltrosActivos(){
+  return (
+    searchInput.value.trim() !== '' ||
+    familiaFilter.value !== '' ||
+    habitatFilter.value !== '' ||
+    provinciaFilter.value !== ''
+  );
+}
+
+function ordenarAves(array){
+  const modo = sortSelect.value;
+
+  if (modo === 'recent') {
+    return [...array];
+  }
+
+  if (modo === 'oldest') {
+    return [...array].reverse();
+  }
+
+  return shuffleArray(array);
+}
+
 function actualizarBotonMostrarMas(){
   const usandoFiltros = hayFiltrosActivos();
 
@@ -889,28 +879,21 @@ function actualizarBotonMostrarMas(){
   }
 }
 
-function hayFiltrosActivos(){
-  return (
-    searchInput.value.trim() !== '' ||
-    familiaFilter.value !== '' ||
-    habitatFilter.value !== '' ||
-    provinciaFilter.value !== ''
-  );
-}
-
 function aplicarFiltros() {
   const searchValue = searchInput.value.trim().toLowerCase();
   const familiaValue = familiaFilter.value;
   const habitatValue = habitatFilter.value;
   const provinciaValue = provinciaFilter.value;
 
-  avesFiltradas = avesRandomizadas.filter(ave => {
+  let base = avesOriginales.filter(ave => {
     const matchSearch = ave.search.toLowerCase().includes(searchValue);
     const matchFamilia = !familiaValue || ave.familia === familiaValue;
     const matchHabitat = !habitatValue || ave.habitat === habitatValue;
     const matchProvincia = !provinciaValue || ave.provincia === provinciaValue;
     return matchSearch && matchFamilia && matchHabitat && matchProvincia;
   });
+
+  avesFiltradas = ordenarAves(base);
 
   if (hayFiltrosActivos()) {
     avesVisibles = [...avesFiltradas];
@@ -980,10 +963,31 @@ function showPrev(){
   renderLightbox(currentIndex);
 }
 
-searchInput.addEventListener('input', aplicarFiltros);
-familiaFilter.addEventListener('change', aplicarFiltros);
-habitatFilter.addEventListener('change', aplicarFiltros);
-provinciaFilter.addEventListener('change', aplicarFiltros);
+searchInput.addEventListener('input', () => {
+  cantidadVisible = LIMITE_INICIAL;
+  aplicarFiltros();
+});
+
+sortSelect.addEventListener('change', () => {
+  cantidadVisible = LIMITE_INICIAL;
+  aplicarFiltros();
+});
+
+familiaFilter.addEventListener('change', () => {
+  cantidadVisible = LIMITE_INICIAL;
+  aplicarFiltros();
+});
+
+habitatFilter.addEventListener('change', () => {
+  cantidadVisible = LIMITE_INICIAL;
+  aplicarFiltros();
+});
+
+provinciaFilter.addEventListener('change', () => {
+  cantidadVisible = LIMITE_INICIAL;
+  aplicarFiltros();
+});
+
 mostrarMasBtn.addEventListener('click', cargarMas);
 
 lightboxClose.addEventListener('click', closeLightbox);
@@ -1020,13 +1024,8 @@ lightbox.addEventListener('touchend', (e) => {
 }, {passive:true});
 
 /* INIT */
-avesRandomizadas = shuffleArray(avesOriginales);
-avesFiltradas = [...avesRandomizadas];
-avesVisibles = avesFiltradas.slice(0, cantidadVisible);
-renderGallery(avesVisibles);
-actualizarBotonMostrarMas();
+aplicarFiltros();
 </script>
 
 </body>
 </html>
-
