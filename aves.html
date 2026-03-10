@@ -137,6 +137,15 @@ body{
   font-size:14px;
 }
 
+.ordenar select{
+  padding:12px 14px;
+  background:#0d0d0d;
+  border:1px solid rgba(255,255,255,0.12);
+  color:white;
+  font-family:"Manrope", sans-serif;
+  font-size:14px;
+}
+
 /* INFO RESULTADOS */
 .resumen{
   max-width:1100px;
@@ -499,6 +508,16 @@ body{
       <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
     </div>
 
+    
+
+    <div class="ordenar">
+<select id="sortSelect">
+<option value="random">Orden: Aleatorio</option>
+<option value="recent">Más recientes</option>
+<option value="oldest">Más antiguas</option>
+</select>
+</div>
+    
     <div class="filtros">
       <select id="familiaFilter">
         <option value="">Familia</option>
@@ -576,7 +595,7 @@ body{
     <p class="footer-copy">© Adrián Cordero</p>
   </div>
 </footer>
-
+  
 <script>
 const aves = [
 
@@ -830,6 +849,7 @@ const searchInput = document.getElementById('searchInput');
 const familiaFilter = document.getElementById('familiaFilter');
 const habitatFilter = document.getElementById('habitatFilter');
 const provinciaFilter = document.getElementById('provinciaFilter');
+const sortSelect = document.getElementById('sortSelect');
 const resultsCount = document.getElementById('resultsCount');
 const noResults = document.getElementById('noResults');
 const mostrarMasWrap = document.getElementById('mostrarMasWrap');
@@ -990,6 +1010,7 @@ searchInput.addEventListener('input', aplicarFiltros);
 familiaFilter.addEventListener('change', aplicarFiltros);
 habitatFilter.addEventListener('change', aplicarFiltros);
 provinciaFilter.addEventListener('change', aplicarFiltros);
+sortSelect.addEventListener('change', ordenarGaleria);
 mostrarMasBtn.addEventListener('click', cargarMas);
 
 lightboxClose.addEventListener('click', closeLightbox);
@@ -1031,6 +1052,29 @@ avesFiltradas = [...avesRandomizadas];
 avesVisibles = avesFiltradas.slice(0, cantidadVisible);
 renderGallery(avesVisibles);
 actualizarBotonMostrarMas();
+
+function ordenarGaleria(){
+
+const orden = sortSelect.value;
+
+let avesOrdenadas = [...aves];
+
+if(orden === "recent"){
+avesOrdenadas.sort((a,b)=> new Date(b.date) - new Date(a.date));
+}
+
+if(orden === "oldest"){
+avesOrdenadas.sort((a,b)=> new Date(a.date) - new Date(b.date));
+}
+
+if(orden === "random"){
+avesOrdenadas.sort(()=> Math.random() - 0.5);
+}
+
+renderGaleria(avesOrdenadas);
+
+}
+  
 </script>
 
 </body>
