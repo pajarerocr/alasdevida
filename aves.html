@@ -768,6 +768,19 @@ const avesOriginales = [
     search: "double toothed kite milano bidentado harpagus bidentatus uvita osa puntarenas bosque húmedo"
   },
   {
+  image: "images/aves/red-headed-barbet.jpg",
+  english: "Red-headed Barbet",
+  spanish: "Barbudo cabecirrojo",
+  scientific: "Eubucco bourcierii",
+  location: "San Gerardo de Rivas, Pérez Zeledón, San José, Costa Rica",
+  familia: "Capitonidae",
+  habitat: "bosque húmedo",
+  provincia: "San José",
+  holdridge: "Bosque pluvial montano bajo",
+  link: "construccion.html",
+  search: "red-headed barbet barbudo cabecirrojo eubucco bourcierii san gerardo de rivas pérez zeledón san josé costa rica"
+  },
+  {
     image: "images/aves/sandhill-crane.jpg",
     english: "Sandhill Crane",
     spanish: "Grulla canadiense",
@@ -854,13 +867,15 @@ function ordenarAves(array){
   const modo = sortSelect.value;
 
   if (modo === 'recent') {
-    return [...array];
-  }
-
-  if (modo === 'oldest') {
     return [...array].reverse();
   }
 
+  if (modo === 'oldest') {
+    return [...array];
+  }
+
+  return shuffleArray(array);
+}
   return shuffleArray(array);
 }
 
