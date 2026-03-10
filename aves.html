@@ -496,10 +496,51 @@ body{
 <section class="controles">
   <div class="controles-top">
     <div class="buscar">
-      <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
-    </div>
+  <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
+</div>
 
-    <div class="filtros">
+<div class="filtros">
+<select id="sortSelect">
+  <option value="random">Orden: Aleatorio</option>
+  <option value="recent">Más recientes</option>
+  <option value="oldest">Más antiguas</option>
+</select>
+
+  <select id="familiaFilter">
+    <option value="">Familia</option>
+    <option value="Accipitridae">Accipitridae</option>
+    <option value="Capitonidae">Capitonidae</option>
+    <option value="Cotingidae">Cotingidae</option>
+    <option value="Gruidae">Gruidae</option>
+    <option value="Phoenicopteridae">Phoenicopteridae</option>
+    <option value="Podicipedidae">Podicipedidae</option>
+    <option value="Psittacidae">Psittacidae</option>
+    <option value="Rynchopidae">Rynchopidae</option>
+    <option value="Scolopacidae">Scolopacidae</option>
+    <option value="Trochilidae">Trochilidae</option>
+    <option value="Trogonidae">Trogonidae</option>
+    <option value="Turdidae">Turdidae</option>
+    <option value="Tyrannidae">Tyrannidae</option>
+    <option value="escena">Escena</option>
+  </select>
+
+  <select id="habitatFilter">
+    <option value="">Hábitat</option>
+    <option value="bosque húmedo">Bosque húmedo</option>
+    <option value="bosque nuboso">Bosque nuboso</option>
+    <option value="costa">Costa</option>
+    <option value="humedal">Humedal</option>
+    <option value="parque urbano">Parque urbano</option>
+  </select>
+
+  <select id="provinciaFilter">
+    <option value="">Provincia</option>
+    <option value="Cartago">Cartago</option>
+    <option value="Limón">Limón</option>
+    <option value="Puntarenas">Puntarenas</option>
+    <option value="San José">San José</option>
+  </select>
+</div>
       <select id="familiaFilter">
         <option value="">Familia</option>
         <option value="Accipitridae">Accipitridae</option>
