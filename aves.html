@@ -578,216 +578,249 @@ body{
 </footer>
 
 <script>
-const avesOriginales = [
-  {
-    image: "images/aves/quetzal.jpg",
-    english: "Resplendent Quetzal",
-    spanish: "Quetzal resplandeciente",
-    scientific: "Pharomachrus mocinno",
-    location: "Cañón del Savegre, Dota, San José, Costa Rica",
-    familia: "Trogonidae",
-    habitat: "bosque nuboso",
-    provincia: "San José",
-    holdridge: "Bosque nuboso montano bajo",
-    link: "construccion.html",
-    search: "resplendent quetzal quetzal resplandeciente pharomachrus mocinno cañón del savegre dota san josé"
-  },
-  {
-    image: "images/aves/graceful-black-throated- trogon.jpg",
-    english: "Graceful Black-throated Trogon",
-    spanish: "Trogón elegante",
-    scientific: "Trogon tenellus",
-    location: "Parque Nacional Carara, Garabito, Puntarenas, Costa Rica",
-    familia: "Trogonidae",
-    habitat: "bosque húmedo",
-    provincia: "Puntarenas",
-    holdridge: "Bosque húmedo tropical",
-    link: "construccion.html",
-    search: "graceful black-throated trogon trogón elegante trogon tenellus parque nacional carara garabito puntarenas"
-  },
-  {
-    image: "images/aves/three-wattled-bellbird.jpg",
-    english: "Three-wattled Bellbird",
-    spanish: "Campanero tricarunculado",
-    scientific: "Procnias tricarunculatus",
-    location: "Navarro del Muñeco, Paraíso, Cartago, Costa Rica",
-    familia: "Cotingidae",
-    habitat: "bosque nuboso",
-    provincia: "Cartago",
-    holdridge: "Bosque pluvial premontano",
-    link: "construccion.html",
-    search: "three-wattled bellbird campana tricarunculado procnias tricarunculatus navarro del muñeco paraíso cartago"
-  },
-  {
-    image: "images/aves/great-green-macaw.jpg",
-    english: "Great Green Macaw",
-    spanish: "Lapa verde mayor",
-    scientific: "Ara ambiguus",
-    location: "Manzanillo, Talamanca, Limón, Costa Rica",
-    familia: "Psittacidae",
-    habitat: "bosque húmedo",
-    provincia: "Limón",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "great green macaw lapa verde mayor ara ambiguus manzanillo papagayo guacamaya talamanca limón"
-  },
-  {
-    image: "images/aves/scarlet-macaws.jpg",
-    english: "Scarlet Macaw",
-    spanish: "Lapa roja",
-    scientific: "Ara macao",
-    location: "Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica",
-    familia: "Psittacidae",
-    habitat: "bosque húmedo",
-    provincia: "Puntarenas",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "scarlet macaw lapa roja ara macao papagayo guacamaya parque nacional corcovado osa puntarenas"
-  },
-  {
-    image: "images/aves/flamingo.jpg",
-    english: "American Flamingo",
-    spanish: "Flamenco americano",
-    scientific: "Phoenicopterus ruber",
-    location: "Estero Negro, Talamanca, Limón, Costa Rica",
-    familia: "Phoenicopteridae",
-    habitat: "humedal",
-    provincia: "Limón",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "american flamingo flamenco americano rareza phoenicopterus ruber estero negro talamanca limón"
-  },
-  {
-    image: "images/aves/ruby-throated-hummingbird.jpg",
-    english: "Ruby-throated Hummingbird",
-    spanish: "Colibrí garganta rubí",
-    scientific: "Archilochus colubris",
-    location: "Monteverde, Monteverde, Puntarenas, Costa Rica",
-    familia: "Trochilidae",
-    habitat: "bosque nuboso",
-    provincia: "Puntarenas",
-    holdridge: "Bosque pluvial premontano",
-    link: "construccion.html",
-    search: "ruby-throated hummingbird colibrí garganta rubí archilochus colubris monteverde puntarenas"
-  },
-  {
-    image: "images/aves/long-tailed-tyrant.JPG",
-    english: "Long-tailed Tyrant",
-    spanish: "Tirano colilargo",
-    scientific: "Colonia colonus",
-    location: "Anturias, Pococí, Limón, Costa Rica",
-    familia: "Tyrannidae",
-    habitat: "bosque húmedo",
-    provincia: "Limón",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "long-tailed tyrant tirano colilargo mosquero colonia colonus anturias pococí limón"
-  },
-  {
-    image: "images/aves/wood-thrush.jpg",
-    english: "Wood Thrush",
-    spanish: "Zorzal del bosque",
-    scientific: "Hylocichla mustelina",
-    location: "Bajos del Tigre, Monteverde, Puntarenas, Costa Rica",
-    familia: "Turdidae",
-    habitat: "bosque nuboso",
-    provincia: "Puntarenas",
-    holdridge: "Bosque pluvial premontano",
-    link: "construccion.html",
-    search: "wood thrush zorzal del bosque hylocichla mustelina bajos del tigre monteverde puntarenas"
-  },
-  {
-    image: "images/aves/black-skimmer.JPG",
-    english: "Black Skimmer",
-    spanish: "Rayador americano",
-    scientific: "Rynchops niger",
-    location: "Barra del Colorado, Pococí, Limón, Costa Rica",
-    familia: "Rynchopidae",
-    habitat: "costa",
-    provincia: "Limón",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "black skimmer rayador americano playero rynchops niger barra del colorado pococí limón"
-  },
-  {
-    image: "images/aves/whimbrel-flock.jpg",
-    english: "Whimbrel",
-    spanish: "Zarapito trinador",
-    scientific: "Numenius phaeopus",
-    location: "Cocorocas, Chomes, Puntarenas, Costa Rica",
-    familia: "Scolopacidae",
-    habitat: "costa",
-    provincia: "Puntarenas",
-    holdridge: "Bosque seco tropical",
-    link: "construccion.html",
-    search: "whimbrel zarapito trinador numenius playero phaeopus cocorocas chomes puntarenas"
-  },
-  {
-    image: "images/aves/least-grebe.jpg",
-    english: "Least Grebe",
-    spanish: "Zambullidor menor",
-    scientific: "Tachybaptus dominicus",
-    location: "Parque Metropolitano La Sabana, San José, Costa Rica",
-    familia: "Podicipedidae",
-    habitat: "parque urbano",
-    provincia: "San José",
-    holdridge: "Bosque húmedo premontano (transformado)",
-    link: "construccion.html",
-    search: "least grebe zambullidor menor tachybaptus dominicus la sabana san josé"
-  },
-  {
-    image: "images/aves/royal-terns-zopilotes.jpg",
-    english: "Royal Terns, Great Egret and Black Vultures",
-    spanish: "Charranes reales, garza blanca y zopilotes negros",
-    scientific: "Thalasseus maximus, Ardea alba, Coragyps atratus",
-    location: "Bocana de Barra del Colorado, Pococí, Limón, Costa Rica",
-    familia: "escena",
-    habitat: "costa",
-    provincia: "Limón",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "royal tern charrán playero real great egret garza blanca black vulture zopilote negro barra del colorado bocana limón costa escena"
-  },
-  {
-    image: "images/aves/double-toothed-kite.jpg",
-    english: "Double-toothed Kite",
-    spanish: "Milano bidentado",
-    scientific: "Harpagus bidentatus",
-    location: "Uvita, Osa, Puntarenas, Costa Rica",
-    familia: "Accipitridae",
-    habitat: "bosque húmedo",
-    provincia: "Puntarenas",
-    holdridge: "Bosque muy húmedo tropical",
-    link: "construccion.html",
-    search: "double toothed kite milano bidentado rapaz gavilan harpagus bidentatus uvita osa puntarenas bosque húmedo"
-  },
-  {
-    image: "images/aves/sandhill-crane.jpg",
-    english: "Sandhill Crane",
-    spanish: "Grulla canadiense",
-    scientific: "Antigone canadensis",
-    location: "Tárcoles, Garabito, Puntarenas, Costa Rica",
-    familia: "Gruidae",
-    habitat: "humedal",
-    provincia: "Puntarenas",
-    holdridge: "Bosque húmedo tropical",
-    link: "construccion.html",
-    search: "sandhill crane grulla rareza canadiense antigone canadensis tárcoles garabito puntarenas rare bird costa rica"
-  },
-  {
-image: "images/aves/red-headed-barbet.jpg",
-english: "Red-headed Barbet",
+const aves = [
+
+{
+name: "Resplendent Quetzal",
+spanish: "Quetzal resplandeciente",
+scientific: "Pharomachrus mocinno",
+family: "Trogonidae",
+habitat: "bosque nuboso",
+province: "San José",
+location: "Cañón del Savegre, Dota, San José, Costa Rica",
+holdridge: "Bosque pluvial montano bajo",
+date: "2024-07-25",
+tags: "quetzal chirripó bosque nuboso",
+image: "images/aves/quetzal.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Graceful Black-throated Trogon",
+spanish: "Trogón elegante",
+scientific: "Trogon tenellus",
+family: "Trogonidae",
+habitat: "bosque húmedo",
+province: "Puntarenas",
+location: "Parque Nacional Carara, Garabito, Puntarenas, Costa Rica",
+holdridge: "Bosque húmedo tropical",
+date: "2024-09-29",
+tags: "trogon carara bosque húmedo",
+image: "images/aves/graceful-black-throated-trogon.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Three-wattled Bellbird",
+spanish: "Campanero tricarunculado",
+scientific: "Procnias tricarunculatus",
+family: "Cotingidae",
+habitat: "bosque nuboso",
+province: "Cartago",
+location: "Navarro del Muñeco, Paraíso, Cartago, Costa Rica",
+holdridge: "Bosque pluvial montano",
+date: "2025-04-18",
+tags: "campana cotinga bosque nuboso",
+image: "images/aves/three-wattled-bellbird.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Great Green Macaw",
+spanish: "Lapa verde mayor",
+scientific: "Ara ambiguus",
+family: "Psittacidae",
+habitat: "bosque húmedo",
+province: "Limón",
+location: "Manzanillo, Talamanca, Limón, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2024-08-29",
+tags: "lapa guacamaya caribe",
+image: "images/aves/great-green-macaw.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Scarlet Macaw",
+spanish: "Lapa roja",
+scientific: "Ara macao",
+family: "Psittacidae",
+habitat: "bosque húmedo",
+province: "Puntarenas",
+location: "Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2025-06-07",
+tags: "lapa guacamaya corcovado",
+image: "images/aves/scarlet-macaws.jpg",
+link: "construccion.html"
+},
+
+{
+name: "American Flamingo",
+spanish: "Flamenco americano",
+scientific: "Phoenicopterus ruber",
+family: "Phoenicopteridae",
+habitat: "humedal",
+province: "Limón",
+location: "Estero Negro, Talamanca, Limón, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2024-10-02",
+tags: "flamenco humedal caribe",
+image: "images/aves/flamingo.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Ruby-throated Hummingbird",
+spanish: "Colibrí garganta rubí",
+scientific: "Archilochus colubris",
+family: "Trochilidae",
+habitat: "bosque nuboso",
+province: "Puntarenas",
+location: "Monteverde, Puntarenas, Costa Rica",
+holdridge: "Bosque pluvial montano bajo",
+date: "2025-04-12",
+tags: "colibri hummingbird monteverde",
+image: "images/aves/ruby-throated-hummingbird.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Long-tailed Tyrant",
+spanish: "Tirano colilargo",
+scientific: "Colonia colonus",
+family: "Tyrannidae",
+habitat: "bosque húmedo",
+province: "Limón",
+location: "Anturias, Pococí, Limón, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2024-12-07",
+tags: "mosquero tyrant bosque húmedo",
+image: "images/aves/long-tailed-tyrant.JPG",
+link: "construccion.html"
+},
+
+{
+name: "Wood Thrush",
+spanish: "Zorzal del bosque",
+scientific: "Hylocichla mustelina",
+family: "Turdidae",
+habitat: "bosque nuboso",
+province: "Puntarenas",
+location: "Bajos del Tigre, Monteverde, Puntarenas, Costa Rica",
+holdridge: "Bosque pluvial montano bajo",
+date: "2025-04-13",
+tags: "zorzal thrush bosque nuboso",
+image: "images/aves/wood-thrush.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Black Skimmer",
+spanish: "Rayador americano",
+scientific: "Rynchops niger",
+family: "Rynchopidae",
+habitat: "costa",
+province: "Limón",
+location: "Barra del Colorado, Pococí, Limón, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2025-10-18",
+tags: "playero costa rayador",
+image: "images/aves/black-skimmer.JPG",
+link: "construccion.html"
+},
+
+{
+name: "Whimbrel",
+spanish: "Zarapito trinador",
+scientific: "Numenius phaeopus",
+family: "Scolopacidae",
+habitat: "costa",
+province: "Puntarenas",
+location: "Cocorocas, Chomes, Puntarenas, Costa Rica",
+holdridge: "Bosque seco tropical",
+date: "2024-09-29",
+tags: "playero whimbrel costa",
+image: "images/aves/whimbrel-flock.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Least Grebe",
+spanish: "Zambullidor menor",
+scientific: "Tachybaptus dominicus",
+family: "Podicipedidae",
+habitat: "parque urbano",
+province: "San José",
+location: "Parque Metropolitano La Sabana, San José, Costa Rica",
+holdridge: "Bosque húmedo premontano",
+date: "2024-11-30",
+tags: "zambullidor lago parque",
+image: "images/aves/least-grebe.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Royal Terns, Great Egret and Black Vultures",
+spanish: "Escena costera",
+scientific: "—",
+family: "escena",
+habitat: "costa",
+province: "Limón",
+location: "Bocana de Barra del Colorado, Pococí, Limón, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2025-10-18",
+tags: "escena costa zopilotes garza",
+image: "images/aves/bocana-chaos.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Double-toothed Kite",
+spanish: "Gavilán bidentado",
+scientific: "Harpagus bidentatus",
+family: "Accipitridae",
+habitat: "bosque húmedo",
+province: "Puntarenas",
+location: "Uvita, Osa, Puntarenas, Costa Rica",
+holdridge: "Bosque muy húmedo tropical",
+date: "2025-12-13",
+tags: "gavilan raptor uvita",
+image: "images/aves/double-toothed-kite.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Sandhill Crane",
+spanish: "Grulla canadiense",
+scientific: "Antigone canadensis",
+family: "Gruidae",
+habitat: "humedal",
+province: "Puntarenas",
+location: "Tárcoles, Garabito, Puntarenas, Costa Rica",
+holdridge: "Bosque seco tropical",
+date: "2025-11-17",
+tags: "rareza crane tarcoles",
+image: "images/aves/sandhill-crane.jpg",
+link: "construccion.html"
+},
+
+{
+name: "Red-headed Barbet",
 spanish: "Barbudo cabecirrojo",
 scientific: "Eubucco bourcierii",
-location: "San Gerardo de Rivas, Pérez Zeledón, San José, Costa Rica",
-familia: "Capitonidae",
+family: "Capitonidae",
 habitat: "bosque nuboso",
-provincia: "San José",
+province: "San José",
+location: "San Gerardo de Rivas, Pérez Zeledón, San José, Costa Rica",
 holdridge: "Bosque pluvial montano bajo",
-link: "construccion.html",
-search: "red headed barbet barbudo cabecirrojo eubucco chirripo bourcierii san gerardo de rivas pérez zeledón san josé bosque nuboso"
-},
-];
+date: "2025-02-06",
+tags: "barbet chirripo bosque nuboso",
+image: "images/aves/red-headed-barbet.jpg",
+link: "construccion.html"
+}
+
+]
 
 const LIMITE_INICIAL = 12;
 const CARGA_POR_CLICK = 12;
