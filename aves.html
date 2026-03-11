@@ -1065,12 +1065,17 @@ function cargarMas(){
 
 function bindLightboxClicks(){
   const visibleCards = Array.from(document.querySelectorAll('.ave-card'));
+
   visibleCards.forEach((card, index) => {
     const img = card.querySelector('.lightbox-trigger');
+
     if(img){
       img.onclick = () => {
-        currentItems = [...avesVisibles];
-        currentIndex = index;
+        const aveName = card.querySelector('.ave-info h3').textContent;
+
+        currentItems = [...avesFiltradas];
+        currentIndex = currentItems.findIndex(ave => ave.name === aveName);
+
         renderLightbox(currentIndex);
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
