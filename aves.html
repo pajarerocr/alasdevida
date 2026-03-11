@@ -507,32 +507,38 @@ body{
       </select>
 
       <select id="familiaFilter">
-        <option value="">Familia</option>
-        <option value="Accipitridae">Accipitridae</option>
-        <option value="Capitonidae">Capitonidae</option>
-        <option value="Cotingidae">Cotingidae</option>
-        <option value="Gruidae">Gruidae</option>
-        <option value="Phoenicopteridae">Phoenicopteridae</option>
-        <option value="Podicipedidae">Podicipedidae</option>
-        <option value="Psittacidae">Psittacidae</option>
-        <option value="Rynchopidae">Rynchopidae</option>
-        <option value="Scolopacidae">Scolopacidae</option>
-        <option value="Trochilidae">Trochilidae</option>
-        <option value="Trogonidae">Trogonidae</option>
-        <option value="Turdidae">Turdidae</option>
-        <option value="Tyrannidae">Tyrannidae</option>
-        <option value="escena">Escena</option>
-      </select>
+  <option value="">Familia</option>
+  <option value="Accipitridae">Accipitridae</option>
+  <option value="Capitonidae">Capitonidae</option>
+  <option value="Cathartidae">Cathartidae</option>
+  <option value="Cotingidae">Cotingidae</option>
+  <option value="Gruidae">Gruidae</option>
+  <option value="Icteridae">Icteridae</option>
+  <option value="Nyctibiidae">Nyctibiidae</option>
+  <option value="Phoenicopteridae">Phoenicopteridae</option>
+  <option value="Pipridae">Pipridae</option>
+  <option value="Podicipedidae">Podicipedidae</option>
+  <option value="Psittacidae">Psittacidae</option>
+  <option value="Ramphastidae">Ramphastidae</option>
+  <option value="Rynchopidae">Rynchopidae</option>
+  <option value="Scolopacidae">Scolopacidae</option>
+  <option value="Trochilidae">Trochilidae</option>
+  <option value="Trogonidae">Trogonidae</option>
+  <option value="Turdidae">Turdidae</option>
+  <option value="Tyrannidae">Tyrannidae</option>
+  <option value="escena">Escena</option>
+</select>
 
-      <select id="habitatFilter">
-        <option value="">Hábitat</option>
-        <option value="bosque húmedo">Bosque húmedo</option>
-        <option value="bosque nuboso">Bosque nuboso</option>
-        <option value="costa">Costa</option>
-        <option value="humedal">Humedal</option>
-        <option value="parque urbano">Parque urbano</option>
-      </select>
-
+     <select id="habitatFilter">
+  <option value="">Hábitat</option>
+  <option value="bosque seco">Bosque seco</option>
+  <option value="bosque húmedo">Bosque húmedo</option>
+  <option value="bosque nuboso">Bosque nuboso</option>
+  <option value="costa">Costa</option>
+  <option value="humedal">Humedal</option>
+  <option value="parque urbano">Parque urbano</option>
+</select>
+      
       <select id="provinciaFilter">
         <option value="">Provincia</option>
         <option value="Cartago">Cartago</option>
@@ -795,6 +801,119 @@ const aves = [
     image: "images/aves/sandhill-crane.jpg",
     link: "construccion.html"
   },
+  {
+  name: "Common Potoo",
+  spanish: "Nictibio Común",
+  scientific: "Nyctibius griseus",
+  familia: "Nyctibiidae",
+  habitat: "bosque húmedo",
+  provincia: "San José",
+  location: "Las Nubes Biological Reserve, Pérez Zeledón, San José, Costa Rica",
+  holdridge: "Bosque muy húmedo premontano",
+  date: "2025-03-29",
+  search: "potoo nictibio comun nyctibius griseus nocturna las nubes perez zeledon san jose",
+  image: "images/aves/common-potoo.jpg",
+  link: "construccion.html"
+},
+{
+  name: "White-necked Jacobin",
+  spanish: "Jacobino Nuquiblanco",
+  scientific: "Florisuga mellivora",
+  familia: "Trochilidae",
+  habitat: "bosque húmedo",
+  provincia: "Cartago",
+  location: "Rancho Naturalista, Turrialba, Cartago, Costa Rica",
+  holdridge: "Bosque muy húmedo premontano",
+  date: "2024-10-11",
+  search: "jacobin jacobino nuquiblanco florisuga mellivora rancho naturalista turrialba cartago hummingbird colibri",
+  image: "images/aves/white-necked-jacobin.jpg",
+  link: "construccion.html"
+},
+{
+  name: "Turkey Vulture",
+  spanish: "Zopilote Cabecirrojo",
+  scientific: "Cathartes aura",
+  familia: "Cathartidae",
+  habitat: "bosque húmedo",
+  provincia: "Limón",
+  location: "Talamanca, Limón, Costa Rica",
+  holdridge: "Bosque muy húmedo tropical",
+  date: "2024-10-02",
+  search: "zopilote cabecirrojo turkey vulture cathartes aura talamanca limon raptor carroñero",
+  image: "images/aves/turkey-vulture.jpg",
+  link: "construccion.html"
+},
+{
+  name: "Collared Aracari",
+  spanish: "Tucancillo Collarejo",
+  scientific: "Pteroglossus torquatus",
+  familia: "Ramphastidae",
+  habitat: "bosque húmedo",
+  provincia: "Limón",
+  location: "Barra del Colorado, Pococí, Limón, Costa Rica",
+  holdridge: "Bosque muy húmedo tropical",
+  date: "2024-10-19",
+  search: "aracari tucancillo collarejo pteroglossus torquatus barra del colorado pococi limon toucan",
+  image: "images/aves/collared-aracari.jpg",
+  link: "construccion.html"
+},
+{
+  name: "Nicaraguan Grackle",
+  spanish: "Zanate de Laguna",
+  scientific: "Quiscalus nicaraguensis",
+  familia: "Icteridae",
+  habitat: "humedal",
+  provincia: "Alajuela",
+  location: "Refugio Nacional de Vida Silvestre Caño Negro, Los Chiles, Alajuela, Costa Rica",
+  holdridge: "Bosque húmedo tropical",
+  date: "2024-11-23",
+  search: "zanate de laguna quiscalus nicaraguensis cano negro los chiles alajuela grackle icteridae",
+  image: "images/aves/nicaraguan-grackle.jpg",
+  link: "construccion.html"
+},
+
+{
+  name: "Lovely Cotinga",
+  spanish: "Cotinga Linda",
+  scientific: "Cotinga amabilis",
+  familia: "Cotingidae",
+  habitat: "bosque húmedo",
+  provincia: "Cartago",
+  location: "Comunidad indígena Cabécar Nairi Awari, Turrialba, Cartago, Costa Rica",
+  holdridge: "Bosque muy húmedo premontano",
+  date: "2024-07-06",
+  search: "cotinga linda lovely cotinga cotinga amabilis nairi awari cabecar turrialba cartago cotingidae",
+  image: "images/aves/lovely-cotinga.jpg",
+  link: "construccion.html"
+},
+{
+  name: "Northern Emerald-Toucanet",
+  spanish: "Tucancillo Verde",
+  scientific: "Aulacorhynchus prasinus",
+  familia: "Ramphastidae",
+  habitat: "bosque nuboso",
+  provincia: "Puntarenas",
+  location: "Reserva Curicancha, Monteverde, Puntarenas, Costa Rica",
+  holdridge: "Bosque pluvial montano bajo",
+  date: "2024-12-24",
+  search: "toucanet tucancillo verde aulacorhynchus prasinus northern emerald toucanet curicancha monteverde puntarenas",
+  image: "images/aves/northern-emerald-toucanet.jpg",
+  link: "construccion.html"
+},
+{
+  name: "Long-tailed Manakin",
+  spanish: "Saltarín Toledo",
+  scientific: "Chiroxiphia linearis",
+  familia: "Pipridae",
+  habitat: "bosque seco",
+  provincia: "Guanacaste",
+  location: "Parque Nacional Rincón de la Vieja, Guanacaste, Costa Rica",
+  holdridge: "Bosque seco tropical",
+  date: "2025-01-11",
+  search: "manakin saltarin toledo chiroxiphia linearis rincon de la vieja guanacaste pipridae",
+  image: "images/aves/long-tailed-manakin.jpg",
+  link: "construccion.html"
+},
   {
     name: "Red-headed Barbet",
     spanish: "Barbudo cabecirrojo",
