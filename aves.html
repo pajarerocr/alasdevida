@@ -1,458 +1,1164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aves — Alas de Vida</title>
 
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 body{
-margin:0;
-background:black;
-color:white;
-font-family:"Manrope", sans-serif;
+  margin:0;
+  background:black;
+  color:white;
+  font-family:"Manrope", sans-serif;
 }
 
 /* NAV */
-
 .nav{
-position:sticky;
-top:0;
-background:black;
-border-bottom:1px solid rgba(255,255,255,0.08);
-z-index:10;
+  position:sticky;
+  top:0;
+  background:black;
+  z-index:10;
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .nav-inner{
-max-width:1100px;
-margin:auto;
-padding:18px 25px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  max-width:1100px;
+  margin:auto;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-logo img{
+  height:120px;
+  width:auto;
+  display:block;
 }
 
 .nav-links{
-display:flex;
-gap:22px;
+  display:flex;
+  gap:22px;
 }
 
 .nav-links a{
-text-decoration:none;
-color:white;
-opacity:0.8;
-font-size:14px;
+  text-decoration:none;
+  color:white;
+  opacity:0.8;
+  font-size:14px;
 }
 
 .nav-links a:hover{
-opacity:1;
+  opacity:1;
 }
 
 .nav-links a.activo{
-opacity:1;
-border-bottom:1px solid rgba(255,255,255,0.6);
-padding-bottom:3px;
+  opacity:1;
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  padding-bottom:3px;
 }
 
-/* HEADER */
-
+/* ENCABEZADO */
 .encabezado{
-max-width:760px;
-margin:90px auto 50px auto;
-text-align:center;
-padding:0 24px;
+  max-width:760px;
+  margin:90px auto 50px auto;
+  text-align:center;
+  padding:0 24px;
 }
 
 .encabezado h1{
-margin:0 0 14px 0;
-font-size:42px;
-font-weight:500;
+  margin:0 0 14px 0;
+  font-size:42px;
+  font-weight:500;
+  letter-spacing:0.04em;
 }
 
 .encabezado p{
-opacity:0.75;
-font-size:18px;
+  margin:0;
+  opacity:0.75;
+  font-size:19px;
+  line-height:1.7;
 }
 
 /* CONTROLES */
-
 .controles{
-max-width:1100px;
-margin:auto;
-padding:0 30px 40px 30px;
+  max-width:1100px;
+  margin:0 auto 40px auto;
+  padding:0 30px;
 }
 
 .controles-top{
-display:flex;
-flex-wrap:wrap;
-gap:14px;
-justify-content:space-between;
-align-items:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.buscar{
+  flex:1 1 280px;
 }
 
 .buscar input{
-padding:14px;
-background:#0d0d0d;
-border:1px solid rgba(255,255,255,0.12);
-color:white;
-font-size:15px;
+  width:100%;
+  box-sizing:border-box;
+  padding:14px 16px;
+  background:#0d0d0d;
+  border:1px solid rgba(255,255,255,0.12);
+  color:white;
+  font-family:"Manrope", sans-serif;
+  font-size:15px;
 }
 
-select{
-padding:12px;
-background:#0d0d0d;
-border:1px solid rgba(255,255,255,0.12);
-color:white;
+.buscar input::placeholder{
+  color:rgba(255,255,255,0.45);
+}
+
+.filtros{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.filtros select{
+  padding:12px 14px;
+  background:#0d0d0d;
+  border:1px solid rgba(255,255,255,0.12);
+  color:white;
+  font-family:"Manrope", sans-serif;
+  font-size:14px;
+}
+
+/* INFO RESULTADOS */
+.resumen{
+  max-width:1100px;
+  margin:0 auto 30px auto;
+  padding:0 30px;
+  opacity:0.6;
+  font-size:14px;
 }
 
 /* GALERIA */
-
 .galeria-aves{
-max-width:1100px;
-margin:auto;
-padding:0 30px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:32px 24px;
+  max-width:1100px;
+  margin:0 auto 60px auto;
+  padding:0 30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:32px 24px;
+}
+
+.ave-card{
+  display:block;
 }
 
 .ave-card img{
-width:100%;
-aspect-ratio:4/5;
-object-fit:cover;
-margin-bottom:14px;
-cursor:pointer;
+  width:100%;
+  aspect-ratio:4 / 5;
+  object-fit:cover;
+  display:block;
+  margin-bottom:14px;
+  background:#111;
+}
+
+.lightbox-trigger{
+  cursor:pointer;
 }
 
 .ave-info h3{
-margin:0;
-font-size:20px;
+  margin:0 0 6px 0;
+  font-size:20px;
+  font-weight:500;
+  line-height:1.3;
 }
 
 .ave-info p{
-margin:4px 0;
-font-size:15px;
+  margin:0 0 6px 0;
+  font-size:15px;
+  line-height:1.45;
+}
+
+.ave-info .esp{
+  opacity:0.86;
+}
+
+.ave-info .sci{
+  opacity:0.72;
+  font-style:italic;
 }
 
 .ave-info .loc{
-opacity:0.6;
-font-size:14px;
+  opacity:0.58;
+  font-size:14px;
+  margin-bottom:10px;
 }
 
 .ave-info a{
-text-decoration:none;
-color:white;
-border-bottom:1px solid rgba(255,255,255,0.5);
+  text-decoration:none;
+  color:white;
+  border-bottom:1px solid rgba(255,255,255,0.45);
+  padding-bottom:3px;
+  font-size:15px;
 }
 
-/* BOTON */
+.ave-info a:hover{
+  border-bottom:1px solid rgba(255,255,255,0.85);
+}
 
+/* MOSTRAR MAS */
 .mostrar-mas-wrap{
-text-align:center;
-margin:70px;
+  text-align:center;
+  margin:0 auto 100px auto;
 }
 
-button{
-background:none;
-border:1px solid rgba(255,255,255,0.25);
-padding:12px 20px;
-color:white;
-cursor:pointer;
-border-radius:30px;
+.mostrar-mas-btn{
+  background:none;
+  color:white;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:999px;
+  padding:12px 22px;
+  font-family:"Manrope", sans-serif;
+  font-size:15px;
+  cursor:pointer;
 }
 
-button:hover{
-border-color:white;
+.mostrar-mas-btn:hover{
+  border-color:rgba(255,255,255,0.6);
+}
+
+/* SIN RESULTADOS */
+.sin-resultados{
+  display:none;
+  max-width:720px;
+  margin:20px auto 100px auto;
+  padding:0 28px;
+  text-align:center;
+  opacity:0.7;
+  line-height:1.7;
 }
 
 /* LIGHTBOX */
-
 .lightbox{
-position:fixed;
-inset:0;
-background:black;
-display:none;
-align-items:center;
-justify-content:center;
-z-index:999;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.94);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:30px;
+  box-sizing:border-box;
 }
 
-.lightbox img{
-max-width:95%;
-max-height:95%;
+.lightbox.active{
+  display:flex;
 }
 
+.lightbox-inner{
+  max-width:1100px;
+  width:100%;
+  max-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.lightbox-image{
+  max-width:100%;
+  max-height:75vh;
+  object-fit:contain;
+  display:block;
+}
+
+.lightbox-caption{
+  margin-top:20px;
+  text-align:center;
+  line-height:1.5;
+}
+
+.lightbox-caption .eng{
+  font-size:22px;
+  font-weight:500;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .esp{
+  opacity:0.85;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .sci{
+  opacity:0.7;
+  font-style:italic;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .loc{
+  opacity:0.6;
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.lightbox-caption .holdridge{
+  opacity:0.55;
+  font-size:14px;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:34px;
+  line-height:1;
+  color:white;
+  background:none;
+  border:none;
+  cursor:pointer;
+  opacity:0.8;
+}
+
+.lightbox-close:hover{
+  opacity:1;
+}
+
+.lightbox-prev,
+.lightbox-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  color:white;
+  font-size:42px;
+  cursor:pointer;
+  opacity:0.75;
+  padding:12px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover{
+  opacity:1;
+}
+
+.lightbox-prev{
+  left:18px;
+}
+
+.lightbox-next{
+  right:18px;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:120px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding:50px 28px 60px 28px;
+  background:black;
+}
+
+.footer-inner{
+  max-width:720px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.footer-logo{
+  width:120px;
+  height:auto;
+  margin-bottom:18px;
+  opacity:0.9;
+}
+
+.footer-titulo{
+  margin:0 0 10px 0;
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:0.04em;
+}
+
+.footer-texto{
+  margin:0 0 12px 0;
+  opacity:0.65;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.footer-copy{
+  margin:0;
+  opacity:0.45;
+  font-size:13px;
+}
+
+/* MOVIL */
+@media (max-width:700px){
+  .nav-inner{
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .nav-logo img{
+    height:150px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .encabezado{
+    margin:70px auto 40px auto;
+  }
+
+  .encabezado h1{
+    font-size:34px;
+  }
+
+  .encabezado p{
+    font-size:17px;
+  }
+
+  .controles,
+  .resumen,
+  .galeria-aves{
+    padding:0 24px;
+  }
+
+  .galeria-aves{
+    grid-template-columns:1fr;
+    gap:36px;
+  }
+
+  .ave-info h3{
+    font-size:22px;
+  }
+
+  .lightbox{
+    padding:20px 14px 28px 14px;
+  }
+
+  .lightbox-image{
+    max-height:68vh;
+  }
+
+  .lightbox-caption .eng{
+    font-size:19px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next{
+    font-size:34px;
+  }
+
+  .lightbox-close{
+    top:12px;
+    right:14px;
+    font-size:30px;
+  }
+}
 </style>
 </head>
-
 
 <body>
 
 <header class="nav">
-<div class="nav-inner">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo_white.png" alt="Alas de Vida">
+    </a>
 
-<div>Alas de Vida</div>
-
-<nav class="nav-links">
-<a href="index.html">Inicio</a>
-<a href="aves.html" class="activo">Aves</a>
-<a href="caminos.html">Caminos</a>
-<a href="bitacora.html">Bitácora</a>
-<a href="pajarero_cr.html">Pajarero_cr</a>
-</nav>
-
-</div>
+    <nav class="nav-links">
+      <a href="alasdevida.html">Alas de Vida</a>
+      <a href="aves.html" class="activo">Aves</a>
+      <a href="construccion.html">Caminos</a>
+      <a href="bitacora.html">Bitácora</a>
+      <a href="construccion.html">Pajarero_cr</a>
+    </nav>
+  </div>
 </header>
 
-
 <section class="encabezado">
-
-<h1>Aves</h1>
-
-<p>
-Una galería de encuentros, especies y escenas del pajareo.
-</p>
-
+  <h1>Aves</h1>
+  <p>
+    Una galería de encuentros, especies, escenas y memorias aladas.
+  </p>
 </section>
-
 
 <section class="controles">
+  <div class="controles-top">
+    <div class="buscar">
+      <input id="searchInput" type="text" placeholder="Buscar especie o escena...">
+    </div>
 
-<div class="controles-top">
+    <div class="filtros">
+      <select id="sortSelect">
+        <option value="random">Orden: Aleatorio</option>
+        <option value="recent">Más recientes</option>
+        <option value="oldest">Más antiguas</option>
+      </select>
 
-<input id="searchInput" placeholder="Buscar especie...">
+      <select id="familiaFilter">
+        <option value="">Familia</option>
+        <option value="Accipitridae">Accipitridae</option>
+        <option value="Capitonidae">Capitonidae</option>
+        <option value="Cathartidae">Cathartidae</option>
+        <option value="Cotingidae">Cotingidae</option>
+        <option value="Gruidae">Gruidae</option>
+        <option value="Icteridae">Icteridae</option>
+        <option value="Nyctibiidae">Nyctibiidae</option>
+        <option value="Phoenicopteridae">Phoenicopteridae</option>
+        <option value="Pipridae">Pipridae</option>
+        <option value="Podicipedidae">Podicipedidae</option>
+        <option value="Psittacidae">Psittacidae</option>
+        <option value="Ramphastidae">Ramphastidae</option>
+        <option value="Rynchopidae">Rynchopidae</option>
+        <option value="Scolopacidae">Scolopacidae</option>
+        <option value="Trochilidae">Trochilidae</option>
+        <option value="Trogonidae">Trogonidae</option>
+        <option value="Turdidae">Turdidae</option>
+        <option value="Tyrannidae">Tyrannidae</option>
+        <option value="escena">Escena</option>
+      </select>
 
-<select id="sortSelect">
-<option value="random">Orden: Aleatorio</option>
-<option value="recent">Más recientes</option>
-<option value="oldest">Más antiguas</option>
-</select>
+      <select id="habitatFilter">
+        <option value="">Hábitat</option>
+        <option value="bosque seco">Bosque seco</option>
+        <option value="bosque húmedo">Bosque húmedo</option>
+        <option value="bosque nuboso">Bosque nuboso</option>
+        <option value="costa">Costa</option>
+        <option value="humedal">Humedal</option>
+        <option value="parque urbano">Parque urbano</option>
+      </select>
 
-</div>
-
+      <select id="provinciaFilter">
+        <option value="">Provincia</option>
+        <option value="Alajuela">Alajuela</option>
+        <option value="Cartago">Cartago</option>
+        <option value="Guanacaste">Guanacaste</option>
+        <option value="Limón">Limón</option>
+        <option value="Puntarenas">Puntarenas</option>
+        <option value="San José">San José</option>
+      </select>
+    </div>
+  </div>
 </section>
 
+<div class="resumen" id="resultsCount">24 entradas</div>
 
 <section class="galeria-aves" id="gallery"></section>
 
-<div class="mostrar-mas-wrap">
-<button id="mostrarMasBtn">Mostrar más aves</button>
+<div class="mostrar-mas-wrap" id="mostrarMasWrap">
+  <button class="mostrar-mas-btn" id="mostrarMasBtn">Mostrar más aves</button>
 </div>
 
+<div class="sin-resultados" id="noResults">
+  No se encontraron resultados con esos filtros.
+</div>
 
 <div class="lightbox" id="lightbox">
-<img id="lightbox-img">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+
+  <div class="lightbox-inner">
+    <img src="" alt="" class="lightbox-image" id="lightboxImage">
+
+    <div class="lightbox-caption" id="lightboxCaption">
+      <div class="eng"></div>
+      <div class="esp"></div>
+      <div class="sci"></div>
+      <div class="loc"></div>
+      <div class="holdridge"></div>
+    </div>
+  </div>
 </div>
 
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="logo_pajarero.png" class="footer-logo" alt="pajarero_cr">
+    <p class="footer-titulo">Alas de Vida</p>
+    <p class="footer-texto">Un cuaderno abierto de pajareo, caminos y memoria.</p>
+    <p class="footer-copy">© Adrián Cordero</p>
+  </div>
+</footer>
 
 <script>
+const aves = [
+  {
+    name: "Resplendent Quetzal",
+    spanish: "Quetzal resplandeciente",
+    scientific: "Pharomachrus mocinno",
+    familia: "Trogonidae",
+    habitat: "bosque nuboso",
+    provincia: "San José",
+    location: "Cañón del Savegre, Dota, San José, Costa Rica",
+    holdridge: "Bosque pluvial montano bajo",
+    date: "2024-07-25",
+    search: "quetzal chirripó bosque nuboso resplendent quetzal quetzal resplandeciente pharomachrus mocinno savegre dota san josé",
+    image: "images/aves/quetzal.jpg",
+    link: ""
+  },
+  {
+    name: "Graceful Black-throated Trogon",
+    spanish: "Trogón elegante",
+    scientific: "Trogon tenellus",
+    familia: "Trogonidae",
+    habitat: "bosque húmedo",
+    provincia: "Puntarenas",
+    location: "Parque Nacional Carara, Garabito, Puntarenas, Costa Rica",
+    holdridge: "Bosque húmedo tropical",
+    date: "2024-09-29",
+    search: "trogon carara bosque húmedo graceful black throated trogon trogón elegante trogon tenellus garabito puntarenas",
+    image: "images/aves/graceful-black-throated-trogon.jpg",
+    link: ""
+  },
+  {
+    name: "Three-wattled Bellbird",
+    spanish: "Campanero tricarunculado",
+    scientific: "Procnias tricarunculatus",
+    familia: "Cotingidae",
+    habitat: "bosque nuboso",
+    provincia: "Cartago",
+    location: "Navarro del Muñeco, Paraíso, Cartago, Costa Rica",
+    holdridge: "Bosque pluvial montano",
+    date: "2025-04-18",
+    search: "campana cotinga bosque nuboso three wattled bellbird campanero tricarunculado procnias tricarunculatus navarro del muñeco paraíso cartago",
+    image: "images/aves/three-wattled-bellbird.jpg",
+    link: ""
+  },
+  {
+    name: "Great Green Macaw",
+    spanish: "Lapa verde mayor",
+    scientific: "Ara ambiguus",
+    familia: "Psittacidae",
+    habitat: "bosque húmedo",
+    provincia: "Limón",
+    location: "Manzanillo, Talamanca, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2024-08-29",
+    search: "lapa guacamaya caribe great green macaw lapa verde ara ambiguus manzanillo talamanca limón",
+    image: "images/aves/great-green-macaw.jpg",
+    link: "lapa-verde.html"
+  },
+  {
+    name: "Scarlet Macaw",
+    spanish: "Lapa roja",
+    scientific: "Ara macao",
+    familia: "Psittacidae",
+    habitat: "bosque húmedo",
+    provincia: "Puntarenas",
+    location: "Parque Nacional Corcovado, Osa, Puntarenas, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2025-06-07",
+    search: "lapa guacamaya corcovado scarlet macaw lapa roja ara macao osa puntarenas",
+    image: "images/aves/scarlet-macaws.jpg",
+    link: ""
+  },
+  {
+    name: "American Flamingo",
+    spanish: "Flamenco americano",
+    scientific: "Phoenicopterus ruber",
+    familia: "Phoenicopteridae",
+    habitat: "humedal",
+    provincia: "Limón",
+    location: "Estero Negro, Talamanca, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2024-10-02",
+    search: "flamenco humedal caribe american flamingo flamenco americano phoenicopterus ruber estero negro talamanca limón",
+    image: "images/aves/flamingo.jpg",
+    link: ""
+  },
+  {
+    name: "Ruby-throated Hummingbird",
+    spanish: "Colibrí garganta rubí",
+    scientific: "Archilochus colubris",
+    familia: "Trochilidae",
+    habitat: "bosque nuboso",
+    provincia: "Puntarenas",
+    location: "Monteverde, Puntarenas, Costa Rica",
+    holdridge: "Bosque pluvial montano bajo",
+    date: "2025-04-12",
+    search: "colibri hummingbird monteverde ruby throated hummingbird colibrí garganta rubí archilochus colubris trochilidae",
+    image: "images/aves/ruby-throated-hummingbird.jpg",
+    link: ""
+  },
+  {
+    name: "Long-tailed Tyrant",
+    spanish: "Tirano colilargo",
+    scientific: "Colonia colonus",
+    familia: "Tyrannidae",
+    habitat: "bosque húmedo",
+    provincia: "Limón",
+    location: "Anturias, Pococí, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2024-12-07",
+    search: "mosquero tyrant bosque húmedo long tailed tyrant tirano colilargo colonia colonus anturias pococí limón",
+    image: "images/aves/long-tailed-tyrant.JPG",
+    link: ""
+  },
+  {
+    name: "Wood Thrush",
+    spanish: "Zorzal del bosque",
+    scientific: "Hylocichla mustelina",
+    familia: "Turdidae",
+    habitat: "bosque nuboso",
+    provincia: "Puntarenas",
+    location: "Bajos del Tigre, Monteverde, Puntarenas, Costa Rica",
+    holdridge: "Bosque pluvial montano bajo",
+    date: "2025-04-13",
+    search: "zorzal thrush bosque nuboso wood thrush zorzal del bosque hylocichla mustelina bajos del tigre monteverde puntarenas",
+    image: "images/aves/wood-thrush.jpg",
+    link: ""
+  },
+  {
+    name: "Black Skimmer",
+    spanish: "Rayador americano",
+    scientific: "Rynchops niger",
+    familia: "Rynchopidae",
+    habitat: "costa",
+    provincia: "Limón",
+    location: "Barra del Colorado, Pococí, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2025-10-18",
+    search: "playero costa rayador black skimmer rayador americano rynchops niger barra del colorado pococí limón",
+    image: "images/aves/black-skimmer.JPG",
+    link: ""
+  },
+  {
+    name: "Whimbrel",
+    spanish: "Zarapito trinador",
+    scientific: "Numenius phaeopus",
+    familia: "Scolopacidae",
+    habitat: "costa",
+    provincia: "Puntarenas",
+    location: "Cocorocas, Chomes, Puntarenas, Costa Rica",
+    holdridge: "Bosque seco tropical",
+    date: "2024-09-29",
+    search: "playero whimbrel costa whimbrel zarapito trinador numenius phaeopus cocorocas chomes puntarenas",
+    image: "images/aves/whimbrel-flock.jpg",
+    link: ""
+  },
+  {
+    name: "Least Grebe",
+    spanish: "Zambullidor menor",
+    scientific: "Tachybaptus dominicus",
+    familia: "Podicipedidae",
+    habitat: "parque urbano",
+    provincia: "San José",
+    location: "Parque Metropolitano La Sabana, San José, Costa Rica",
+    holdridge: "Bosque húmedo premontano",
+    date: "2024-11-30",
+    search: "zambullidor lago parque least grebe zambullidor menor tachybaptus dominicus la sabana san josé",
+    image: "images/aves/least-grebe.jpg",
+    link: ""
+  },
+  {
+    name: "Royal Terns, Great Egret and Black Vultures",
+    spanish: "Escena costera",
+    scientific: "—",
+    familia: "escena",
+    habitat: "costa",
+    provincia: "Limón",
+    location: "Bocana de Barra del Colorado, Pococí, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2025-10-18",
+    search: "escena costa zopilotes garza royal terns great egret black vultures charranes reales garza blanca zopilotes negros barra del colorado limon",
+    image: "images/aves/royal-terns-zopilotes.jpg",
+    link: ""
+  },
+  {
+    name: "Double-toothed Kite",
+    spanish: "Gavilán bidentado",
+    scientific: "Harpagus bidentatus",
+    familia: "Accipitridae",
+    habitat: "bosque húmedo",
+    provincia: "Puntarenas",
+    location: "Uvita, Osa, Puntarenas, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2025-12-13",
+    search: "gavilan raptor uvita double toothed kite gavilán bidentado harpagus bidentatus osa puntarenas",
+    image: "images/aves/double-toothed-kite.jpg",
+    link: ""
+  },
+  {
+    name: "Sandhill Crane",
+    spanish: "Grulla canadiense",
+    scientific: "Antigone canadensis",
+    familia: "Gruidae",
+    habitat: "humedal",
+    provincia: "Puntarenas",
+    location: "Tárcoles, Garabito, Puntarenas, Costa Rica",
+    holdridge: "Bosque seco tropical",
+    date: "2025-11-17",
+    search: "rareza crane tarcoles sandhill crane grulla canadiense antigone canadensis garabito puntarenas",
+    image: "images/aves/sandhill-crane.jpg",
+    link: ""
+  },
+  {
+    name: "Common Potoo",
+    spanish: "Nictibio Común",
+    scientific: "Nyctibius griseus",
+    familia: "Nyctibiidae",
+    habitat: "bosque húmedo",
+    provincia: "San José",
+    location: "Las Nubes Biological Reserve, Pérez Zeledón, San José, Costa Rica",
+    holdridge: "Bosque muy húmedo premontano",
+    date: "2025-03-29",
+    search: "potoo nictibio comun nyctibius griseus nocturna las nubes perez zeledon san jose",
+    image: "images/aves/common-potoo.jpg",
+    link: ""
+  },
+  {
+    name: "White-necked Jacobin",
+    spanish: "Jacobino Nuquiblanco",
+    scientific: "Florisuga mellivora",
+    familia: "Trochilidae",
+    habitat: "bosque húmedo",
+    provincia: "Cartago",
+    location: "Rancho Naturalista, Turrialba, Cartago, Costa Rica",
+    holdridge: "Bosque muy húmedo premontano",
+    date: "2024-10-11",
+    search: "jacobin jacobino nuquiblanco florisuga mellivora rancho naturalista turrialba cartago hummingbird colibri",
+    image: "images/aves/white-necked-jacobin.jpg",
+    link: ""
+  },
+  {
+    name: "Turkey Vulture",
+    spanish: "Zopilote Cabecirrojo",
+    scientific: "Cathartes aura",
+    familia: "Cathartidae",
+    habitat: "bosque húmedo",
+    provincia: "Limón",
+    location: "Talamanca, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2024-10-02",
+    search: "zopilote cabecirrojo turkey vulture cathartes aura talamanca limon raptor carroñero",
+    image: "images/aves/turkey-vulture.jpg",
+    link: ""
+  },
+  {
+    name: "Collared Aracari",
+    spanish: "Tucancillo Collarejo",
+    scientific: "Pteroglossus torquatus",
+    familia: "Ramphastidae",
+    habitat: "bosque húmedo",
+    provincia: "Limón",
+    location: "Barra del Colorado, Pococí, Limón, Costa Rica",
+    holdridge: "Bosque muy húmedo tropical",
+    date: "2024-10-19",
+    search: "aracari tucancillo collarejo pteroglossus torquatus barra del colorado pococi limon toucan",
+    image: "images/aves/collared-aracari.jpg",
+    link: ""
+  },
+  {
+    name: "Nicaraguan Grackle",
+    spanish: "Zanate de Laguna",
+    scientific: "Quiscalus nicaraguensis",
+    familia: "Icteridae",
+    habitat: "humedal",
+    provincia: "Alajuela",
+    location: "Refugio Nacional de Vida Silvestre Caño Negro, Los Chiles, Alajuela, Costa Rica",
+    holdridge: "Bosque húmedo tropical",
+    date: "2024-11-23",
+    search: "zanate de laguna quiscalus nicaraguensis cano negro los chiles alajuela grackle icteridae",
+    image: "images/aves/nicaraguan-grackle.jpg",
+    link: ""
+  },
+  {
+    name: "Lovely Cotinga",
+    spanish: "Cotinga Linda",
+    scientific: "Cotinga amabilis",
+    familia: "Cotingidae",
+    habitat: "bosque húmedo",
+    provincia: "Cartago",
+    location: "Comunidad indígena Cabécar Nairi Awari, Turrialba, Cartago, Costa Rica",
+    holdridge: "Bosque muy húmedo premontano",
+    date: "2024-07-06",
+    search: "cotinga linda lovely cotinga cotinga amabilis nairi awari cabecar turrialba cartago cotingidae",
+    image: "images/aves/lovely-cotinga.jpg",
+    link: ""
+  },
+  {
+    name: "Northern Emerald-Toucanet",
+    spanish: "Tucancillo Verde",
+    scientific: "Aulacorhynchus prasinus",
+    familia: "Ramphastidae",
+    habitat: "bosque nuboso",
+    provincia: "Puntarenas",
+    location: "Reserva Curicancha, Monteverde, Puntarenas, Costa Rica",
+    holdridge: "Bosque pluvial montano bajo",
+    date: "2024-12-24",
+    search: "toucanet tucancillo verde aulacorhynchus prasinus northern emerald toucanet curicancha monteverde puntarenas",
+    image: "images/aves/northern-emerald-toucanet.jpg",
+    link: ""
+  },
+  {
+    name: "Long-tailed Manakin",
+    spanish: "Saltarín Toledo",
+    scientific: "Chiroxiphia linearis",
+    familia: "Pipridae",
+    habitat: "bosque seco",
+    provincia: "Guanacaste",
+    location: "Parque Nacional Rincón de la Vieja, Guanacaste, Costa Rica",
+    holdridge: "Bosque seco tropical",
+    date: "2025-01-11",
+    search: "manakin saltarin toledo chiroxiphia linearis rincon de la vieja guanacaste pipridae",
+    image: "images/aves/long-tailed-manakin.jpg",
+    link: ""
+  },
+  {
+    name: "Red-headed Barbet",
+    spanish: "Barbudo cabecirrojo",
+    scientific: "Eubucco bourcierii",
+    familia: "Capitonidae",
+    habitat: "bosque nuboso",
+    provincia: "San José",
+    location: "San Gerardo de Rivas, Pérez Zeledón, San José, Costa Rica",
+    holdridge: "Bosque pluvial montano bajo",
+    date: "2025-02-06",
+    search: "barbet chirripo bosque nuboso red headed barbet barbudo cabecirrojo eubucco bourcierii san gerardo de rivas perez zeledon san jose",
+    image: "images/aves/red-headed-barbet.jpg",
+    link: ""
+  }
+];
 
-const aves=[
+const LIMITE_INICIAL = 12;
+const CARGA_POR_CLICK = 12;
 
-{
-name:"Great Green Macaw",
-spanish:"Lapa verde mayor",
-scientific:"Ara ambiguus",
-location:"Manzanillo, Talamanca, Limón",
-date:"2024-08-29",
-image:"images/aves/great-green-macaw.jpg",
-search:"lapa verde macaw ara ambiguus",
-link:"lapa-verde.html"
-},
+const gallery = document.getElementById('gallery');
+const searchInput = document.getElementById('searchInput');
+const familiaFilter = document.getElementById('familiaFilter');
+const habitatFilter = document.getElementById('habitatFilter');
+const provinciaFilter = document.getElementById('provinciaFilter');
+const sortSelect = document.getElementById('sortSelect');
+const resultsCount = document.getElementById('resultsCount');
+const noResults = document.getElementById('noResults');
+const mostrarMasWrap = document.getElementById('mostrarMasWrap');
+const mostrarMasBtn = document.getElementById('mostrarMasBtn');
 
-{
-name:"Resplendent Quetzal",
-spanish:"Quetzal resplandeciente",
-scientific:"Pharomachrus mocinno",
-location:"Cañón del Savegre",
-date:"2024-07-25",
-image:"images/aves/quetzal.jpg",
-search:"quetzal",
-link:""
-},
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
 
-{
-name:"Three-wattled Bellbird",
-spanish:"Campanero tricarunculado",
-scientific:"Procnias tricarunculatus",
-location:"Navarro del Muñeco",
-date:"2025-04-18",
-image:"images/aves/three-wattled-bellbird.jpg",
-search:"bellbird campanero",
-link:""
-},
+let avesOrdenadas = [];
+let avesFiltradas = [];
+let avesVisibles = [];
+let cantidadVisible = LIMITE_INICIAL;
+let currentItems = [];
+let currentIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
-{
-name:"Lovely Cotinga",
-spanish:"Cotinga linda",
-scientific:"Cotinga amabilis",
-location:"Nairi Awari, Turrialba",
-date:"2024-07-06",
-image:"images/aves/lovely-cotinga.jpg",
-search:"cotinga",
-link:""
-},
-
-{
-name:"Long-tailed Manakin",
-spanish:"Saltarín toledo",
-scientific:"Chiroxiphia linearis",
-location:"Rincón de la Vieja",
-date:"2025-01-11",
-image:"images/aves/long-tailed-manakin.jpg",
-search:"manakin",
-link:""
-},
-
-{
-name:"Collared Aracari",
-spanish:"Tucancillo collarejo",
-scientific:"Pteroglossus torquatus",
-location:"Barra del Colorado",
-date:"2024-10-19",
-image:"images/aves/collared-aracari.jpg",
-search:"aracari",
-link:""
-},
-
-{
-name:"Northern Emerald-Toucanet",
-spanish:"Tucancillo verde",
-scientific:"Aulacorhynchus prasinus",
-location:"Curicancha",
-date:"2024-12-24",
-image:"images/aves/northern-emerald-toucanet.jpg",
-search:"toucanet",
-link:""
-},
-
-{
-name:"White-necked Jacobin",
-spanish:"Jacobino nuquiblanco",
-scientific:"Florisuga mellivora",
-location:"Rancho Naturalista",
-date:"2024-10-11",
-image:"images/aves/white-necked-jacobin.jpg",
-search:"jacobin",
-link:""
-},
-
-{
-name:"Magenta-throated Woodstar",
-spanish:"Colibrí estrellita gorgimorada",
-scientific:"Philodice bryantae",
-location:"Monteverde",
-date:"2025-04-12",
-image:"images/aves/magenta-throated-woodstar.jpg",
-search:"woodstar",
-link:""
-},
-
-{
-name:"Common Potoo",
-spanish:"Nictibio común",
-scientific:"Nyctibius griseus",
-location:"Las Nubes",
-date:"2025-03-29",
-image:"images/aves/common-potoo.jpg",
-search:"potoo",
-link:""
+function shuffleArray(array) {
+  const copia = [...array];
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
 }
 
-]
+function ordenarBase() {
+  const orden = sortSelect.value;
 
-const gallery=document.getElementById("gallery")
-const searchInput=document.getElementById("searchInput")
-const sortSelect=document.getElementById("sortSelect")
-const mostrarMasBtn=document.getElementById("mostrarMasBtn")
+  if (orden === "recent") {
+    avesOrdenadas = [...aves].sort((a, b) => new Date(b.date) - new Date(a.date));
+    return;
+  }
 
-let visibles=6
-let lista=[...aves]
+  if (orden === "oldest") {
+    avesOrdenadas = [...aves].sort((a, b) => new Date(a.date) - new Date(b.date));
+    return;
+  }
 
-function shuffle(a){
-return a.sort(()=>Math.random()-0.5)
+  avesOrdenadas = shuffleArray(aves);
 }
 
-function ordenar(){
-const o=sortSelect.value
-
-if(o==="recent")lista=[...aves].sort((a,b)=>new Date(b.date)-new Date(a.date))
-else if(o==="oldest")lista=[...aves].sort((a,b)=>new Date(a.date)-new Date(b.date))
-else lista=shuffle([...aves])
+function crearCardHTML(ave){
+  return `
+    <div class="ave-card">
+      <img src="${ave.image}" alt="${ave.name}" class="lightbox-trigger">
+      <div class="ave-info">
+        <h3>${ave.name}</h3>
+        <p class="esp">${ave.spanish}</p>
+        <p class="sci"><em>${ave.scientific}</em></p>
+        <p class="loc">${ave.location}</p>
+        ${ave.link ? `<a href="${ave.link}">Leer más →</a>` : ""}
+      </div>
+    </div>
+  `;
 }
 
-function crearCard(ave){
-
-return`
-<div class="ave-card">
-
-<img src="${ave.image}" class="img">
-
-<div class="ave-info">
-
-<h3>${ave.name}</h3>
-
-<p>${ave.spanish}</p>
-
-<p><em>${ave.scientific}</em></p>
-
-<p class="loc">${ave.location}</p>
-
-${ave.link?`<a href="${ave.link}">Leer más →</a>`:""}
-
-</div>
-
-</div>
-`
-
+function renderGallery(items){
+  gallery.innerHTML = items.map(crearCardHTML).join('');
+  bindLightboxClicks();
 }
 
-function render(){
-
-const q=searchInput.value.toLowerCase()
-
-const filtradas=lista.filter(a=>a.search.includes(q))
-
-gallery.innerHTML=filtradas.slice(0,visibles).map(crearCard).join("")
-
+function hayFiltrosActivos(){
+  return (
+    searchInput.value.trim() !== '' ||
+    familiaFilter.value !== '' ||
+    habitatFilter.value !== '' ||
+    provinciaFilter.value !== ''
+  );
 }
 
-searchInput.oninput=render
+function actualizarBotonMostrarMas(){
+  if (hayFiltrosActivos()) {
+    mostrarMasWrap.style.display = 'none';
+    return;
+  }
 
-sortSelect.onchange=()=>{
-ordenar()
-render()
+  if (cantidadVisible < avesFiltradas.length) {
+    mostrarMasWrap.style.display = 'block';
+  } else {
+    mostrarMasWrap.style.display = 'none';
+  }
 }
 
-mostrarMasBtn.onclick=()=>{
-visibles+=6
-render()
+function aplicarFiltros() {
+  const searchValue = searchInput.value.trim().toLowerCase();
+  const familiaValue = familiaFilter.value;
+  const habitatValue = habitatFilter.value;
+  const provinciaValue = provinciaFilter.value;
+
+  avesFiltradas = avesOrdenadas.filter(ave => {
+    const matchSearch = ave.search.toLowerCase().includes(searchValue);
+    const matchFamilia = !familiaValue || ave.familia === familiaValue;
+    const matchHabitat = !habitatValue || ave.habitat === habitatValue;
+    const matchProvincia = !provinciaValue || ave.provincia === provinciaValue;
+    return matchSearch && matchFamilia && matchHabitat && matchProvincia;
+  });
+
+  if (hayFiltrosActivos()) {
+    avesVisibles = [...avesFiltradas];
+  } else {
+    avesVisibles = avesFiltradas.slice(0, cantidadVisible);
+  }
+
+  renderGallery(avesVisibles);
+
+  resultsCount.textContent =
+    avesFiltradas.length === 1 ? '1 entrada' : `${avesFiltradas.length} entradas`;
+
+  noResults.style.display = avesFiltradas.length === 0 ? 'block' : 'none';
+
+  actualizarBotonMostrarMas();
 }
 
-/* lightbox */
-
-document.addEventListener("click",e=>{
-
-if(e.target.classList.contains("img")){
-const lb=document.getElementById("lightbox")
-const img=document.getElementById("lightbox-img")
-img.src=e.target.src
-lb.style.display="flex"
+function cargarMas(){
+  cantidadVisible += CARGA_POR_CLICK;
+  aplicarFiltros();
 }
 
-})
-
-document.getElementById("lightbox").onclick=()=>{
-document.getElementById("lightbox").style.display="none"
+function bindLightboxClicks(){
+  const visibleCards = Array.from(document.querySelectorAll('.ave-card'));
+  visibleCards.forEach((card, index) => {
+    const img = card.querySelector('.lightbox-trigger');
+    if(img){
+      img.onclick = () => {
+        currentItems = [...avesVisibles];
+        currentIndex = index;
+        renderLightbox(currentIndex);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+    }
+  });
 }
 
-ordenar()
-render()
+function renderLightbox(index){
+  if (!currentItems.length) return;
+  currentIndex = index;
+  const ave = currentItems[currentIndex];
 
+  lightboxImage.src = ave.image;
+  lightboxImage.alt = ave.name;
+  lightboxCaption.querySelector('.eng').textContent = ave.name;
+  lightboxCaption.querySelector('.esp').textContent = ave.spanish;
+  lightboxCaption.querySelector('.sci').textContent = ave.scientific;
+  lightboxCaption.querySelector('.loc').textContent = ave.location;
+  lightboxCaption.querySelector('.holdridge').textContent = `Zona de vida: ${ave.holdridge}`;
+}
+
+function closeLightbox(){
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function showNext(){
+  if (!currentItems.length) return;
+  currentIndex = (currentIndex + 1) % currentItems.length;
+  renderLightbox(currentIndex);
+}
+
+function showPrev(){
+  if (!currentItems.length) return;
+  currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+  renderLightbox(currentIndex);
+}
+
+function ordenarGaleria() {
+  cantidadVisible = LIMITE_INICIAL;
+  ordenarBase();
+  aplicarFiltros();
+}
+
+searchInput.addEventListener('input', aplicarFiltros);
+familiaFilter.addEventListener('change', aplicarFiltros);
+habitatFilter.addEventListener('change', aplicarFiltros);
+provinciaFilter.addEventListener('change', aplicarFiltros);
+sortSelect.addEventListener('change', ordenarGaleria);
+mostrarMasBtn.addEventListener('click', cargarMas);
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxNext.addEventListener('click', showNext);
+lightboxPrev.addEventListener('click', showPrev);
+
+lightbox.addEventListener('click', (e) => {
+  if(e.target === lightbox){
+    closeLightbox();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if(!lightbox.classList.contains('active')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowRight') showNext();
+  if(e.key === 'ArrowLeft') showPrev();
+});
+
+lightbox.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, {passive:true});
+
+lightbox.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const delta = touchEndX - touchStartX;
+  if(Math.abs(delta) > 50){
+    if(delta < 0){
+      showNext();
+    } else {
+      showPrev();
+    }
+  }
+}, {passive:true});
+
+/* INIT */
+ordenarBase();
+aplicarFiltros();
 </script>
 
 </body>
