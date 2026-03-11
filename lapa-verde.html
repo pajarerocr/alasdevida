@@ -1,661 +1,374 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>La lapa verde — Alas de Vida</title>
 
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 body{
-margin:0;
-background:black;
-color:white;
-font-family:"Manrope", sans-serif;
+  margin:0;
+  background:black;
+  color:white;
+  font-family:"Manrope", sans-serif;
 }
 
 /* NAV */
-
 .nav{
-position:sticky;
-top:0;
-background:black;
-border-bottom:1px solid rgba(255,255,255,0.08);
-z-index:10;
+  position:sticky;
+  top:0;
+  background:black;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  z-index:10;
 }
 
 .nav-inner{
-max-width:1100px;
-margin:auto;
-padding:18px 25px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  max-width:1100px;
+  margin:auto;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-logo img{
+  height:120px;
+  width:auto;
+  display:block;
 }
 
 .nav-links{
-display:flex;
-gap:22px;
+  display:flex;
+  gap:22px;
 }
 
 .nav-links a{
-text-decoration:none;
-color:white;
-opacity:0.8;
-font-size:14px;
+  text-decoration:none;
+  color:white;
+  opacity:0.8;
+  font-size:14px;
 }
 
 .nav-links a:hover{
-opacity:1;
+  opacity:1;
 }
 
 .nav-links a.activo{
-opacity:1;
-border-bottom:1px solid rgba(255,255,255,0.6);
-padding-bottom:3px;
-}
-
-/* ENCABEZADO */
-
-.header{
-max-width:760px;
-margin:100px auto 60px auto;
-text-align:center;
-padding:0 24px;
-}
-
-.header h1{
-margin:0;
-font-size:44px;
-font-weight:500;
-letter-spacing:0.04em;
-}
-
-.header .eng{
-margin-top:12px;
-font-size:20px;
-opacity:0.9;
-}
-
-.header .sci{
-margin-top:6px;
-font-style:italic;
-opacity:0.7;
-}
-
-/* CONTENIDO */
-
-.content{
-max-width:760px;
-margin:auto;
-padding:0 24px 80px 24px;
-}
-
-.content p{
-font-size:19px;
-line-height:1.9;
-margin-bottom:28px;
-opacity:0.92;
-}
-
-/* FOTOS */
-
-.photo{
-margin:70px auto;
-}
-
-.photo img{
-width:100%;
-height:auto;
-display:block;
-cursor:pointer;
-}
-
-/* REFERENCIA */
-
-.reference{
-margin-top:70px;
-padding-top:30px;
-border-top:1px solid rgba(255,255,255,0.1);
-}
-
-.reference h3{
-font-size:16px;
-letter-spacing:0.05em;
-margin-bottom:14px;
-opacity:0.8;
-}
-
-.reference p{
-font-size:16px;
-line-height:1.7;
-opacity:0.8;
-}
-
-/* BOTÓN PDF */
-
-.download{
-margin-top:20px;
-}
-
-.download a{
-display:inline-block;
-border:1px solid rgba(255,255,255,0.3);
-padding:12px 18px;
-border-radius:30px;
-text-decoration:none;
-color:white;
-font-size:14px;
-transition:all .25s;
-}
-
-.download a:hover{
-background:white;
-color:black;
-}
-
-/* VOLVER */
-
-.back{
-margin-top:60px;
-}
-
-.back a{
-color:white;
-text-decoration:none;
-opacity:0.7;
-}
-
-.back a:hover{
-opacity:1;
-}
-
-/* LIGHTBOX */
-
-.lightbox{
-position:fixed;
-inset:0;
-background:black;
-display:none;
-align-items:center;
-justify-content:center;
-z-index:1000;
-}
-
-.lightbox img{
-max-width:95%;
-max-height:95%;
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<header class="nav">
-
-<div class="nav-inner">
-
-<div>Alas de Vida</div>
-
-<nav class="nav-links">
-<a href="index.html">Inicio</a>
-<a href="aves.html" class="activo">Aves</a>
-<a href="caminos.html">Caminos</a>
-<a href="bitacora.html">Bitácora</a>
-<a href="pajarero_cr.html">Pajarero_cr</a>
-</nav>
-
-</div>
-
-</header>
-
-
-<section class="header">
-
-<h1>La lapa verde</h1>
-
-<div class="eng">
-Great Green Macaw
-</div>
-
-<div class="sci">
-Ara ambiguus
-</div>
-
-</section>
-
-
-<main class="content">
-
-<p>
-La lapa verde es una de las aves más impresionantes de los bosques del Caribe centroamericano. Grande, ruidosa y de vuelo poderoso, es difícil confundirla cuando una bandada cruza el cielo sobre el dosel del bosque.
-</p>
-
-<p>
-También es una de las especies más amenazadas de la región. En todo su rango de distribución sobreviven menos de cuatro mil individuos, y las poblaciones se encuentran cada vez más fragmentadas.
-</p>
-
-
-<div class="photo">
-<img src="images/aves/great-green-macaw-flight.jpg">
-</div>
-
-
-<p>
-En Costa Rica persisten algunos de los núcleos más importantes de la especie, principalmente en la Zona Norte (Sarapiquí, San Carlos, Maquenque) y en el Caribe Sur, en Talamanca. Aun así, se trata de poblaciones pequeñas que dependen de bosques cada vez más reducidos.
-</p>
-
-<p>
-Gran parte de la historia de la lapa verde está ligada a un árbol: el almendro de montaña (<i>Dipteryx panamensis</i>). Las lapas se alimentan de sus semillas y utilizan las cavidades de los árboles grandes para anidar. Durante décadas, la tala de almendros redujo la disponibilidad de estos sitios de reproducción.
-</p>
-
-
-<div class="photo">
-<img src="images/aves/great-green-macaw-almond.jpg">
-</div>
-
-
-<p>
-En los últimos años han surgido esfuerzos importantes para revertir esta tendencia. Programas de conservación han liberado individuos, protegido nidos y colocado cavidades artificiales que han permitido aumentar el éxito reproductivo de la especie.
-</p>
-
-<p>
-Comunidades locales también participan activamente en el monitoreo y la protección de árboles de almendro, mientras que el aviturismo se ha convertido en un incentivo adicional para conservar los bosques donde aún sobreviven estas aves.
-</p>
-
-<p>
-La recuperación de la lapa verde es un proceso lento. Los almendros que se plantan hoy tardarán décadas en convertirse en árboles capaces de albergar cavidades adecuadas para anidar. Pero cada vuelo verde sobre el bosque recuerda que estos esfuerzos ya están en marcha.
-</p>
-
-
-<div class="photo">
-<img src="images/aves/great-green-macaw.jpg">
-</div>
-
-
-<p>
-Este texto es una versión resumida de un trabajo académico sobre el estado de conservación de la lapa verde en Costa Rica.
-</p>
-
-
-<section class="reference">
-
-<h3>Referencia</h3>
-
-<p>
-Cordero Miranda, A., Hernández Meneses, C., Morales Guerrero, C., & Solano Morales (2025).  
-Estado de conservación de la lapa verde (Ara ambiguus) en Costa Rica: implicaciones para la participación comunitaria y el aviturismo.
-</p>
-
-<div class="download">
-
-<a href="pdf/lapa-verde-conservacion.pdf" target="_blank">
-Descargar artículo completo (PDF)
-</a>
-
-</div>
-
-</section>
-
-
-<div class="back">
-<a href="aves.html">← Volver a Aves</a>
-</div>
-
-</main>
-
-
-<div class="lightbox" id="lightbox">
-<img id="lightbox-img">
-</div>
-
-
-<script>
-
-const images = document.querySelectorAll(".photo img")
-const lightbox = document.getElementById("lightbox")
-const lightboxImg = document.getElementById("lightbox-img")
-
-images.forEach(img=>{
-img.onclick = () => {
-lightbox.style.display="flex"
-lightboxImg.src = img.src
-}
-})
-
-lightbox.onclick = () => {
-lightbox.style.display="none"
-}
-
-</script>
-
-
-</body>
-</html>justify-content:space-between;
-align-items:center;
-}
-
-.nav-links{
-display:flex;
-gap:22px;
-}
-
-.nav-links a{
-text-decoration:none;
-color:white;
-opacity:0.8;
-font-size:14px;
-}
-
-.nav-links a:hover{
-opacity:1;
-}
-
-.nav-links a.activo{
-opacity:1;
-border-bottom:1px solid rgba(255,255,255,0.6);
-padding-bottom:3px;
+  opacity:1;
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  padding-bottom:3px;
 }
 
 /* HERO */
-
 .hero{
-height:70vh;
-background-image:url("images/aves/great-green-macaw-flight.jpg");
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
+  height:70vh;
+  background-image:url("images/aves/great-green-macaw-flight.jpg");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
 }
 
 .hero::after{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.45);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
 }
 
 .hero-text{
-position:relative;
-text-align:center;
+  position:relative;
+  text-align:center;
+  padding:0 24px;
+  z-index:1;
 }
 
 .hero h1{
-margin:0;
-font-size:46px;
-font-weight:500;
-letter-spacing:0.03em;
+  margin:0;
+  font-size:46px;
+  font-weight:500;
+  letter-spacing:0.03em;
 }
 
 .hero .subtitle{
-margin-top:10px;
-font-size:20px;
-opacity:0.85;
+  margin-top:10px;
+  font-size:20px;
+  opacity:0.85;
 }
 
 .hero .scientific{
-margin-top:6px;
-font-style:italic;
-opacity:0.7;
+  margin-top:6px;
+  font-style:italic;
+  opacity:0.7;
 }
 
 /* CONTENT */
-
 .content{
-max-width:760px;
-margin:auto;
-padding:80px 24px;
+  max-width:760px;
+  margin:auto;
+  padding:80px 24px;
 }
 
 .content p{
-font-size:19px;
-line-height:1.9;
-margin-bottom:28px;
-opacity:0.92;
+  font-size:19px;
+  line-height:1.9;
+  margin-bottom:28px;
+  opacity:0.92;
 }
 
 /* IMAGES */
-
 .photo{
-margin:70px auto;
+  margin:70px auto;
 }
 
 .photo img{
-width:100%;
-height:auto;
-display:block;
-cursor:pointer;
+  width:100%;
+  height:auto;
+  display:block;
+  cursor:pointer;
 }
 
 /* REFERENCE */
-
 .reference{
-margin-top:70px;
-padding-top:30px;
-border-top:1px solid rgba(255,255,255,0.1);
+  margin-top:70px;
+  padding-top:30px;
+  border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .reference h3{
-font-size:16px;
-letter-spacing:0.05em;
-margin-bottom:14px;
-opacity:0.8;
+  font-size:16px;
+  letter-spacing:0.05em;
+  margin-bottom:14px;
+  opacity:0.8;
 }
 
 .reference p{
-font-size:16px;
-line-height:1.7;
-opacity:0.8;
+  font-size:16px;
+  line-height:1.7;
+  opacity:0.8;
 }
 
 /* PDF BUTTON */
-
 .download{
-margin-top:20px;
+  margin-top:20px;
 }
 
 .download a{
-display:inline-block;
-border:1px solid rgba(255,255,255,0.3);
-padding:12px 18px;
-border-radius:30px;
-text-decoration:none;
-color:white;
-font-size:14px;
-transition:all .25s;
+  display:inline-block;
+  border:1px solid rgba(255,255,255,0.3);
+  padding:12px 18px;
+  border-radius:30px;
+  text-decoration:none;
+  color:white;
+  font-size:14px;
+  transition:all .25s;
 }
 
 .download a:hover{
-background:white;
-color:black;
+  background:white;
+  color:black;
 }
 
 /* BACK */
-
 .back{
-margin-top:60px;
+  margin-top:60px;
 }
 
 .back a{
-color:white;
-text-decoration:none;
-opacity:0.7;
+  color:white;
+  text-decoration:none;
+  opacity:0.7;
 }
 
 .back a:hover{
-opacity:1;
+  opacity:1;
 }
 
 /* LIGHTBOX */
-
 .lightbox{
-position:fixed;
-inset:0;
-background:black;
-display:none;
-align-items:center;
-justify-content:center;
-z-index:1000;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+  padding:20px;
+  box-sizing:border-box;
 }
 
 .lightbox img{
-max-width:95%;
-max-height:95%;
+  max-width:95%;
+  max-height:95%;
 }
 
+/* MOVIL */
+@media (max-width:700px){
+  .nav-inner{
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .nav-logo img{
+    height:150px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .hero{
+    height:58vh;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero .subtitle{
+    font-size:18px;
+  }
+
+  .content{
+    padding:60px 22px 80px 22px;
+  }
+
+  .content p{
+    font-size:18px;
+    line-height:1.8;
+  }
+}
 </style>
-
 </head>
-
 
 <body>
 
 <header class="nav">
-<div class="nav-inner">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo_white.png" alt="Alas de Vida">
+    </a>
 
-<div>Alas de Vida</div>
-
-<nav class="nav-links">
-<a href="index.html">Inicio</a>
-<a href="aves.html" class="activo">Aves</a>
-<a href="caminos.html">Caminos</a>
-<a href="bitacora.html">Bitácora</a>
-<a href="pajarero_cr.html">Pajarero_cr</a>
-</nav>
-
-</div>
+    <nav class="nav-links">
+      <a href="alasdevida.html">Alas de Vida</a>
+      <a href="aves.html" class="activo">Aves</a>
+      <a href="construccion.html">Caminos</a>
+      <a href="bitacora.html">Bitácora</a>
+      <a href="construccion.html">Pajarero_cr</a>
+    </nav>
+  </div>
 </header>
 
-
 <section class="hero">
-
-<div class="hero-text">
-
-<h1>La lapa verde</h1>
-
-<div class="subtitle">
-Great Green Macaw
-</div>
-
-<div class="scientific">
-Ara ambiguus
-</div>
-
-</div>
-
+  <div class="hero-text">
+    <h1>La lapa verde</h1>
+    <div class="subtitle">Great Green Macaw</div>
+    <div class="scientific">Ara ambiguus</div>
+  </div>
 </section>
-
 
 <main class="content">
 
+  <p>
+    La lapa verde es una de las aves más impresionantes de los bosques del Caribe centroamericano. Grande, ruidosa y de vuelo poderoso, es difícil confundirla cuando una bandada cruza el cielo sobre el dosel del bosque.
+  </p>
 
-<p>
-La lapa verde es una de las aves más impresionantes de los bosques del Caribe centroamericano. Grande, ruidosa y de vuelo poderoso, es difícil confundirla cuando una bandada cruza el cielo sobre el dosel del bosque.
-</p>
+  <p>
+    También es una de las especies más amenazadas de la región. En todo su rango de distribución sobreviven menos de cuatro mil individuos, y las poblaciones se encuentran cada vez más fragmentadas.
+  </p>
 
-<p>
-También es una de las especies más amenazadas de la región. En todo su rango de distribución sobreviven menos de cuatro mil individuos, y las poblaciones se encuentran cada vez más fragmentadas.
-</p>
+  <div class="photo">
+    <img src="images/aves/great-green-macaw-almond.jpg" alt="Lapa verde en almendro de montaña">
+  </div>
 
+  <p>
+    En Costa Rica persisten algunos de los núcleos más importantes de la especie, principalmente en la Zona Norte (Sarapiquí, San Carlos, Maquenque) y en el Caribe Sur, en Talamanca. Aun así, se trata de poblaciones pequeñas que dependen de bosques cada vez más reducidos.
+  </p>
 
-<div class="photo">
-<img src="images/aves/great-green-macaw-almond.jpg">
-</div>
+  <p>
+    Gran parte de la historia de la lapa verde está ligada a un árbol: el almendro de montaña (<i>Dipteryx panamensis</i>). Las lapas se alimentan de sus semillas y utilizan las cavidades de los árboles grandes para anidar. Durante décadas, la tala de almendros redujo la disponibilidad de estos sitios de reproducción.
+  </p>
 
+  <div class="photo">
+    <img src="images/aves/great-green-macaw.jpg" alt="Lapa verde posada">
+  </div>
 
-<p>
-En Costa Rica persisten algunos de los núcleos más importantes de la especie, principalmente en la Zona Norte (Sarapiquí, San Carlos, Maquenque) y en el Caribe Sur, en Talamanca. Aun así, se trata de poblaciones pequeñas que dependen de bosques cada vez más reducidos.
-</p>
+  <p>
+    En los últimos años han surgido esfuerzos importantes para revertir esta tendencia. Programas de conservación han liberado individuos, protegido nidos y colocado cavidades artificiales que han permitido aumentar el éxito reproductivo de la especie.
+  </p>
 
-<p>
-Gran parte de la historia de la lapa verde está ligada a un árbol: el almendro de montaña (<i>Dipteryx panamensis</i>). Las lapas se alimentan de sus semillas y utilizan las cavidades de los árboles grandes para anidar. Durante décadas, la tala de almendros redujo la disponibilidad de estos sitios de reproducción.
-</p>
+  <p>
+    Comunidades locales también participan activamente en el monitoreo y la protección de árboles de almendro, mientras que el aviturismo se ha convertido en un incentivo adicional para conservar los bosques donde aún sobreviven estas aves.
+  </p>
 
+  <p>
+    La recuperación de la lapa verde es un proceso lento. Los almendros que se plantan hoy tardarán décadas en convertirse en árboles capaces de albergar cavidades adecuadas para anidar. Pero cada vuelo verde sobre el bosque recuerda que estos esfuerzos ya están en marcha.
+  </p>
 
-<div class="photo">
-<img src="images/aves/great-green-macaw.jpg">
-</div>
+  <p>
+    Este texto es una versión resumida de un trabajo académico sobre el estado de conservación de la lapa verde en Costa Rica.
+  </p>
 
+  <section class="reference">
+    <h3>Referencia</h3>
 
-<p>
-En los últimos años han surgido esfuerzos importantes para revertir esta tendencia. Programas de conservación han liberado individuos, protegido nidos y colocado cavidades artificiales que han permitido aumentar el éxito reproductivo de la especie.
-</p>
+    <p>
+      Cordero Miranda, A., Hernández Meneses, C., Morales Guerrero, C., &amp; Solano Morales, C. (2025).
+      Estado de conservación de la lapa verde (<i>Ara ambiguus</i>) en Costa Rica: implicaciones para la participación comunitaria y el aviturismo.
+    </p>
 
-<p>
-Comunidades locales también participan activamente en el monitoreo y la protección de árboles de almendro, mientras que el aviturismo se ha convertido en un incentivo adicional para conservar los bosques donde aún sobreviven estas aves.
-</p>
+    <div class="download">
+      <a href="pdf/lapa-verde-conservacion.pdf" target="_blank">
+        Descargar artículo completo (PDF)
+      </a>
+    </div>
+  </section>
 
-<p>
-La recuperación de la lapa verde es un proceso lento. Los almendros que se plantan hoy tardarán décadas en convertirse en árboles capaces de albergar cavidades adecuadas para anidar. Pero cada vuelo verde sobre el bosque recuerda que estos esfuerzos ya están en marcha.
-</p>
-
-<p>
-Este texto es una versión resumida de un trabajo académico sobre el estado de conservación de la lapa verde en Costa Rica.
-</p>
-
-
-<section class="reference">
-
-<h3>Referencia</h3>
-
-<p>
-Cordero Miranda, A., Hernández Meneses, C., Morales Guerrero, C., & Solano Morales (2025). 
-Estado de conservación de la lapa verde (Ara ambiguus) en Costa Rica: implicaciones para la participación comunitaria y el aviturismo.
-</p>
-
-<div class="download">
-
-<a href="pdf/lapa-verde-conservacion.pdf" target="_blank">
-Descargar artículo completo (PDF)
-</a>
-
-</div>
-
-</section>
-
-
-<div class="back">
-<a href="aves.html">← Volver a Aves</a>
-</div>
+  <div class="back">
+    <a href="aves.html">← Volver a Aves</a>
+  </div>
 
 </main>
 
-
 <div class="lightbox" id="lightbox">
-<img id="lightbox-img">
+  <img id="lightbox-img" alt="Imagen ampliada">
 </div>
 
-
 <script>
+const images = document.querySelectorAll(".photo img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
 
-const images = document.querySelectorAll(".photo img")
-const lightbox = document.getElementById("lightbox")
-const lightboxImg = document.getElementById("lightbox-img")
-
-images.forEach(img=>{
-img.onclick = () => {
-lightbox.style.display="flex"
-lightboxImg.src = img.src
-}
-})
+images.forEach(img => {
+  img.onclick = () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  };
+});
 
 lightbox.onclick = () => {
-lightbox.style.display="none"
-}
+  lightbox.style.display = "none";
+};
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    lightbox.style.display = "none";
+  }
+});
 </script>
-
 
 </body>
 </html>
