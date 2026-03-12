@@ -1,1 +1,79 @@
+{
+  "territories":[
 
+    {"name":"Cartago","lat":9.864,"lng":-83.919,"category":"regreso"},
+    {"name":"Paraíso","lat":9.838,"lng":-83.865,"category":"regreso"},
+    {"name":"Ujarrás","lat":9.829,"lng":-83.840,"category":"regreso"},
+    {"name":"Orosí","lat":9.797,"lng":-83.854,"category":"regreso"},
+    {"name":"Irazú","lat":9.979,"lng":-83.852,"category":"exploración"},
+    {"name":"Muñeco / Navarro","lat":9.786,"lng":-83.941,"category":"exploración"},
+
+    {"name":"San José","lat":9.932,"lng":-84.079,"category":"diario"},
+    {"name":"La Sabana","lat":9.937,"lng":-84.104,"category":"diario"},
+    {"name":"San Pedro / UCR","lat":9.937,"lng":-84.051,"category":"diario"},
+    {"name":"Curridabat / Pinares","lat":9.915,"lng":-84.032,"category":"diario"},
+    {"name":"La Carpintera","lat":9.881,"lng":-83.989,"category":"regreso"},
+
+    {"name":"San Ramón","lat":10.089,"lng":-84.470,"category":"exploración"},
+    {"name":"Palmares / Naranjo","lat":10.102,"lng":-84.378,"category":"exploración"},
+    {"name":"Zarcero","lat":10.184,"lng":-84.391,"category":"exploración"},
+    {"name":"Grecia / Poás","lat":10.072,"lng":-84.314,"category":"exploración"},
+    {"name":"Atenas","lat":9.974,"lng":-84.378,"category":"exploración"},
+
+    {"name":"Tapantí","lat":9.739,"lng":-83.782,"category":"exploración"},
+    {"name":"Cinchona / Vara Blanca","lat":10.215,"lng":-84.152,"category":"exploración"},
+
+    {"name":"Turrialba","lat":9.902,"lng":-83.683,"category":"regreso"},
+    {"name":"La Suiza","lat":9.853,"lng":-83.616,"category":"exploración"},
+    {"name":"Pejibaye","lat":9.812,"lng":-83.706,"category":"exploración"},
+    {"name":"Tres Equis","lat":9.985,"lng":-83.555,"category":"exploración"},
+
+    {"name":"Sarapiquí","lat":10.424,"lng":-84.021,"category":"regreso"},
+    {"name":"San Carlos","lat":10.323,"lng":-84.431,"category":"exploración"},
+    {"name":"La Fortuna / Arenal","lat":10.470,"lng":-84.645,"category":"exploración"},
+    {"name":"Bijagua / Tenorio","lat":10.734,"lng":-85.029,"category":"exploración"},
+    {"name":"Caño Negro","lat":10.889,"lng":-84.775,"category":"exploración"},
+    {"name":"Los Chiles","lat":11.035,"lng":-84.713,"category":"exploración"},
+
+    {"name":"Pococí / Guápiles","lat":10.214,"lng":-83.782,"category":"exploración"},
+    {"name":"Barra del Colorado","lat":10.768,"lng":-83.585,"category":"exploración"},
+    {"name":"Tortuguero","lat":10.540,"lng":-83.502,"category":"exploración"},
+
+    {"name":"Limón centro","lat":9.990,"lng":-83.037,"category":"exploración"},
+
+    {"name":"Cahuita","lat":9.741,"lng":-82.840,"category":"regreso"},
+    {"name":"Puerto Viejo","lat":9.654,"lng":-82.753,"category":"exploración"},
+    {"name":"Gandoca / Manzanillo","lat":9.634,"lng":-82.658,"category":"exploración"},
+    {"name":"Valle de Sixaola","lat":9.520,"lng":-82.600,"category":"exploración"},
+
+    {"name":"Cerro de la Muerte","lat":9.557,"lng":-83.745,"category":"exploración"},
+    {"name":"Chirripó","lat":9.485,"lng":-83.489,"category":"expedición"},
+
+    {"name":"Monteverde / Santa Elena","lat":10.302,"lng":-84.825,"category":"exploración"},
+    {"name":"Tilarán","lat":10.468,"lng":-84.967,"category":"exploración"},
+
+    {"name":"Carara / Tárcoles","lat":9.781,"lng":-84.603,"category":"exploración"},
+    {"name":"Caldera","lat":9.909,"lng":-84.711,"category":"exploración"},
+    {"name":"Punta Morales","lat":9.945,"lng":-84.962,"category":"exploración"},
+    {"name":"Puntarenas","lat":9.976,"lng":-84.829,"category":"exploración"},
+
+    {"name":"Uvita / Bahía Ballena","lat":9.158,"lng":-83.742,"category":"exploración"},
+    {"name":"Sierpe","lat":8.824,"lng":-83.480,"category":"exploración"},
+    {"name":"Corcovado","lat":8.540,"lng":-83.600,"category":"exploración"},
+    {"name":"Golfo Dulce","lat":8.708,"lng":-83.402,"category":"exploración"},
+
+    {"name":"Santa Rosa / Península de Santa Elena","lat":10.836,"lng":-85.618,"category":"exploración"},
+    {"name":"Papagayo","lat":10.576,"lng":-85.674,"category":"exploración"},
+    {"name":"La Cruz","lat":11.074,"lng":-85.636,"category":"exploración"},
+    {"name":"Liberia","lat":10.635,"lng":-85.437,"category":"exploración"},
+    {"name":"Palo Verde / Bagaces","lat":10.347,"lng":-85.346,"category":"exploración"},
+    {"name":"Santa Cruz","lat":10.260,"lng":-85.585,"category":"exploración"},
+    {"name":"Barra Honda / Nicoya","lat":10.203,"lng":-85.325,"category":"exploración"},
+    {"name":"Cañas","lat":10.429,"lng":-85.099,"category":"exploración"},
+
+    {"name":"Rancho Naturalista","lat":9.854,"lng":-83.601,"category":"regreso"},
+    {"name":"Hacienda de Oro","lat":9.857,"lng":-83.909,"category":"diario"},
+    {"name":"Casa Dowii","lat":9.799,"lng":-83.861,"category":"regreso"}
+
+  ]
+}
