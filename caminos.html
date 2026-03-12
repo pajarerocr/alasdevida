@@ -1,1 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caminos — Alas de Vida</title>
 
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:"Manrope", sans-serif;
+}
+
+/* NAV */
+
+.nav{
+position:sticky;
+top:0;
+background:black;
+z-index:10;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-inner{
+max-width:1100px;
+margin:auto;
+padding:18px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.nav-logo img{
+height:120px;
+}
+
+.nav-links{
+display:flex;
+gap:22px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+opacity:0.8;
+font-size:14px;
+}
+
+.nav-links a:hover{
+opacity:1;
+}
+
+.nav-links a.activo{
+opacity:1;
+border-bottom:1px solid rgba(255,255,255,0.6);
+padding-bottom:3px;
+}
+
+/* TITULO */
+
+.titulo{
+max-width:720px;
+margin:120px auto 50px auto;
+text-align:center;
+padding:0 20px;
+}
+
+.titulo h1{
+font-size:42px;
+font-weight:500;
+letter-spacing:0.05em;
+margin:0;
+}
+
+.subtitulo{
+opacity:0.6;
+margin-top:14px;
+line-height:1.8;
+}
+
+/* SUBTITULO MAPA */
+
+.bloque-mapa-titulo{
+max-width:900px;
+margin:0 auto 18px auto;
+padding:0 28px;
+text-align:center;
+}
+
+.bloque-mapa-titulo h2{
+font-size:20px;
+font-weight:500;
+margin:0 0 8px 0;
+}
+
+.bloque-mapa-titulo p{
+margin:0;
+opacity:0.6;
+line-height:1.75;
+}
+
+/* MAPA */
+
+.mapa-wrap{
+max-width:1100px;
+margin:0 auto;
+padding:0 28px;
+}
+
+.mapa-frame{
+border:1px solid rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.03);
+overflow:hidden;
+}
+
+#map{
+height:74vh;
+min-height:520px;
+width:100%;
+background:#07131d;
+}
+
+.note{
+border-top:1px solid rgba(255,255,255,0.08);
+padding:14px 16px;
+color:rgba(255,255,255,0.6);
+font-size:13px;
+line-height:1.7;
+}
+
+/* TEXTOS */
+
+.textos{
+max-width:720px;
+margin:70px auto 120px auto;
+padding:0 28px;
+}
+
+.textos h2{
+font-weight:500;
+margin-bottom:12px;
+}
+
+.textos p{
+opacity:0.7;
+line-height:1.85;
+}
+
+/* LEAFLET */
+
+.leaflet-container{
+background:#050505;
+}
+
+.leaflet-tile{
+filter:brightness(1.12) contrast(0.96);
+}
+
+.leaflet-popup-content-wrapper{
+background:rgba(10,10,10,0.96);
+color:#fff;
+border-radius:0;
+box-shadow:none;
+border:1px solid rgba(255,255,255,0.12);
+}
+
+.leaflet-popup-tip{
+background:rgba(10,10,10,0.96);
+}
+
+.leaflet-popup-content{
+margin:14px 16px;
+min-width:170px;
+font-family:"Manrope", sans-serif;
+}
+
+.popup-name{
+font-size:15px;
+font-weight:500;
+margin-bottom:6px;
+line-height:1.35;
+}
+
+.popup-category{
+font-size:12px;
+letter-spacing:0.08em;
+text-transform:uppercase;
+color:rgba(255,255,255,0.65);
+}
+
+.leaflet-control-attribution{
+background:rgba(0,0,0,0.55)!important;
+color:rgba(255,255,255,0.45)!important;
+font-size:11px!important;
+}
+
+.leaflet-control-zoom a{
+background:rgba(10,10,10,0.92)!important;
+color:white!important;
+border-color:rgba(255,255,255,0.12)!important;
+}
+
+.leaflet-control-scale-line{
+background:rgba(0,0,0,0.85);
+color:#ffffff;
+border:1px solid rgba(255,255,255,0.45);
+border-top:none;
+font-size:11px;
+padding:2px 6px;
+}
+
+/* CAJA INFO */
+
+.map-info{
+position:relative;
+background:rgba(0,0,0,0.78);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,255,255,0.15);
+padding:14px 16px 14px;
+color:rgba(255,255,255,0.86);
+max-width:235px;
+font-size:12px;
+line-height:1.5;
+}
+
+.map-info-title{
+font-size:13px;
+font-weight:500;
+color:#fff;
+margin-bottom:6px;
+}
+
+.map-info-text{
+color:rgba(255,255,255,0.72);
+margin-bottom:12px;
+}
+
+.map-info-section + .map-info-section{
+margin-top:12px;
+padding-top:10px;
+border-top:1px solid rgba(255,255,255,0.10);
+}
+
+.map-info-subtitle{
+font-size:11px;
+letter-spacing:0.08em;
+text-transform:uppercase;
+color:rgba(255,255,255,0.50);
+margin-bottom:6px;
+}
+
+.map-info-line{
+color:rgba(255,255,255,0.72);
+}
+
+.map-info-close{
+position:absolute;
+top:8px;
+right:8px;
+width:22px;
+height:22px;
+border:none;
+background:transparent;
+color:rgba(255,255,255,0.60);
+font-size:16px;
+line-height:1;
+cursor:pointer;
+padding:0;
+}
+
+.map-info-close:hover{
+color:#fff;
+}
+
+.map-legend-item{
+display:flex;
+align-items:center;
+gap:9px;
+margin-top:5px;
+color:rgba(255,255,255,0.78);
+}
+
+.map-legend-dot{
+width:10px;
+height:10px;
+display:inline-block;
+border-radius:50%;
+flex:0 0 auto;
+}
+
+.map-legend-dot.daily{
+background:#ffffff;
+}
+
+.map-legend-dot.return{
+background:#d9d4c7;
+}
+
+.map-legend-dot.explore{
+background:#8f8f8f;
+}
+
+.map-legend-dot.expedition{
+width:9px;
+height:9px;
+border-radius:1px;
+background:transparent;
+border:1.5px solid rgba(255,255,255,0.95);
+transform:rotate(45deg);
+}
+
+/* LABELS REGIONES */
+
+.territory-label{
+background:transparent;
+border:none;
+}
+
+.territory-label span{
+display:inline-block;
+color:rgba(255,255,255,0.18);
+font-size:12px;
+letter-spacing:0.08em;
+text-transform:uppercase;
+font-weight:500;
+text-align:center;
+white-space:nowrap;
+text-shadow:0 0 8px rgba(0,0,0,0.45);
+pointer-events:none;
+}
+
+/* MOVIL */
+
+@media (max-width:700px){
+
+.nav-inner{
+flex-direction:column;
+gap:16px;
+}
+
+.nav-logo img{
+height:150px;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+gap:14px;
+}
+
+.titulo h1{
+font-size:32px;
+}
+
+#map{
+height:68vh;
+min-height:420px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+<div class="nav-inner">
+
+<a href="index.html" class="nav-logo">
+<img src="logo_white.png" alt="Alas de Vida">
+</a>
+
+<nav class="nav-links">
+<a href="alasdevida.html">Alas de Vida</a>
+<a href="aves.html">Aves</a>
+<a href="caminos.html" class="activo">Caminos</a>
+<a href="bitacora.html">Bitácora</a>
+<a href="construccion.html">Pajarero_cr</a>
+</nav>
+
+</div>
+</header>
+
+<section class="titulo">
+<h1>Caminos</h1>
+<p class="subtitulo">
+Territorios desde donde he ido conociendo Costa Rica a través de las aves.
+</p>
+</section>
+
+<section class="bloque-mapa-titulo">
+<h2>Mapa de territorios</h2>
+<p>
+Una cartografía personal del país, organizada por regiones y lugares desde donde he pajareado.
+</p>
+</section>
+
+<section class="mapa-wrap">
+<div class="mapa-frame">
+<div id="map"></div>
+<div class="note">
+Este es un primer mapa territorial de Caminos. La base podrá ajustarse conforme se afinen regiones, alias de eBird y textos de lugar.
+</div>
+</div>
+</section>
+
+<section class="textos">
+<h2>Textos de lugar</h2>
+<p>
+Debajo del mapa vivirán entradas ligadas a territorio: derivas urbanas, notas de sitio, pequeñas crónicas y textos contemplativos asociados a regiones o lugares específicos.
+</p>
+</section>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+const territories = [
+  {"name":"Cartago","lat":9.864,"lng":-83.919,"category":"regreso"},
+  {"name":"Paraíso","lat":9.838,"lng":-83.865,"category":"regreso"},
+  {"name":"Ujarrás","lat":9.829,"lng":-83.840,"category":"regreso"},
+  {"name":"Orosí","lat":9.797,"lng":-83.854,"category":"regreso"},
+  {"name":"Irazú","lat":9.979,"lng":-83.852,"category":"exploración"},
+  {"name":"Muñeco / Navarro","lat":9.786,"lng":-83.941,"category":"exploración"},
+
+  {"name":"San José","lat":9.932,"lng":-84.079,"category":"diario"},
+  {"name":"La Sabana","lat":9.937,"lng":-84.104,"category":"diario"},
+  {"name":"San Pedro / UCR","lat":9.937,"lng":-84.051,"category":"diario"},
+  {"name":"Curridabat / Pinares","lat":9.915,"lng":-84.032,"category":"diario"},
+  {"name":"La Carpintera","lat":9.881,"lng":-83.989,"category":"regreso"},
+
+  {"name":"San Ramón","lat":10.089,"lng":-84.470,"category":"exploración"},
+  {"name":"Palmares / Naranjo","lat":10.102,"lng":-84.378,"category":"exploración"},
+  {"name":"Zarcero","lat":10.184,"lng":-84.391,"category":"exploración"},
+  {"name":"Grecia / Poás","lat":10.072,"lng":-84.314,"category":"exploración"},
+  {"name":"Atenas","lat":9.974,"lng":-84.378,"category":"exploración"},
+
+  {"name":"Tapantí","lat":9.739,"lng":-83.782,"category":"exploración"},
+  {"name":"Cinchona / Vara Blanca","lat":10.215,"lng":-84.152,"category":"exploración"},
+
+  {"name":"Turrialba","lat":9.902,"lng":-83.683,"category":"regreso"},
+  {"name":"La Suiza","lat":9.853,"lng":-83.616,"category":"exploración"},
+  {"name":"Pejibaye","lat":9.812,"lng":-83.706,"category":"exploración"},
+  {"name":"Tres Equis","lat":9.985,"lng":-83.555,"category":"exploración"},
+
+  {"name":"Sarapiquí","lat":10.424,"lng":-84.021,"category":"regreso"},
+  {"name":"San Carlos","lat":10.323,"lng":-84.431,"category":"exploración"},
+  {"name":"La Fortuna / Arenal","lat":10.470,"lng":-84.645,"category":"exploración"},
+  {"name":"Bijagua / Tenorio","lat":10.734,"lng":-85.029,"category":"exploración"},
+  {"name":"Caño Negro","lat":10.889,"lng":-84.775,"category":"exploración"},
+  {"name":"Los Chiles","lat":11.035,"lng":-84.713,"category":"exploración"},
+
+  {"name":"Pococí / Guápiles","lat":10.214,"lng":-83.782,"category":"exploración"},
+  {"name":"Barra del Colorado","lat":10.768,"lng":-83.585,"category":"exploración"},
+  {"name":"Tortuguero","lat":10.540,"lng":-83.502,"category":"exploración"},
+
+  {"name":"Limón centro","lat":9.990,"lng":-83.037,"category":"exploración"},
+
+  {"name":"Cahuita","lat":9.741,"lng":-82.840,"category":"regreso"},
+  {"name":"Puerto Viejo","lat":9.654,"lng":-82.753,"category":"exploración"},
+  {"name":"Gandoca / Manzanillo","lat":9.634,"lng":-82.658,"category":"exploración"},
+  {"name":"Valle de Sixaola","lat":9.520,"lng":-82.600,"category":"exploración"},
+
+  {"name":"Cerro de la Muerte","lat":9.557,"lng":-83.745,"category":"exploración"},
+  {"name":"Chirripó","lat":9.485,"lng":-83.489,"category":"expedición"},
+
+  {"name":"Monteverde / Santa Elena","lat":10.302,"lng":-84.825,"category":"exploración"},
+  {"name":"Tilarán","lat":10.468,"lng":-84.967,"category":"exploración"},
+
+  {"name":"Carara / Tárcoles","lat":9.781,"lng":-84.603,"category":"exploración"},
+  {"name":"Caldera","lat":9.909,"lng":-84.711,"category":"exploración"},
+  {"name":"Punta Morales","lat":9.945,"lng":-84.962,"category":"exploración"},
+  {"name":"Puntarenas","lat":9.976,"lng":-84.829,"category":"exploración"},
+
+  {"name":"Uvita / Bahía Ballena","lat":9.158,"lng":-83.742,"category":"exploración"},
+  {"name":"Sierpe","lat":8.824,"lng":-83.480,"category":"exploración"},
+  {"name":"Corcovado","lat":8.540,"lng":-83.600,"category":"exploración"},
+  {"name":"Golfo Dulce","lat":8.708,"lng":-83.402,"category":"exploración"},
+
+  {"name":"Santa Rosa / Península de Santa Elena","lat":10.836,"lng":-85.618,"category":"exploración"},
+  {"name":"Papagayo","lat":10.576,"lng":-85.674,"category":"exploración"},
+  {"name":"La Cruz","lat":11.074,"lng":-85.636,"category":"exploración"},
+  {"name":"Liberia","lat":10.635,"lng":-85.437,"category":"exploración"},
+  {"name":"Palo Verde / Bagaces","lat":10.347,"lng":-85.346,"category":"exploración"},
+  {"name":"Santa Cruz","lat":10.260,"lng":-85.585,"category":"exploración"},
+  {"name":"Barra Honda / Nicoya","lat":10.203,"lng":-85.325,"category":"exploración"},
+  {"name":"Cañas","lat":10.429,"lng":-85.099,"category":"exploración"},
+
+  {"name":"Rancho Naturalista","lat":9.854,"lng":-83.601,"category":"regreso"},
+  {"name":"Hacienda de Oro","lat":9.857,"lng":-83.909,"category":"diario"},
+  {"name":"Casa Dowii","lat":9.799,"lng":-83.861,"category":"regreso"}
+];
+
+const costaRicaViewBounds = L.latLngBounds(
+  [8.05, -85.98],
+  [11.28, -82.45]
+);
+
+const costaRicaDragBounds = L.latLngBounds(
+  [7.85, -86.20],
+  [11.45, -82.20]
+);
+
+const map = L.map('map', {
+  zoomControl: true,
+  scrollWheelZoom: false,
+  doubleClickZoom: false,
+  boxZoom: false,
+  keyboard: false,
+  maxBounds: costaRicaDragBounds,
+  maxBoundsViscosity: 1.0,
+  minZoom: 8,
+  maxZoom: 20
+});
+
+const mapElement = document.getElementById("map");
+
+mapElement.addEventListener("wheel", function(e){
+  if(e.ctrlKey || e.metaKey){
+    e.preventDefault();
+    if(e.deltaY < 0){
+      map.zoomIn();
+    } else {
+      map.zoomOut();
+    }
+  }
+}, { passive:false });
+
+map.fitBounds(costaRicaViewBounds);
+
+L.tileLayer(
+  'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  { attribution: '&copy; OpenStreetMap &copy; CARTO' }
+).addTo(map);
+
+function diamondMarker(lat, lng){
+  const icon = L.divIcon({
+    className: "",
+    html: `
+      <div style="
+        width:10px;
+        height:10px;
+        border:2px solid white;
+        transform:rotate(45deg);
+        background:transparent;
+      "></div>
+    `,
+    iconSize: [12,12],
+    iconAnchor: [6,6]
+  });
+
+  return L.marker([lat,lng], {icon: icon});
+}
+
+function markerStyle(category){
+  switch(category){
+    case 'diario':
+      return {
+        radius: 4.5,
+        color: '#ffffff',
+        weight: 1,
+        fillColor: '#ffffff',
+        fillOpacity: 0.95
+      };
+    case 'regreso':
+      return {
+        radius: 6,
+        color: '#d9d4c7',
+        weight: 1.2,
+        fillColor: '#d9d4c7',
+        fillOpacity: 0.9
+      };
+    case 'expedición':
+      return {
+        radius: 7.5,
+        color: '#ffffff',
+        weight: 1.5,
+        fillColor: '#000000',
+        fillOpacity: 0.85
+      };
+    default:
+      return {
+        radius: 5.5,
+        color: '#8f8f8f',
+        weight: 1,
+        fillColor: '#8f8f8f',
+        fillOpacity: 0.75
+      };
+  }
+}
+
+function popupHTML(place){
+  return `
+    <div class="popup">
+      <div class="popup-name">${place.name}</div>
+      <div class="popup-category">${place.category}</div>
+    </div>
+  `;
+}
+
+const macroTerritories = [
+  { name: "Valle Central Oriental", lat: 9.86, lng: -83.88, radius: 26000 },
+  { name: "Valle Central Occidental", lat: 9.95, lng: -84.15, radius: 34000 },
+  { name: "Cordillera Volcánica Central", lat: 10.05, lng: -84.02, radius: 32000 },
+  { name: "Turrialba", lat: 9.90, lng: -83.63, radius: 24000 },
+  { name: "Zona Norte", lat: 10.53, lng: -84.42, radius: 52000 },
+  { name: "Caribe Norte", lat: 10.52, lng: -83.55, radius: 36000 },
+  { name: "Caribe Central", lat: 10.00, lng: -83.10, radius: 18000 },
+  { name: "Caribe Sur", lat: 9.67, lng: -82.74, radius: 32000 },
+  { name: "Cordillera de Talamanca", lat: 9.52, lng: -83.72, radius: 28000 },
+  { name: "Cordillera de Tilarán", lat: 10.36, lng: -84.88, radius: 26000 },
+  { name: "Pacífico Central", lat: 9.83, lng: -84.72, radius: 36000 },
+  { name: "Pacífico Sur", lat: 8.95, lng: -83.58, radius: 52000 },
+  { name: "Guanacaste", lat: 10.53, lng: -85.35, radius: 70000 }
+];
+
+function drawMacroTerritories() {
+  macroTerritories.forEach(region => {
+    L.circle([region.lat, region.lng], {
+      radius: region.radius,
+      stroke: false,
+      fillColor: '#8fa3b8',
+      fillOpacity: 0.06,
+      interactive: false
+    }).addTo(map);
+
+    L.marker([region.lat, region.lng], {
+      interactive: false,
+      icon: L.divIcon({
+        className: 'territory-label',
+        html: `<span>${region.name}</span>`,
+        iconSize: [160, 20],
+        iconAnchor: [80, 10]
+      })
+    }).addTo(map);
+  });
+}
+
+drawMacroTerritories();
+
+territories.forEach(place => {
+  let marker;
+
+  if(place.category === "expedición"){
+    marker = diamondMarker(place.lat, place.lng).addTo(map);
+  } else {
+    marker = L.circleMarker(
+      [place.lat, place.lng],
+      markerStyle(place.category)
+    ).addTo(map);
+  }
+
+  marker.bindTooltip(
+    `<strong>${place.name}</strong><br>${place.category}`,
+    {
+      direction: "top",
+      offset: [0, -6],
+      opacity: 0.9
+    }
+  );
+
+  marker.bindPopup(popupHTML(place));
+});
+
+const info = L.control({position: 'bottomleft'});
+
+info.onAdd = function () {
+  const div = L.DomUtil.create('div', 'map-info');
+
+  div.innerHTML = `
+    <button class="map-info-close" aria-label="Cerrar panel">×</button>
+
+    <div class="map-info-title">Caminos</div>
+    <div class="map-info-text">
+      Territorios desde donde he ido conociendo Costa Rica a través de las aves.
+    </div>
+
+    <div class="map-info-section">
+      <div class="map-info-subtitle">Cómo funciona</div>
+      <div class="map-info-line">hover / tap en un punto → ver lugar</div>
+      <div class="map-info-line">⌘ / Ctrl + scroll → acercar mapa</div>
+    </div>
+
+    <div class="map-info-section">
+      <div class="map-info-subtitle">Leyenda</div>
+
+      <div class="map-legend-item">
+        <span class="map-legend-dot daily"></span>
+        <span>todos los días</span>
+      </div>
+
+      <div class="map-legend-item">
+        <span class="map-legend-dot return"></span>
+        <span>donde regreso</span>
+      </div>
+
+      <div class="map-legend-item">
+        <span class="map-legend-dot explore"></span>
+        <span>exploración</span>
+      </div>
+
+      <div class="map-legend-item">
+        <span class="map-legend-dot expedition"></span>
+        <span>expedición</span>
+      </div>
+    </div>
+  `;
+
+  L.DomEvent.disableClickPropagation(div);
+  L.DomEvent.disableScrollPropagation(div);
+
+  setTimeout(() => {
+    const closeBtn = div.querySelector('.map-info-close');
+    if(closeBtn){
+      closeBtn.addEventListener('click', () => {
+        div.style.display = 'none';
+      });
+    }
+  }, 0);
+
+  return div;
+};
+
+info.addTo(map);
+
+L.control.scale({
+  position: 'bottomright',
+  metric: true,
+  imperial: false
+}).addTo(map);
+</script>
+
+</body>
+</html>
