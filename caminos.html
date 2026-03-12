@@ -16,6 +16,31 @@
 
 <style>
 
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.note a,
+.entrada a,
+.textos a,
+.subtitulo a,
+.bloque-mapa-titulo a{
+color:white;
+border-bottom:1px solid rgba(255,255,255,0.5);
+padding-bottom:3px;
+text-decoration:none;
+}
+
+.note a:hover,
+.entrada a:hover,
+.textos a:hover,
+.subtitulo a:hover,
+.bloque-mapa-titulo a:hover{
+opacity:1;
+border-bottom-color:rgba(255,255,255,0.8);
+}
+  
 body{
 margin:0;
 background:black;
@@ -142,6 +167,34 @@ line-height:1.7;
 
 /* TEXTOS */
 
+/* ENTRADAS */
+
+.entradas{
+max-width:720px;
+margin:70px auto 120px auto;
+padding:0 28px;
+}
+
+.entrada{
+margin-bottom:60px;
+}
+
+.entrada h2{
+font-weight:500;
+margin:0 0 8px 0;
+}
+
+.entrada p{
+opacity:0.7;
+margin:0 0 12px 0;
+line-height:1.85;
+}
+
+.entrada .lugar{
+opacity:0.55;
+margin-bottom:14px;
+}
+  
 .textos{
 max-width:720px;
 margin:70px auto 120px auto;
@@ -150,12 +203,13 @@ padding:0 28px;
 
 .textos h2{
 font-weight:500;
-margin-bottom:12px;
+margin:0 0 12px 0;
 }
 
 .textos p{
 opacity:0.7;
 line-height:1.85;
+margin:0;
 }
 
 /* LEAFLET */
@@ -369,10 +423,24 @@ height:68vh;
 min-height:420px;
 }
 
+.bloque-mapa-titulo{
+padding:0 20px;
 }
 
-  @media (max-width:700px){
+.mapa-wrap{
+padding:0 20px;
+}
 
+.entradas{
+padding:0 20px;
+margin:56px auto 100px auto;
+}
+
+.textos{
+padding:0 20px;
+margin:56px auto 100px auto;
+}
+  
   .map-info{
     max-width:170px;
     font-size:11px;
