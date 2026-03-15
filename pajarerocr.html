@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pajarero_cr — Alas de Vida</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:"Manrope", sans-serif;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.texto a,
+.subtitulo a{
+  color:white;
+  border-bottom:1px solid rgba(255,255,255,0.45);
+  padding-bottom:3px;
+  text-decoration:none;
+  transition:border-color .2s ease, opacity .2s ease;
+}
+
+.texto a:hover,
+.subtitulo a:hover{
+  opacity:1;
+  border-bottom-color:rgba(255,255,255,0.8);
+}
+
+/* NAV */
+
+.nav{
+  position:sticky;
+  top:0;
+  background:black;
+  z-index:10;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-logo img{
+  height:120px;
+  width:auto;
+  display:block;
+}
+
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:white;
+  opacity:0.8;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  opacity:1;
+}
+
+.nav-links a.activo{
+  opacity:1;
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  padding-bottom:3px;
+}
+
+/* TITULO */
+
+.titulo{
+  max-width:760px;
+  margin:90px auto 50px auto;
+  text-align:center;
+  padding:0 24px;
+}
+
+.titulo h1{
+  margin:0 0 14px 0;
+  font-size:42px;
+  font-weight:500;
+  letter-spacing:0.04em;
+}
+
+.subtitulo{
+  margin:0;
+  opacity:0.75;
+  font-size:19px;
+  line-height:1.7;
+}
+
+/* HERO FULL BLEED */
+
+.hero-pajarero{
+  width:100%;
+  margin:40px 0 56px 0;
+}
+
+.hero-pajarero img{
+  width:100%;
+  height:460px;
+  object-fit:cover;
+  display:block;
+}
+
+/* CONTENIDO */
+
+.texto{
+  max-width:760px;
+  margin:0 auto 120px auto;
+  padding:0 24px;
+}
+
+.bloque{
+  margin-bottom:72px;
+}
+
+.bloque h2{
+  margin:0 0 16px 0;
+  font-size:28px;
+  font-weight:500;
+  line-height:1.3;
+  letter-spacing:0.01em;
+}
+
+.bloque p{
+  margin:0 0 18px 0;
+  opacity:0.74;
+  font-size:18px;
+  line-height:1.9;
+  font-weight:300;
+}
+
+.bloque p:last-child{
+  margin-bottom:0;
+}
+
+.frase{
+  margin:22px 0;
+  padding-left:18px;
+  border-left:1px solid rgba(255,255,255,0.18);
+}
+
+.frase p{
+  opacity:0.82;
+}
+
+.pregunta-final{
+  margin-top:12px;
+}
+
+.pregunta-final p{
+  font-size:22px;
+  line-height:1.7;
+  opacity:0.9;
+}
+
+/* FOTO INTERCALADA */
+
+.foto-bloque{
+  width:100%;
+  margin:52px 0 56px 0;
+}
+
+.foto-bloque img{
+  width:100%;
+  display:block;
+  height:auto;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* FOOTER */
+
+.footer{
+  margin-top:120px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding:50px 28px 60px 28px;
+  background:black;
+}
+
+.footer-inner{
+  max-width:720px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.footer-logo{
+  width:120px;
+  height:auto;
+  margin-bottom:18px;
+  opacity:0.9;
+}
+
+.footer-titulo{
+  margin:0 0 10px 0;
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:0.04em;
+}
+
+.footer-texto{
+  margin:0 0 12px 0;
+  opacity:0.65;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.footer-copy{
+  margin:0;
+  opacity:0.45;
+  font-size:13px;
+}
+
+/* MOVIL */
+
+@media (max-width:700px){
+  .nav-inner{
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .nav-logo img{
+    height:150px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .titulo{
+    margin:70px auto 40px auto;
+    padding:0 24px;
+  }
+
+  .titulo h1{
+    font-size:34px;
+  }
+
+  .subtitulo{
+    font-size:17px;
+  }
+
+  .hero-pajarero{
+    margin:32px 0 44px 0;
+  }
+
+  .hero-pajarero img{
+    height:280px;
+  }
+
+  .texto{
+    padding:0 24px;
+    margin:0 auto 100px auto;
+  }
+
+  .bloque{
+    margin-bottom:56px;
+  }
+
+  .bloque h2{
+    font-size:24px;
+  }
+
+  .bloque p{
+    font-size:17px;
+  }
+
+  .pregunta-final p{
+    font-size:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+
+    <a href="index.html" class="nav-logo">
+      <img src="logo_white.png" alt="Alas de Vida">
+    </a>
+
+    <nav class="nav-links">
+      <a href="alasdevida.html">Alas de Vida</a>
+      <a href="aves.html">Aves</a>
+      <a href="caminos.html">Caminos</a>
+      <a href="bitacora.html">Bitácora</a>
+      <a href="pajarero_cr.html" class="activo">Pajarero_cr</a>
+    </nav>
+
+  </div>
+</header>
+
+<section class="titulo">
+  <h1>Pajarero_cr</h1>
+  <p class="subtitulo">
+    Un ensayo personal sobre el país de las aves, el arte de observar y la vida que se abre cuando uno aprende a mirar.
+  </p>
+</section>
+
+<section class="hero-pajarero">
+  <img src="images/pajarero/pajarero-hero.jpg" alt="Pajarero en un paisaje de montaña">
+</section>
+
+<main class="texto">
+
+  <section class="bloque">
+    <h2>El país de las aves</h2>
+
+    <p>Es un privilegio vivir en Costa Rica.</p>
+
+    <p>Las aves nos recuerdan constantemente que el mundo es más grande, más complejo y más maravilloso de lo que imaginamos.</p>
+
+    <p>Algunas especies migratorias recorren a lo largo de su vida el doble de la distancia que hay entre la Tierra y la Luna.</p>
+
+    <p>Muchas aves migratorias boreales llegan hasta Costa Rica antes de regresar al norte. Otras, migratorias australes, hacen aquí una escala antes de volver hacia el sur.</p>
+
+    <p>En ese ir y venir de alas que cruzan continentes, Costa Rica se convierte en un punto de encuentro.</p>
+
+    <p>Un pequeño país atravesado por rutas invisibles.</p>
+
+    <p>Un verdadero paraíso para la observación de aves.</p>
+  </section>
+
+  <section class="foto-bloque">
+    <img src="images/pajarero/pajarero-pais.jpg" alt="Paisaje y observación de aves en Costa Rica">
+  </section>
+
+  <section class="bloque">
+    <h2>La seducción</h2>
+
+    <p>Una vez que uno se deja seducir por la observación de aves, el viaje nunca termina. Solo se detiene por momentos.</p>
+
+    <p>Lo que empieza como curiosidad pronto se convierte en una forma distinta de caminar por el mundo.</p>
+
+    <p>De pronto aparecen cosas que antes pasaban desapercibidas.</p>
+
+    <div class="frase">
+      <p>Un movimiento entre las ramas.<br>
+      Un canto que se repite desde el bosque.<br>
+      Una silueta cruzando el cielo.</p>
+    </div>
+
+    <p>Poco a poco uno descubre que pajarear no se trata solo de encontrar aves.</p>
+
+    <p>Se trata de aprender a mirar.</p>
+  </section>
+
+  <section class="bloque">
+    <h2>Aprender a mirar</h2>
+
+    <p>Cada paso al salir a pajarear se convierte en un acto de atención.</p>
+
+    <p>Buscar movimientos, escuchar sonidos sutiles, detectar formas en el paisaje.</p>
+
+    <p>La naturaleza está llena de detalles esperando ser descubiertos.</p>
+
+    <p>Observar aves tiene una gratificación particular: saber que, tarde o temprano, una aparecerá.</p>
+
+    <p>Esa certeza le da a la búsqueda un ritmo especial. Uno camina atento, sabiendo que el próximo canto, el próximo movimiento entre las ramas o una silueta cruzando el cielo puede revelar algo.</p>
+
+    <p>Pero pajarear termina siendo mucho más que buscar aves.</p>
+
+    <p>Mientras uno observa, empiezan a aparecer otras cosas.</p>
+
+    <div class="frase">
+      <p>Las plantas que bordean el camino.<br>
+      La forma de los árboles.<br>
+      Los paisajes que se abren entre claros del bosque.<br>
+      Otros animales que aparecen y desaparecen entre la vegetación.</p>
+    </div>
+
+    <p>El entorno entero comienza a revelarse con una claridad distinta.</p>
+
+    <p>Y algo también ocurre por dentro.</p>
+
+    <p>La mente se aquieta. Las preocupaciones se diluyen. Uno se siente parte del momento, parte del lugar.</p>
+
+    <p>Poco a poco, esa atención sostenida se convierte en una forma de conexión: con la naturaleza, con la vida, con el presente… con Dios.</p>
+
+    <p>La observación de aves nos enseña a escuchar las historias que la naturaleza susurra sin palabras.</p>
+
+    <p>Algunos secretos solo se revelan a quienes tienen la paciencia de observar en silencio… y la curiosidad de mirar dos veces.</p>
+  </section>
+
+  <section class="bloque">
+    <h2>El lenguaje del pajareo</h2>
+
+    <p>El pajareo también tiene su propio lenguaje.</p>
+
+    <p>Quien ha salido al campo con otros pajareros lo reconoce de inmediato:</p>
+
+    <div class="frase">
+      <p>Ya no lo veo…<br>
+      ¡Ese es bueno!<br>
+      ¿Ese ya lo tiene?<br>
+      Ahí hay algo.<br>
+      Veo movimiento.<br>
+      Llegó algo grande.</p>
+    </div>
+
+    <p>¿Te suena familiar?</p>
+  </section>
+
+  <section class="bloque">
+    <h2>La paciencia</h2>
+
+    <p>A veces, la sabiduría de la lechuza no está en su vuelo, sino en el silencio de su espera.</p>
+
+    <p>En la oscuridad, en la quietud, aguarda. El momento adecuado siempre llega.</p>
+
+    <div class="frase">
+      <p>¿Cuántas veces la lechuza, desde su percha silenciosa, nos habrá visto pasar con nuestras linternas frenéticas… buscándola?</p>
+    </div>
+
+    <p>Las veces que no encontramos lo que buscábamos también tienen valor.</p>
+
+    <p>La frustración forma parte del proceso y le da más significado al momento del encuentro.</p>
+
+    <p>La paciencia es una virtud que se cultiva en la observación de aves.</p>
+
+    <p>La naturaleza tiene sus propios ritmos. Cuando estamos dispuestos a respetarlos, descubrimos que las mejores recompensas no están solo en lo que encontramos, sino también en el proceso de buscar.</p>
+  </section>
+
+  <section class="bloque">
+    <h2>La comunidad</h2>
+
+    <p>La comunidad pajarera es un grupo diverso de personas unidas por una pasión común: la observación de aves.</p>
+
+    <p>Es un espacio lleno de curiosidad, atención al detalle y un profundo amor por la naturaleza.</p>
+
+    <p>He disfrutado mucho formar parte de esta comunidad y compartir el pajareo con personas de distintos lugares, pero con intereses profundamente afines.</p>
+
+    <p>Las giras y los tours se convierten en momentos especialmente valiosos. Son oportunidades para conocer gente, intercambiar historias… y, por supuesto, nerdear sobre aves.</p>
+
+    <p>Pero la comunidad también se construye en los caminos compartidos.</p>
+
+    <p>En los amigos pajareros que celebran con vos una especie nueva. En quienes te enseñan a reconocer un canto o te señalan un movimiento entre las ramas. En las conversaciones que empiezan hablando de aves y terminan hablando de la vida.</p>
+
+    <p>También están quienes caminan a tu lado en esta historia.</p>
+
+    <p>Karla, cómplice de madrugadas, giras y búsquedas improbables. Y <strong>Belle Vie</strong>, fiel compañere de rutas pajareras, que ha llevado y llevará estos binoculares por montañas, humedales y bosques de todo el país.</p>
+
+    <p>Porque el pajareo rara vez es una aventura completamente solitaria.</p>
+  </section>
+
+  <section class="bloque">
+    <h2>Prepararse para pajarear</h2>
+
+    <p>Prepararse para un conteo de aves no se trata solo de llevar el equipo adecuado.</p>
+
+    <p>También se trata de entrar al campo con el cuerpo, la mente y el corazón dispuestos.</p>
+
+    <p>Cada prenda que protege del clima. Cada pieza de óptica que permite ver más lejos.</p>
+
+    <p>Todo se convierte en una extensión de la conexión con el entorno.</p>
+  </section>
+
+  <section class="bloque">
+    <h2>Mirar distinto</h2>
+
+    <p>Algunas plumas no tienen pigmentos que generen su color.</p>
+
+    <p>En realidad contienen microestructuras que interactúan con la luz y producen colores a través de un fenómeno llamado <strong>coloración estructural</strong>.</p>
+
+    <p>Eso es lo que genera los tonos iridiscentes que cambian según el ángulo, como en muchos colibríes o en el quetzal.</p>
+
+    <p>De forma similar, la vida puede verse distinta dependiendo del ángulo desde donde se mire.</p>
+
+    <p>A veces, encontrar el color y la belleza requiere simplemente cambiar la perspectiva.</p>
+  </section>
+
+  <section class="bloque pregunta-final">
+    <h2>Una pregunta</h2>
+
+    <p>¿Será que los pajareros envidiamos algo de las aves?</p>
+
+    <p>Quizás no las envidiamos.</p>
+
+    <p>Quizás solo queremos aprender de ellas.</p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="logo_pajarero.png" class="footer-logo" alt="pajarero_cr">
+    <p class="footer-titulo">Alas de Vida</p>
+    <p class="footer-texto">Un cuaderno abierto de pajareo, caminos y memoria.</p>
+    <p class="footer-copy">© Adrián Cordero</p>
+  </div>
+</footer>
+
+</body>
+</html>
