@@ -1,1 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Deriva urbana en San José — Alas de Vida</title>
+
+<meta name="description" content="Deriva urbana en San José: una caminata entre aves, arquitectura, lluvia y pequeñas revelaciones urbanas. Bitácora de observación en Alas de Vida.">
+
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" href="favicon.ico">
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* BASE */
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:"Manrope", sans-serif;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+/* NAV */
+
+.nav{
+position:sticky;
+top:0;
+background:black;
+border-bottom:1px solid rgba(255,255,255,0.08);
+z-index:10;
+}
+
+.nav-inner{
+max-width:1100px;
+margin:auto;
+padding:18px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.nav-logo img{
+height:120px;
+display:block;
+}
+
+.nav-links{
+display:flex;
+gap:22px;
+}
+
+.nav-links a{
+font-size:14px;
+opacity:0.8;
+}
+
+.nav-links a:hover{
+opacity:1;
+}
+
+.nav-links a.activo{
+opacity:1;
+border-bottom:1px solid rgba(255,255,255,0.6);
+padding-bottom:3px;
+}
+
+/* TITULO */
+
+.titulo{
+max-width:760px;
+margin:90px auto 50px auto;
+text-align:center;
+padding:0 24px;
+}
+
+.kicker{
+opacity:0.6;
+letter-spacing:0.08em;
+font-size:12px;
+margin-bottom:8px;
+text-transform:uppercase;
+}
+
+.titulo h1{
+margin:0 0 14px 0;
+font-size:40px;
+font-weight:500;
+letter-spacing:0.04em;
+}
+
+.subtitulo{
+opacity:0.75;
+font-size:19px;
+line-height:1.7;
+margin:0;
+}
+
+/* TEXTO */
+
+.texto{
+max-width:720px;
+margin:0 auto 120px auto;
+padding:0 24px;
+}
+
+.texto p{
+font-size:19px;
+line-height:1.8;
+margin-bottom:26px;
+opacity:0.9;
+font-weight:400;
+}
+
+.texto h2{
+margin:70px 0 20px 0;
+font-weight:500;
+font-size:28px;
+}
+
+/* IMAGENES */
+
+.foto{
+max-width:960px;
+margin:60px auto;
+padding:0 24px;
+}
+
+.foto img{
+width:100%;
+height:auto;
+display:block;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+figcaption{
+margin-top:10px;
+font-size:13px;
+opacity:0.5;
+}
+
+/* CIERRE */
+
+.cierre{
+margin-top:80px;
+padding-top:30px;
+border-top:1px solid rgba(255,255,255,0.15);
+}
+
+/* DESCARGA PDF */
+
+.descarga{
+margin-top:50px;
+text-align:center;
+}
+
+.boton-pdf{
+display:inline-block;
+margin-top:16px;
+padding:12px 22px;
+border:1px solid rgba(255,255,255,0.4);
+font-size:14px;
+letter-spacing:0.05em;
+transition:all .2s ease;
+}
+
+.boton-pdf:hover{
+border-color:white;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:120px;
+border-top:1px solid rgba(255,255,255,0.08);
+padding:50px 28px 60px 28px;
+}
+
+.footer-inner{
+max-width:720px;
+margin:0 auto;
+text-align:center;
+}
+
+.footer-logo{
+width:120px;
+margin-bottom:18px;
+opacity:0.9;
+}
+
+.footer-titulo{
+font-size:18px;
+margin-bottom:10px;
+}
+
+.footer-texto{
+opacity:0.65;
+font-size:15px;
+}
+
+.footer-copy{
+opacity:0.45;
+font-size:13px;
+}
+
+/* MOVIL */
+
+@media (max-width:700px){
+
+.nav-inner{
+flex-direction:column;
+gap:16px;
+}
+
+.nav-logo img{
+height:150px;
+}
+
+.titulo h1{
+font-size:32px;
+}
+
+.subtitulo{
+font-size:17px;
+}
+
+.texto p{
+font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+<div class="nav-inner">
+
+<a href="index.html" class="nav-logo">
+<img src="logo_white.png" alt="Alas de Vida">
+</a>
+
+<nav class="nav-links">
+<a href="alasdevida.html">Alas de Vida</a>
+<a href="aves.html">Aves</a>
+<a href="caminos.html">Caminos</a>
+<a href="bitacora.html" class="activo">Bitácora</a>
+<a href="pajarero_cr.html">Pajarero_cr</a>
+</nav>
+
+</div>
+</header>
+
+<section class="titulo">
+
+<p class="kicker">Bitácora</p>
+
+<h1>Deriva urbana en San José</h1>
+
+<p class="subtitulo">
+Entre aves, arte y lluvia
+</p>
+
+</section>
+
+<figure class="foto">
+<img src="img/bitacora/deriva-san-jose/recorrido-ebird.jpg" alt="">
+<figcaption>Recorrido registrado durante la caminata.</figcaption>
+</figure>
+
+<main class="texto">
+
+<p>
+Una tarde tibia de jueves me encuentra en la esquina suroeste del Parque Nacional.
+</p>
+
+<p>
+La escultura roja que custodia la entrada parece un faro silencioso en medio de la ciudad.
+Sobre las copas de los árboles, dos <em>Crimson-fronted Parakeets</em> juegan entre las ramas
+con sus chillidos agudos, mientras abajo una <em>White-winged Dove</em> picotea tranquila el césped.
+</p>
+
+<p>
+Los <em>Great-tailed Grackles</em>, siempre atentos al movimiento humano,
+avanzan a saltitos como si fueran los verdaderos dueños del parque.
+</p>
+
+<figure class="foto">
+<img src="img/bitacora/deriva-san-jose/parque-nacional.jpg" alt="">
+<figcaption>Parque Nacional.</figcaption>
+</figure>
+
+<h2>Café Mundo</h2>
+
+<p>
+Al continuar hacia el norte aparece Café Mundo,
+uno de esos lugares que parecen haber estado siempre ahí.
+</p>
+
+<p>
+Sobre el cableado de la esquina se posa un <em>Tropical Kingbird</em>.
+Hace su chasquido característico.
+</p>
+
+<p>
+Un <em>Blue-and-white Swallow</em> pasa cortando el aire
+mientras los pericos vuelan sobre la calle como si la ciudad entera fuera su bosque.
+</p>
+
+<figure class="foto">
+<img src="img/bitacora/deriva-san-jose/cafe-mundo.jpg" alt="">
+<figcaption>Café Mundo.</figcaption>
+</figure>
+
+<h2>Lluvia</h2>
+
+<p>
+La lluvia llega sin aviso.
+Primero unas gotas, luego el aguacero completo.
+</p>
+
+<p>
+Mientras regreso por las mismas calles escucho el canto insistente
+de un <em>House Wren</em> escondido en algún arbusto.
+</p>
+
+<p>
+Cuando regreso al Parque Nacional el aguacero empieza a calmar.
+La escultura roja sigue ahí.
+Los árboles también.
+Y en algún lugar de las copas todavía se escuchan los pericos.
+</p>
+
+<p>
+San José, incluso en medio del concreto, sigue teniendo alas.
+</p>
+
+<section class="cierre">
+
+<p>
+Esta caminata forma parte de la bitácora urbana de <em>Alas de Vida</em>,
+un intento de recorrer la ciudad con la misma atención con la que
+se recorre un bosque: observando aves, arquitectura, sonidos y momentos.
+</p>
+
+</section>
+
+<section class="descarga">
+
+<h2>Texto completo</h2>
+
+<p>
+Podés descargar la versión completa de este ensayo en formato PDF.
+</p>
+
+<a class="boton-pdf"
+href="docs/deriva-urbana-san-jose.pdf"
+target="_blank">
+Descargar PDF
+</a>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+<div class="footer-inner">
+
+<img src="logo_pajarero.png" class="footer-logo" alt="pajarero_cr">
+
+<p class="footer-titulo">Alas de Vida</p>
+
+<p class="footer-texto">
+Un cuaderno abierto de pajareo, caminos y memoria.
+</p>
+
+<p class="footer-copy">
+© Adrián Cordero
+</p>
+
+</div>
+
+</footer>
+
+</body>
+</html>
