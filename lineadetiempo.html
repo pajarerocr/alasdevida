@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Curva de Pajareo — Alas de Vida</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:"Manrope",sans-serif;
+overflow:hidden;
+}
+
+.wrapper{
+position:relative;
+width:100vw;
+height:100vh;
+}
+
+/* MAPA */
+
+.map{
+position:absolute;
+width:100%;
+height:100%;
+opacity:.18;
+}
+
+.country{
+fill:#0a0a0a;
+stroke:#333;
+stroke-width:2;
+}
+
+.zone{
+fill:#444;
+opacity:.15;
+transition:opacity .3s;
+}
+
+.zone.active{
+opacity:.6;
+}
+
+/* CANVAS */
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+/* EVENT PANEL */
+
+.event-panel{
+
+position:absolute;
+right:40px;
+top:80px;
+width:340px;
+
+background:rgba(10,10,10,.92);
+border:1px solid rgba(255,255,255,.08);
+
+padding:22px;
+
+opacity:0;
+transition:opacity .25s;
+
+}
+
+.event-type{
+font-size:12px;
+letter-spacing:.08em;
+opacity:.6;
+margin-bottom:6px;
+}
+
+.event-title{
+font-size:24px;
+margin-bottom:8px;
+}
+
+.event-meta{
+font-size:14px;
+opacity:.6;
+margin-bottom:14px;
+}
+
+.event-desc{
+font-size:15px;
+line-height:1.4;
+margin-bottom:12px;
+}
+
+.event-zone{
+font-size:12px;
+opacity:.5;
+letter-spacing:.08em;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- MAPA -->
+
+<svg viewBox="0 0 600 900" class="map">
+
+<path class="country"
+d="M200 60 L330 40 L460 120 L540 300 L500 520 L360 720 L200 660 L120 500 L110 300 Z"/>
+
+<path id="pacifico_norte" class="zone"
+d="M200 120 L320 110 L330 200 L240 250 L190 200 Z"/>
+
+<path id="pacifico_sur" class="zone"
+d="M260 420 L360 430 L340 560 L240 540 Z"/>
+
+<path id="caribe_bajas" class="zone"
+d="M360 240 L480 300 L460 420 L350 380 Z"/>
+
+<path id="tierras_altas" class="zone"
+d="M260 300 L350 300 L330 420 L240 390 Z"/>
+
+</svg>
+
+
+<canvas id="curve"></canvas>
+
+<div id="eventPanel" class="event-panel">
+
+<div class="event-type" id="etype"></div>
+<div class="event-title" id="etitle"></div>
+<div class="event-meta" id="emeta"></div>
+<div class="event-desc" id="edesc"></div>
+<div class="event-zone" id="ezone"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const canvas = document.getElementById("curve")
+const ctx = canvas.getContext("2d")
+
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
+/* CURVA */
+
+const curve = [
+[100,800],
+[300,780],
+[420,760],
+[520,720],
+[600,600],
+[650,520],
+[720,460],
+[820,380],
+[900,320],
+[980,300],
+[1040,290]
+]
+
+/* EVENTOS */
+
+const events = [
+
+{
+x:600,
+y:600,
+type:"LIFER EMBLEMÁTICO",
+title:"Roseate Spoonbill",
+meta:"13 jun 24 · 38 especies · Parque Nacional Corcovado",
+desc:"Uno de los primeros grandes asombros tropicales del camino.",
+zone:"pacifico_sur"
+},
+
+{
+x:720,
+y:460,
+type:"EVENTO",
+title:"Curso Introducción a las Aves",
+meta:"Jul 2024",
+desc:"Un paso importante para entender el mundo de las aves.",
+zone:"tierras_altas"
+},
+
+{
+x:900,
+y:320,
+type:"HITO",
+title:"Ave 500",
+meta:"Feb 2025",
+desc:"Una marca importante en el crecimiento del listado.",
+zone:"caribe_bajas"
+}
+
+]
+
+/* DIBUJAR CURVA */
+
+function drawCurve(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.beginPath()
+
+ctx.lineWidth=3
+ctx.strokeStyle="white"
+ctx.lineJoin="round"
+ctx.lineCap="round"
+
+ctx.moveTo(curve[0][0],curve[0][1])
+
+for(let i=1;i<curve.length;i++){
+
+ctx.lineTo(curve[i][0],curve[i][1])
+
+}
+
+ctx.stroke()
+
+/* puntos */
+
+events.forEach(e=>{
+
+ctx.beginPath()
+ctx.arc(e.x,e.y,6,0,Math.PI*2)
+ctx.fillStyle="white"
+ctx.fill()
+
+})
+
+}
+
+drawCurve()
+
+
+/* HOVER */
+
+canvas.addEventListener("mousemove",function(e){
+
+let found=false
+
+events.forEach(ev=>{
+
+const dx=e.clientX-ev.x
+const dy=e.clientY-ev.y
+
+if(Math.sqrt(dx*dx+dy*dy)<10){
+
+showEvent(ev)
+highlightZone(ev.zone)
+found=true
+
+}
+
+})
+
+if(!found){
+
+hideEvent()
+clearZones()
+
+}
+
+})
+
+
+function showEvent(ev){
+
+document.getElementById("etype").innerText=ev.type
+document.getElementById("etitle").innerText=ev.title
+document.getElementById("emeta").innerText=ev.meta
+document.getElementById("edesc").innerText=ev.desc
+document.getElementById("ezone").innerText=ev.zone
+
+document.getElementById("eventPanel").style.opacity=1
+
+}
+
+function hideEvent(){
+
+document.getElementById("eventPanel").style.opacity=0
+
+}
+
+
+/* ECOZONAS */
+
+function highlightZone(zone){
+
+document.querySelectorAll(".zone").forEach(z=>{
+z.classList.remove("active")
+})
+
+const target=document.getElementById(zone)
+
+if(target) target.classList.add("active")
+
+}
+
+function clearZones(){
+
+document.querySelectorAll(".zone").forEach(z=>{
+z.classList.remove("active")
+})
+
+}
+
+</script>
+
+</body>
+</html>
