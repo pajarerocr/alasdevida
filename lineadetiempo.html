@@ -1,118 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Curva de Pajareo</title>
+<title>Curva de Pajareo — Alas de Vida</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-margin:0;
-background:black;
-color:white;
-font-family:"Manrope",sans-serif;
+  margin:0;
+  background:black;
+  color:white;
+  font-family:"Manrope",sans-serif;
 }
 
-.wrapper{
-position:relative;
-width:100%;
-height:700px;
+/* CONTENEDOR */
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px;
 }
 
-/* MAPA */
-
-.map{
-position:absolute;
-width:100%;
-height:100%;
-opacity:.18;
-display:flex;
-justify-content:center;
-align-items:center;
+h1{
+  text-align:center;
+  font-weight:500;
+  margin-bottom:10px;
 }
 
-.map svg{
-height:90%;
+.subtitle{
+  text-align:center;
+  opacity:.7;
+  margin-bottom:60px;
 }
 
-/* CANVAS */
+/* GRÁFICO */
 
-canvas{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
+.chart-wrap{
+  position:relative;
+  width:100%;
+  height:520px;
+}
+
+/* SVG */
+
+svg{
+  width:100%;
+  height:100%;
+}
+
+/* GRID */
+
+.grid line{
+  stroke:rgba(255,255,255,0.08);
+}
+
+/* CURVA */
+
+.curve{
+  fill:none;
+  stroke:white;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* PUNTOS */
+
+.point{
+  fill:black;
+  stroke:white;
+  stroke-width:2;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.point:hover,
+.point.active{
+  fill:white;
+  transform:scale(1.15);
+}
+
+/* LABELS */
+
+.label{
+  font-size:12px;
+  fill:rgba(255,255,255,.6);
 }
 
 /* PANEL */
 
 .panel{
-position:absolute;
-right:40px;
-top:60px;
-width:320px;
-background:rgba(0,0,0,.9);
-border:1px solid rgba(255,255,255,.1);
-padding:20px;
-opacity:0;
-transition:opacity .25s;
+  position:absolute;
+  right:0;
+  top:0;
+  width:300px;
+  background:rgba(10,10,10,.95);
+  border:1px solid rgba(255,255,255,.1);
+  padding:18px;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+
+.panel.visible{
+  opacity:1;
+}
+
+.type{
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:.5;
 }
 
 .title{
-font-size:22px;
-margin-bottom:6px;
+  font-size:22px;
+  margin:6px 0;
 }
 
 .meta{
-font-size:14px;
-opacity:.6;
-margin-bottom:10px;
+  font-size:13px;
+  opacity:.7;
+  margin-bottom:10px;
 }
 
 .desc{
-font-size:14px;
-line-height:1.4;
+  font-size:14px;
+  line-height:1.5;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="section">
 
-<div class="map">
+<h1>La curva de una vida pajarera</h1>
+<p class="subtitle">Especies acumuladas, hitos y momentos clave</p>
 
-<svg viewBox="0 0 300 500">
+<div class="chart-wrap">
 
-<path d="M90 20 L150 10 L230 70 L260 170 L240 290 L180 420 L110 380 L70 290 L60 170 Z"
-fill="none"
-stroke="#444"
-stroke-width="2"/>
+<svg id="chart">
+
+<!-- GRID -->
+<g class="grid"></g>
+
+<!-- CURVA -->
+<path class="curve" id="curve"></path>
+
+<!-- PUNTOS -->
+<g id="points"></g>
+
+<!-- LABELS -->
+<g id="labels"></g>
 
 </svg>
 
-</div>
-
-<canvas id="curve"></canvas>
-
 <div id="panel" class="panel">
-
-<div class="title">Roseate Spoonbill</div>
-
-<div class="meta">
-13 jun 2024 · Corcovado
-</div>
-
-<div class="desc">
-Uno de los primeros grandes asombros tropicales del camino.
+  <div class="type" id="p-type"></div>
+  <div class="title" id="p-title"></div>
+  <div class="meta" id="p-meta"></div>
+  <div class="desc" id="p-desc"></div>
 </div>
 
 </div>
@@ -121,94 +174,133 @@ Uno de los primeros grandes asombros tropicales del camino.
 
 <script>
 
-const canvas = document.getElementById("curve")
-const ctx = canvas.getContext("2d")
+const data = [
+{date:"2023-04-04", species:1, type:"inicio", title:"Inicio en Cahuita", desc:"Primer pajareo con Justo y Karla."},
 
-function resize(){
+{date:"2024-06-14", species:20, type:"inicio serio", title:"Uvita — arranca de verdad", desc:"eBird + Merlin desde el balcón."},
 
-canvas.width = canvas.offsetWidth
-canvas.height = canvas.offsetHeight
+{date:"2024-07-07", species:100, type:"milestone", title:"Ave #100", desc:"Southern Lapwing"},
 
-draw()
+{date:"2024-08-18", species:200, type:"milestone", title:"Ave #200", desc:"Zone-tailed Hawk"},
 
-}
+{date:"2024-09-29", species:300, type:"milestone", title:"Ave #300", desc:"Prothonotary Warbler"},
 
-window.addEventListener("resize",resize)
+{date:"2024-11-23", species:400, type:"milestone", title:"Ave #400", desc:"Pacific Screech-Owl"},
 
-resize()
+{date:"2025-02-20", species:500, type:"milestone", title:"Ave #500", desc:"Green Shrike-Vireo"},
 
-const points = [
-[50,620],
-[120,600],
-[200,560],
-[300,470],
-[380,410],
-[460,350],
-[520,330]
+{date:"2025-11-08", species:600, type:"milestone", title:"Ave #600", desc:"Nutting’s Flycatcher"}
+
 ]
+
+const svg = document.getElementById("chart")
+const curve = document.getElementById("curve")
+const pointsGroup = document.getElementById("points")
+const labelsGroup = document.getElementById("labels")
+const panel = document.getElementById("panel")
+
+const padding = 60
 
 function draw(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height)
+const w = svg.clientWidth
+const h = svg.clientHeight
 
-ctx.beginPath()
+const minDate = new Date("2024-06-01")
+const maxDate = new Date("2026-02-01")
 
-ctx.lineWidth = 3
-ctx.strokeStyle = "white"
-ctx.lineCap="round"
-ctx.lineJoin="round"
+const maxSpecies = 650
 
-ctx.moveTo(points[0][0],points[0][1])
-
-for(let i=1;i<points.length;i++){
-
-ctx.lineTo(points[i][0],points[i][1])
-
+function xScale(d){
+  return padding + ( (d - minDate) / (maxDate - minDate) ) * (w - padding*2)
 }
 
-ctx.stroke()
+function yScale(s){
+  return h - padding - (s/maxSpecies)*(h-padding*2)
+}
 
-points.forEach(p=>{
+/* CURVA */
 
-ctx.beginPath()
-ctx.arc(p[0],p[1],5,0,Math.PI*2)
-ctx.fillStyle="white"
-ctx.fill()
+let path = ""
+
+data.forEach((d,i)=>{
+
+const x = xScale(new Date(d.date))
+const y = yScale(d.species)
+
+if(i===0){
+  path += `M ${x} ${y}`
+}else{
+  path += ` L ${x} ${y}`
+}
+
+})
+
+curve.setAttribute("d",path)
+
+/* PUNTOS */
+
+pointsGroup.innerHTML=""
+
+data.forEach(d=>{
+
+const x = xScale(new Date(d.date))
+const y = yScale(d.species)
+
+const c = document.createElementNS("http://www.w3.org/2000/svg","circle")
+c.setAttribute("cx",x)
+c.setAttribute("cy",y)
+c.setAttribute("r",5)
+c.setAttribute("class","point")
+
+c.addEventListener("mouseenter",()=>showPanel(d))
+c.addEventListener("mouseleave",()=>hidePanel())
+c.addEventListener("click",()=>showPanel(d))
+
+pointsGroup.appendChild(c)
+
+})
+
+/* LABELS */
+
+labelsGroup.innerHTML=""
+
+const months = ["Jun 24","Jul","Ago","Sep","Oct","Nov","Dic","Ene 25","Feb","Mar","Abr","May"]
+
+months.forEach((m,i)=>{
+
+const x = padding + i*((w-padding*2)/12)
+
+const t = document.createElementNS("http://www.w3.org/2000/svg","text")
+t.setAttribute("x",x)
+t.setAttribute("y",h-20)
+t.setAttribute("class","label")
+t.textContent = m
+
+labelsGroup.appendChild(t)
 
 })
 
 }
 
-canvas.addEventListener("mousemove",(e)=>{
+function showPanel(d){
 
-const rect = canvas.getBoundingClientRect()
+panel.classList.add("visible")
 
-const x = e.clientX - rect.left
-const y = e.clientY - rect.top
-
-let active=false
-
-points.forEach(p=>{
-
-const dx = x-p[0]
-const dy = y-p[1]
-
-if(Math.sqrt(dx*dx+dy*dy)<10){
-
-document.getElementById("panel").style.opacity=1
-active=true
+document.getElementById("p-type").textContent = d.type
+document.getElementById("p-title").textContent = d.title
+document.getElementById("p-meta").textContent = d.date
+document.getElementById("p-desc").textContent = d.desc
 
 }
 
-})
-
-if(!active){
-
-document.getElementById("panel").style.opacity=0
-
+function hidePanel(){
+panel.classList.remove("visible")
 }
 
-})
+window.addEventListener("resize",draw)
+
+draw()
 
 </script>
 
